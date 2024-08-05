@@ -4,6 +4,42 @@ import axios from 'axios';
 export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
+      // test comics; remove later!
+      comics:[
+        {
+          title: 'The Amazing Spiderman',
+          issue: 1,
+          publisher: 'Marvel',
+          date: '1993-01-01',
+          isbn: '9780785136927'
+        },
+
+        {
+          title: 'The Incredible Hulk',
+          issue: 1,
+          publisher: 'Marvel',
+          date: '1962-05-01',
+          isbn: '9780785129387'
+        },
+
+        {
+          title: 'The Punisher',
+          issue: 1,
+          publisher: 'Marvel',
+          date: '1986-01-01',
+          isbn: '9780785157359'
+        },
+
+        {
+          title: 'Iron Man Vol 1',
+          issue: 300,
+          publisher: 'Marvel',
+          date: '2013-01-01',
+          isbn: '9780785168331'
+        }
+
+      ],
+
       token: currentToken || '',
       user: currentUser || {}
     },

@@ -25,6 +25,7 @@
 
 <script>
 import authService from "../services/AuthService";
+import AppHeaderVue from "../components/AppHeader.vue";
 
 export default {
   components: {},
@@ -61,10 +62,44 @@ export default {
 </script>
 
 <style scoped>
+
+
 .form-input-group {
   margin-bottom: 1rem;
 }
+
 label {
   margin-right: 0.5rem;
 }
+
+button {
+  margin: auto;
+  background-color: lightblue;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#login {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+h1 {
+  color: white;
+  background-color: black;
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 50px;
+}
+
+p {
+  color: white;
+  background-color: black;
+  text-align: center;
+}
+
+
 </style>
