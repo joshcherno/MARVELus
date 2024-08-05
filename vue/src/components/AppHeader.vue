@@ -2,15 +2,16 @@
 <template>
 
     <header>
-    <h1 id="app_name">MARVELus</h1>
-    <div id="nav">
-      
+      <h1>MARVELus</h1>
+        <div id="nav">
+      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
+      <!-- TODO: Add a router link to a My Collections view -->
+      <router-link v-bind:to="{ name: 'my-comics' }">My Collections</router-link>&nbsp;|&nbsp;
+      <!-- TODO: Add a router link to a Profile view -->
+      <router-link v-bind:to="{ name: 'my-comics' }">My Profile</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       </div>
-      <nav>
-        <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-        <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
-        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link> 
-      </nav>
     </header>
 
 <body>    
@@ -32,12 +33,17 @@ header {
     color: red;
     text-align: center;
     padding: 1rem;
-    margin-bottom: 1rem;
     background-color: white;
 }
 
 #nav {
     font-size: 30px;
+    background-color: white;
+}
+
+h1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 
