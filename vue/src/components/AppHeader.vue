@@ -1,10 +1,19 @@
 
 <template>
-  
-<body>
+
     <header>
-    
+    <h1 id="app_name">MARVELus</h1>
+    <div id="nav">
+      
+      </div>
+      <nav>
+        <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
+        <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
+        <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link> 
+      </nav>
     </header>
+
+<body>    
 </body>    
 
 </template>
