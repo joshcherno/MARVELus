@@ -4,7 +4,7 @@ import axios from 'axios';
 export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
-      // test comics; remove later!
+      // test comics and collections; remove later!
       comics:[
         {
           title: 'The Amazing Spiderman',
@@ -39,6 +39,7 @@ export function createStore(currentToken, currentUser) {
         }
 
       ],
+      collections:[],
 
       token: currentToken || '',
       user: currentUser || {}

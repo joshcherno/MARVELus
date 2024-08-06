@@ -28,6 +28,7 @@ export default {
   color: #2C3E50;
   margin: 30px;
   display: flex;
+  justify-content: space-evenly;
 }
 
 .card{
