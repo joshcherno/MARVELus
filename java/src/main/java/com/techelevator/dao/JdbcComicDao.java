@@ -35,14 +35,12 @@ public class JdbcComicDao implements ComicDao{
 
         return comic;
     }
-
-    //TODO set up comic table in pgadmin
     @Override
     public Comic getComicById(String comicId) {
 
         Comic comic = null;
 
-        String sql = "SELECT * FROM comic";
+        String sql = "SELECT * FROM comic WHERE comic_id = ?";
 
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, comicId);
@@ -63,7 +61,7 @@ public class JdbcComicDao implements ComicDao{
 
         Comic comic = null;
 
-        String sql = "SELECT * FROM comic";
+        String sql = "SELECT * FROM comic WHERE comic_title = ?";
 
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, title);
@@ -82,7 +80,7 @@ public class JdbcComicDao implements ComicDao{
 
         Comic comic = null;
 
-        String sql = "SELECT * FROM comic";
+        String sql = "SELECT * FROM comic WHERE comic_author = ?";
 
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, author);
@@ -123,7 +121,7 @@ public class JdbcComicDao implements ComicDao{
 
         Comic comics = null;
 
-        String sql = "INSERT INTO comic (title, author, description, release_date, cover_art) " +
+        String sql = "INSERT INTO comic (comic_title, comic_author, description, release_date, cover_url) " +
                 "VALUES (?, ?, ?, ?, ?) RETURNING comic_id";
 
         try{

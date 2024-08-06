@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO GET THIS WORKING TOO. NEEDS TO SAVE TO POSTGRES TABLE
 @Service
 public class ComicService {
     private final ComicDao comicDao;
@@ -34,8 +35,8 @@ public class ComicService {
     public Comic saveComic(Comic comic){
         return comicDao.saveComic(comic);
     }
-
-    public List<Comic> getAndSaveMarvelStuff() throws IOException {
+    //TODO rework the api service to get this working
+   /* public List<Comic> getAndSaveMarvelStuff() throws IOException {
         String comicData = apiService.getComics();
         JsonNode rootNode = objectMapper.readTree(comicData);
         JsonNode resultsNode = rootNode.path("data").path("results");
@@ -52,5 +53,5 @@ public class ComicService {
         return comics;
 
 
-    }
+    }*/
 }
