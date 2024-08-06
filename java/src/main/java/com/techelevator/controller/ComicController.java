@@ -1,11 +1,17 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.ComicDao;
+
 public class ComicController {
 
-    private final ComicController comicController;
+    private ComicDao comicDao;
 
 
-    public ComicController(ComicController comicController) {
-        this.comicController = comicController;
+    public ComicController(ComicDao comicDao){
+        this.comicDao = comicDao;
     }
+
+
+
+
 }

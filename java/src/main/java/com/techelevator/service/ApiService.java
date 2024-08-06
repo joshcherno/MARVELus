@@ -2,6 +2,8 @@ package com.techelevator.service;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -12,11 +14,39 @@ import java.security.NoSuchAlgorithmException;
 
 import java.time.Instant;
 
+//TODO get this communicating and storing info
+//TODO rework the api service to get this working to save data
+
 
 // @Service
 public class ApiService {
 
-//    @Value("${marvel.api.base-url}")
+    private RestTemplate restTemplate = new RestTemplate();
+    public String MARVEL_URL_API = "https://gateway.marvel.com/v1/public";
+    public static final String MARVEL_URI_COMICS = "/comics";
+    public static final String MARVEL_URI_CHARACTERS = "/characters";
+    public static final String MARVEL_URI_CREATORS = "/creators";
+    public static final String MARVEL_URI_EVENTS = "/events";
+    public static final String MARVEL_URI_SERIES = "/series";
+    public static final String MARVEL_PARAM_TIMESTAMP = "1";
+    public static final String MARVEL_PARAM_APIKEY = "25b2c83d1b49f1d2ab163802b4a2cda6";
+    public static final String MARVEL_PARAM_HASH = "bd3b0817e4b8aee1b1e8f226a56de70b";
+    public static final String MARVEL_PARAM_LIMIT = "limit";
+
+    public ApiService() {
+    }
+    private HttpEntity<Void> makeHeaders(){
+        HttpHeaders headers = new HttpHeaders();
+        return new HttpEntity<>(headers);
+    }
+    private String authorityString(){
+        String authString = "ts=1&apikey=" + MARVEL_PARAM_APIKEY + "&hash=" + MARVEL_PARAM_HASH;
+        return authString;
+    }
+
+
+
+    //    @Value("${marvel.api.base-url}")
 //    private String baseUrl;
 //
 //    @Value("${marvel.api.public-key}")
@@ -59,20 +89,7 @@ public class ApiService {
 //        return restTemplate.getForObject(url, String.class);
 //    }
 
-    public static final String MARVEL_URL_API = "https://gateway.marvel.com/v1/public";
-    public static final String MARVEL_URI_COMICS = "/comics";
-    public static final String MARVEL_URI_CHARACTERS = "/characters";
-    public static final String MARVEL_URI_CREATORS = "/creators";
-    public static final String MARVEL_URI_EVENTS = "/events";
-    public static final String MARVEL_URI_SERIES = "/series";
-    public static final String MARVEL_PARAM_TIMESTAMP = "1";
-    public static final String MARVEL_PARAM_APIKEY = "25b2c83d1b49f1d2ab163802b4a2cda6";
-    public static final String MARVEL_PARAM_HASH = "bd3b0817e4b8aee1b1e8f226a56de70b";
-    public static final String MARVEL_PARAM_LIMIT = "limit";
 
-    public ApiService(){
-
-    }
 
 
 

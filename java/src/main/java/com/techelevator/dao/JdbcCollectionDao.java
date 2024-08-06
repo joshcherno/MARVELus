@@ -23,7 +23,7 @@ public class JdbcCollectionDao implements CollectionDao{
     public Collection getCollectionById(int collectionId) {
         Collection collection = null;
 
-        String sql = "SELECT * FROM collection";
+        String sql = "SELECT * FROM collection WHERE collection_id = ?;";
 
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, collectionId);
@@ -63,7 +63,7 @@ public class JdbcCollectionDao implements CollectionDao{
 
         Collection collection = null;
 
-        String sql = "SELECT * FROM collection";
+        String sql = "SELECT * FROM collection WHERE collection_name = ?;";
 
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, collectionName);
@@ -104,7 +104,7 @@ public class JdbcCollectionDao implements CollectionDao{
 
         Collection collection = null;
 
-        String sql = "INSERT INTO collection (collection_name, col_description, user_id)" +
+        String sql = "INSERT INTO collection (collection_name, collection_description, user_id)" +
                 "VALUES (?, ?, ?) RETURNING collection_id";
 
         try{
@@ -121,6 +121,10 @@ public class JdbcCollectionDao implements CollectionDao{
 
     @Override
     public Collection addingComic(Comic comic) {
+
+        String sql = "INSERT INTO collection (collection_name, collection_description, user_id, comic_id)"
+                + "VALUES (?,?,?,?) RETURNING collection_id";
+
 
         
 

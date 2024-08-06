@@ -71,6 +71,8 @@ public class JdbcUserDao implements UserDao {
         return user;
     }
 
+
+    //TODO connect the frontend to this to add new users to the user table
     @Override
     public User createUser(RegisterUserDto user) {
         User newUser = null;
