@@ -23,17 +23,19 @@ export default {
 <style>
 
 .create-collection-card{
-    border: 3px solid #4c94f6;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    border: 3px solid #ee5454;
     border-radius: 10px;
     width: 250px;
-    height: 500px;
-    margin: 10px;
+    height: 400px;
+    margin: 5%;
     position: relative;
     background-color: white;
+    text-align: center;
 } 
 
 .create-collection-img{
-    width: 90%;
+    width: 100%;
     height: 50%;
    
 }

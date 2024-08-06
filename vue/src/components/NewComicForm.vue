@@ -8,7 +8,9 @@
     <input name="publisher-input" class="publisher-input" type="text" placeholder="Publisher" v-model="comic.publisher" />
     <input name="release-date-input" class="release-date-input" type="text" placeholder="Release Date" v-model="comic.date" />
     <input name="isbn-input" class="isbn-input" type="text" placeholder="ISBN" v-model="comic.isbn" />
-    <button class= "submit" type="submit">Add Comic</button>
+    <!-- added method and @click to route back to my-comics -->
+    <button class= "submit" type="submit" @click="goToMyComics">Add Comic</button> 
+    
 
 </form>
 
@@ -25,6 +27,11 @@ export default {
                 date: '',
                 isbn: ''
             }
+        }
+    },
+    methods:{
+        goToMyComics(){
+            this.$router.push('/my-comics')
         }
     }
 

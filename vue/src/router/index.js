@@ -10,6 +10,7 @@ import MyComicsView from '../views/MyComicsView.vue';
 import MyCollectionsView from '../views/MyCollectionsView.vue';
 import AddComicView from '../views/AddComicView.vue';
 import CreateCollectionView from '../views/CreateCollectionView.vue';
+import ProfileView from '../views/ProfileView.vue';
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -89,6 +90,13 @@ const routes = [
       requiresAuth: false
     }
   },
+  {
+    path: "/profile",
+    name: "profile",
+    component: ProfileView,
+    //TODO: eventually we need to make this true and require authentication for access to MyComicsView
+    requiresAuth: false
+  }
 ];
 
 // Create the router

@@ -2,9 +2,9 @@
 
     <form class="new-collection-form" v-on:submit.prevent="">
     
-        <h2 class="form-title">Create a Collection</h2>
+        <h2 class="form-title">Give your collection a name!</h2>
         <input name="name-input" class="name-input" type="text" placeholder="Collection Name" v-model="collection.name" />
-        <button class= "submit" type="submit">Create My Collection</button>
+        <button class= "submit" type="submit" @click="createCollection">CREATE</button>
     
     </form>
     
@@ -18,6 +18,11 @@
                     name: '',
                 }
             }
+        },
+        methods: {
+            createCollection(){
+                this.$router.push({ name: 'my-collections' });
+            }
         }
     
     }
@@ -27,27 +32,32 @@
     .new-collection-form {
         display: flex;
         justify-content: center;
-        align-content: center ;
+        align-content: center;
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2C3E50;
-        margin: 30px;
+        margin: 10px;
+        width: 75%;
+        background-color: rgba(0,0,0,.75);
     }
     
     .form-title{
-        background-color: rgba(0,0,0,.5);
-        width: 33%;
+        background-color: rgba(0,0,0,.75);
         color: white;
-        margin: auto;
-        padding: 2%;
+        padding: 1rem;
         font-size: 1rem;
+
+    }
+
+    .name-input{
+        margin: 1rem;
+        padding: 1rem;
+        width: 33%;
     }
     
     .submit{
-        margin-left: 1%;
-        padding: 2%;
+        padding: 1%;
+        margin: 2%;
     }
     
     

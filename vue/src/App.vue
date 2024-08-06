@@ -25,7 +25,7 @@ import AppHeader from './components/AppHeader.vue'
 <style scoped>
 
 .form-container {
-  background-image: url('@/assets/testbackgroundmural.jpg');
+  background-image: url('src/assets/backgroundImage.jpg');
   width: 100vw;
   height: 100vh;
   background-size: cover;

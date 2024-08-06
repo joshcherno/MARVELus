@@ -16,7 +16,7 @@
         <label for="password">Password </label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
-      <button type="submit">Sign in</button>
+      <button type="submit" >Sign in</button> 
       <p>
       <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
     </form>
@@ -88,7 +88,7 @@ button {
   background-color: rgba(0,0,0,.5);       /* added a faded background to help the login standout */
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;      /* set font style for whole page */
   color: white;
-  ;
+  margin: 15%;
 }
 
 h1 {

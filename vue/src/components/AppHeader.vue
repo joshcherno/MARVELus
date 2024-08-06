@@ -6,9 +6,10 @@
         <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>
       <!-- TODO: Add a router link to a Profile view -->
-      <router-link v-bind:to="{ name: 'my-comics' }">My Profile</router-link>&nbsp;|&nbsp;
+      <!-- Added a profile icon from the internet in the upper right hand corner below -->
+      <router-link class="profile" v-bind:to="{ name: 'profile' }"><img class="profile-img" v-bind:src="'src/assets/ProfileImage.jpg'" alt="profile"></router-link> 
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       </div>
     </header>
@@ -44,7 +45,22 @@ h1 {
   margin-bottom: 0px;
 }
 
+.profile{
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
+.profile-img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 
 
 </style>
