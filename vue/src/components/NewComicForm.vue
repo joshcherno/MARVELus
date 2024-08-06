@@ -36,6 +36,12 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center ;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2C3E50;
+    margin: 30px;
 }
 
 .form-title{
@@ -51,5 +57,7 @@ export default {
     margin-left: 1%;
     padding: 2%;
 }
+
+
 
 </style>

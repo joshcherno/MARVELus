@@ -3,14 +3,18 @@
     <h2 class = "add-comic-text">Add Comic</h2>
         <img class="add-comic-img" v-bind:src="'src/assets/AddComic.jpg'" alt="add-comic">
         <h3>Search comics and add to your library</h3>
-        <button class="add" v-on:click.prevent>Add Comic</button>
+        <button class="add-comic-button" @click="goToAddComic">Add Comic</button>
     </div>
 </template>
 
 <script>
 export default {
     props: ['comic'],
-
+    methods: {
+        goToAddComic() {
+            this.$router.push({ name: 'add-comic' });
+        }
+    }
 }
 </script>
 

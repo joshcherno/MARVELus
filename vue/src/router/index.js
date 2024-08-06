@@ -9,6 +9,7 @@ import RegisterView from '../views/RegisterView.vue';
 import MyComicsView from '../views/MyComicsView.vue';
 import MyCollectionsView from '../views/MyCollectionsView.vue';
 import AddComicView from '../views/AddComicView.vue';
+import CreateCollectionView from '../views/CreateCollectionView.vue';
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -56,7 +57,7 @@ const routes = [
     name: "my-comics",
     component: MyComicsView,
     meta: {
-      //TODO: eventually we need to make this true and require authentication for access to MyComicsView
+    //TODO: eventually we need to make this true and require authentication for access to MyComicsView
       requiresAuth: false
     }
   },
@@ -74,15 +75,20 @@ const routes = [
     name: "add-comic",
     component: AddComicView,
     meta: {
-          //TODO: eventually we need to make this true and require authentication for access to MyComicsView
+    //TODO: eventually we need to make this true and require authentication for access to MyComicsView
       requiresAuth: false
     }
   
-  }
-
-
-
-
+  },
+  {
+    path: "/create-collection",
+    name: "create-collection",
+    component: CreateCollectionView,
+    meta: {
+    //TODO: eventually we need to make this true and require authentication for access to MyComicsView
+      requiresAuth: false
+    }
+  },
 ];
 
 // Create the router
