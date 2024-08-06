@@ -43,6 +43,16 @@ public class ApiService {
         // Make API call
         return restTemplate.getForObject(url, String.class);
     }
+    public String getComics(){
+        String ts = String.valueOf(Instant.now().getEpochSecond());
+        String hash = DigestUtils.md5Hex(ts + privateKey + publicKey);
+        String url = UriComponentsBuilder.fromHttpUrl(baseUrl + "/comics/{id}")
+                .queryParam("ts", ts)
+                .queryParam("apikey", publicKey)
+                .queryParam("hash", hash)
+                .toUriString();
+        return restTemplate.getForObject(url, String.class);
+    }
 
 
 
