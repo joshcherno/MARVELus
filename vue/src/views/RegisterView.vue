@@ -92,19 +92,19 @@ button {
   display: flex;
   align-content: center;
   justify-content: center;
+  background-color: rgba(0,0,0,.5);       /* added a faded background to help the login standout */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;      /* set font style for whole page */
+  color: white;
 }
 
 h1 {
-  color: white;
-  background-color: black;
   text-align: center;
   font-size: 50px;
   margin-bottom: 50px;
 }
 
 p {
-  color: white;
-  background-color: black;
+  background-color: rgba(0,0,0,.5);
   text-align: center;
 }
 </style>

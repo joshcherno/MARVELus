@@ -6,8 +6,7 @@
         <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
-      <!-- TODO: Add a router link to a My Collections view -->
-      <router-link v-bind:to="{ name: 'my-comics' }">My Collections</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>&nbsp;|&nbsp;
       <!-- TODO: Add a router link to a Profile view -->
       <router-link v-bind:to="{ name: 'my-comics' }">My Profile</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
