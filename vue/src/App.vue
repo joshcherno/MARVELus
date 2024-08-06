@@ -11,7 +11,6 @@
 
 <script>
 import AppHeader from './components/AppHeader.vue'
-// import AppHeader from './components/AppHeader.vue';
 
   export default {
   components: { AppHeader },
@@ -29,6 +28,7 @@ import AppHeader from './components/AppHeader.vue'
   background-image: url('@/assets/testbackgroundmural.jpg');
   width: 100vw;
   height: 100vh;
+  background-size: cover;
 }
 
 
