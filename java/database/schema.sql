@@ -11,7 +11,7 @@ CREATE TABLE users (
 );
 CREATE TABLE comic (
     comic_id varchar(50),
-    comic_title varchar(100),
+    comic_title varchar(100) NOT NULL,
     comic_author varchar(50),
     description varchar(250),
     release_date date,
@@ -25,13 +25,9 @@ CREATE TABLE comic (
 --    ) TODO collection and comicCollection table
 
 CREATE TABLE collection_comics (
-    collection_comic_id varchar(50) NOT NULL,
     collection_id int NOT NULL,
     comic_id int NOT NULL,
-    added_date date NOT NULL,
     CONSTRAINT PK_comic PRIMARY KEY (comic_id)
 );
-
-
 
 COMMIT TRANSACTION;
