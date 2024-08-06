@@ -28,8 +28,8 @@ export default {
 <style>
 
 header {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;        /* set font style for whole page */
+    font-size: 2rem;         /* changed from 50px to 2 rem to better accommodate screen sizes?*/
     color: red;
     text-align: center;
     padding: 1rem;
@@ -37,8 +37,7 @@ header {
 }
 
 #nav {
-    font-size: 30px;
-    background-color: white;
+    font-size: 1rem;      /*changed to better fit with the title size */
 }
 
 h1 {

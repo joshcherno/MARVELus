@@ -13,7 +13,7 @@
         <input type="text" id="username" v-model="user.username" required autofocus />
       </div>
       <div class="form-input-group">
-        <label for="password">Password</label>
+        <label for="password">Password </label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
       <button type="submit">Sign in</button>
@@ -85,11 +85,14 @@ button {
   display: flex;
   align-content: center;
   justify-content: center;
+  background-color: rgba(0,0,0,.5);       /* added a faded background to help the login standout */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;      /* set font style for whole page */
+  color: white;
+  ;
 }
 
 h1 {
   color: white;
-  background-color: black;
   text-align: center;
   font-size: 50px;
   margin-bottom: 50px;
@@ -97,7 +100,6 @@ h1 {
 
 p {
   color: white;
-  background-color: black;
   text-align: center;
 }
 
