@@ -17,6 +17,25 @@ public class JdbcComicDao implements ComicDao{
     public JdbcComicDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    @Override
+    public Comic getAllComics() {
+        Comic comic = null;
+
+        String sql = "SELECT * FROM comic";
+
+        try{
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            if(results.next()){
+                comic = mapRowToComic(results);
+            }
+        }catch(CannotGetJdbcConnectionException e){
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+
+        return comic;
+    }
+
     //TODO set up comic table in pgadmin
     @Override
     public Comic getComicById(String comicId) {

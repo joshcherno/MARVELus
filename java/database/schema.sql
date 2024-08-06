@@ -9,5 +9,19 @@ CREATE TABLE users (
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
+CREATE TABLE comic (
+    comic_id varchar(50),
+    comic_title varchar(100),
+    comic_author varchar(50),
+    description varchar(250),
+    release_date date,
+    cover_url varchar(100)
+    CONSTRAINT PK_comic_id PRIMARY KEY (comic_id)
+);
+--CREATE TABLE collection (
+--    collection_id SERIAL,
+--    collection_name varchar(50),
+--    collection_description varchar(250)
+--    ) TODO collection and comicCollection table
 
 COMMIT TRANSACTION;
