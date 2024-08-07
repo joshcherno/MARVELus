@@ -7,10 +7,13 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcCollectionDao implements CollectionDao{
 
     private  final JdbcTemplate jdbcTemplate;
@@ -18,6 +21,7 @@ public class JdbcCollectionDao implements CollectionDao{
     public  JdbcCollectionDao(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
+
 
     @Override
     public Collection getCollectionById(int collectionId) {
