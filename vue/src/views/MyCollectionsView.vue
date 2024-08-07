@@ -1,15 +1,24 @@
 <template>
+
+  <h1 class="collections-title">My Collections</h1>
+
   <div id="my-collections">
-    <h1 class="collections-title">My Collections</h1>
-  </div>
   <create-collection-card/>
+  <collection-list/> 
+  </div>
+  
 </template>
 
 <script>
 import CreateCollectionCard from '../components/CreateCollectionCard.vue';
+import CollectionList from '../components/CollectionList.vue';
+//TODO: implement collectionService
+import collectionService from '../services/CollectionService';
+
 export default {
     components: {
-        CreateCollectionCard
+        CreateCollectionCard,
+        CollectionList
     }
 
 }
@@ -25,7 +34,7 @@ export default {
   color: #2C3E50;
   margin: 30px;
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: nowrap;
 }
 
 .collections-title {

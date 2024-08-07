@@ -1,6 +1,9 @@
 import { createStore as _createStore } from 'vuex';
 import axios from 'axios';
 
+// LOOKING AT M3D17 LECTURE finally, Store.JS LOOKS TO BE WHERE THE STATE NOTIFICATIONS ARE STORED - 
+// THINK WHEN YOU ADD A COMIC AND AFTER ITS ADDED YOU GET A QUICK NOTIFICATION AT THE TOP THAT SAYS "COMIC ADDED TO YOUR LIBRARY"
+
 export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
@@ -39,7 +42,28 @@ export function createStore(currentToken, currentUser) {
         }
 
       ],
-      collections:[],
+      collections:[
+        {
+          title: 'Spiderman Collection',
+          description: 'A collection of Spiderman comics',
+          comics: []
+        },
+
+        {
+          title: 'Hulk Collection',
+          description: 'A collection of Hulk comics',
+          comics: []
+        },
+
+        {
+          title: 'Punisher Collection',
+          description: 'A collection of Punisher comics',
+          comics: []
+        },
+
+        {
+        }
+      ],
 
       token: currentToken || '',
       user: currentUser || {}

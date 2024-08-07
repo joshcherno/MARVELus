@@ -21,7 +21,7 @@ export default {
 <style>
 
 .add-comic-card{
-    border: 3px solid #4c94f6;
+    border: 3px solid #ee5454;
     border-radius: 10px;
     width: 250px;
     height: 500px;
