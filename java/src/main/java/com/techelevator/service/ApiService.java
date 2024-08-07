@@ -18,7 +18,7 @@ import java.time.Instant;
 //TODO rework the api service to get this working to save data
 
 
-// @Service
+@Service
 public class ApiService {
 
     private RestTemplate restTemplate = new RestTemplate();

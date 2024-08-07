@@ -16,13 +16,18 @@ import java.util.List;
 @Service
 public class ComicService {
     private final ComicDao comicDao;
-    private final Comic comic;
+
+    //TODO: RE-EVLAUTE NEED FOR A SERVICE MEMBER OF TYPE COMIC - SHOULD BE DATA PASSED IN OR RETREIVED BY METHODS
+    //private final Comic comic;
     private final ApiService apiService;
     private final ObjectMapper objectMapper;
 
-    public ComicService(ComicDao comicDao, Comic comic, ApiService apiService, ObjectMapper objectMapper) {
+    public ComicService(ComicDao comicDao, /*Comic comic, */ ApiService apiService, ObjectMapper objectMapper) {
         this.comicDao = comicDao;
-        this.comic = comic;
+
+        //TODO: RE-EVLAUTE NEED FOR A SERVICE MEMBER OF TYPE COMIC - SHOULD BE DATA PASSED IN OR RETREIVED BY METHODS
+        //this.comic = comic;
+
         this.apiService = apiService;
         this.objectMapper = objectMapper;
     }
