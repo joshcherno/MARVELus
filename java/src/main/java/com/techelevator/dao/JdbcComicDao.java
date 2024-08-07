@@ -38,7 +38,7 @@ public class JdbcComicDao implements ComicDao{
         return comic;
     }
     @Override
-    public Comic getComicById(String comicId) {
+    public Comic getComicById(int comicId) {
 
         Comic comic = null;
 
@@ -129,7 +129,7 @@ public class JdbcComicDao implements ComicDao{
         try{
            String comicId = jdbcTemplate.queryForObject(sql, String.class, comic.getTitle(), comic.getAuthor(),
                    comic.getDescription(), comic.getReleaseDate(), comic.getCoverArt());
-           comics = getComicById(comicId);
+           comics = getComicById(Integer.parseInt(comicId));
         }catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database.", e);
         } catch (DataIntegrityViolationException e) {
@@ -141,7 +141,7 @@ public class JdbcComicDao implements ComicDao{
     private Comic mapRowToComic(SqlRowSet rs) {
 
         Comic comic = new Comic();
-        comic.setComicId(rs.getString("comic_id"));
+        comic.setComicId(rs.getInt("comic_id"));
         comic.setTitle(rs.getString("title"));
         comic.setAuthor(rs.getString("author"));
         comic.setDescription(rs.getString("description"));

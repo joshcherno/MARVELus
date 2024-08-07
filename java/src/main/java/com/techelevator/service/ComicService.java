@@ -1,3 +1,4 @@
+/*
 package com.techelevator.service;
 
 
@@ -22,7 +23,9 @@ public class ComicService {
     private final ApiService apiService;
     private final ObjectMapper objectMapper;
 
-    public ComicService(ComicDao comicDao, /*Comic comic, */ ApiService apiService, ObjectMapper objectMapper) {
+    public ComicService(ComicDao comicDao, */
+/*Comic comic, *//*
+ ApiService apiService, ObjectMapper objectMapper) {
         this.comicDao = comicDao;
 
         //TODO: RE-EVLAUTE NEED FOR A SERVICE MEMBER OF TYPE COMIC - SHOULD BE DATA PASSED IN OR RETREIVED BY METHODS
@@ -31,7 +34,7 @@ public class ComicService {
         this.apiService = apiService;
         this.objectMapper = objectMapper;
     }
-    public Comic getComicById(String comicId){
+    public Comic getComicById(int comicId){
         return comicDao.getComicById(comicId);
     }
     public List<Comic> getComics(){
@@ -41,7 +44,8 @@ public class ComicService {
         return comicDao.saveComic(comic);
     }
     //TODO rework the api service to get this working
-   /* public List<Comic> getAndSaveMarvelStuff() throws IOException {
+   */
+/* public List<Comic> getAndSaveMarvelStuff() throws IOException {
         String comicData = apiService.getComics();
         JsonNode rootNode = objectMapper.readTree(comicData);
         JsonNode resultsNode = rootNode.path("data").path("results");
@@ -58,5 +62,7 @@ public class ComicService {
         return comics;
 
 
-    }*/
+    }*//*
+
 }
+*/

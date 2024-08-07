@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Comic {
 
-    private String comicId;
+    private int comicId;
     private String title;
     private String author;
     private String description;
@@ -13,12 +13,11 @@ public class Comic {
     private String characterName;
 
 
-
-    public String getComicId() {
+    public int getComicId() {
         return comicId;
     }
 
-    public void setComicId(String comicId) {
+    public void setComicId(int comicId) {
         this.comicId = comicId;
     }
 
