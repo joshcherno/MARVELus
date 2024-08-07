@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.ComicDao;
 import com.techelevator.model.Comic;
+import com.techelevator.service.ApiService;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -11,6 +12,7 @@ import java.security.Principal;
 public class ComicController {
 
     private ComicDao comicDao;
+    private ApiService apiService;
 
 
     public ComicController(ComicDao comicDao){

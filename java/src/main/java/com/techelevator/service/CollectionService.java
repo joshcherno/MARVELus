@@ -1,6 +1,65 @@
 package com.techelevator.service;
 
-public class CollectionService {
+import com.techelevator.dao.CollectionDao;
+import com.techelevator.model.Collection;
+import com.techelevator.model.Comic;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestClientResponseException;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class CollectionService {
     //TODO ALL OF THE WORK HERE JASDOLFKJAPSLIEFGJRVAOELPSRDIKJGVAOLPIKWESJ
+
+    private final CollectionDao collectionDao;
+
+//constructor
+    public CollectionService(CollectionDao collectionDao) {
+        this.collectionDao = collectionDao;
+    }
+
+    // extending the CollectionDao methods
+    //TODO Consider how to add methods for restTemplate purposes to make sure we are talking to the client side appropriately
+
+    public Collection getCollectionById(int collID) {
+       return collectionDao.getCollectionById(collID);
+    }
+    public Collection getCollectionByUserId(int userId){
+        return collectionDao.getCollectionByUserId(userId);
+    }
+    public Collection getCollectionByName(String collectionName){
+        return collectionDao.getCollectionByName(collectionName);
+    }
+
+    public List<Collection> getCollections () {
+        return collectionDao.getCollections();
+    }
+
+    public Collection createCollection(Collection collection){
+        return collectionDao.createCollection(collection);
+    }
+
+    public Collection addingComic (Comic comic){
+        return collectionDao.addingComic(comic);
+    }
+
+
+
 }
