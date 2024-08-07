@@ -6,7 +6,7 @@
         <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>
+      <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>&nbsp;|&nbsp;
       <!-- TODO: Add a router link to a Profile view -->
       <!-- Added a profile icon from the internet in the upper right hand corner below -->
       <router-link class="profile" v-bind:to="{ name: 'profile' }"><img class="profile-img" v-bind:src="'src/assets/ProfileImage.jpg'" alt="profile"></router-link> 
