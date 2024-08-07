@@ -10,6 +10,8 @@ public class Comic {
     private String description;
     private LocalDate releaseDate;
     private String coverArt;
+    private String characterName;
+
 
 
     public String getComicId() {
@@ -18,6 +20,14 @@ public class Comic {
 
     public void setComicId(String comicId) {
         this.comicId = comicId;
+    }
+
+    public String getCharacterName() {
+        return characterName;
+    }
+
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
 
     public String getTitle() {
