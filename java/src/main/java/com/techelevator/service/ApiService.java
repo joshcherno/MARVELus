@@ -67,6 +67,11 @@ public class ApiService {
         return comic;
         //TODO make a method to convert to json comicJsonString()
     }
+//    public Comic getComicByCreater(String author){
+//        Comic comic = null;
+//        try{
+//            String path =
+//    }
 
 
 }
