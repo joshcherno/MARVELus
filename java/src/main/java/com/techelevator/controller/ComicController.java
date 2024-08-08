@@ -15,8 +15,9 @@ public class ComicController {
     private ApiService apiService;
 
 
-    public ComicController(ComicDao comicDao){
+    public ComicController(ComicDao comicDao, ApiService apiService){
         this.comicDao = comicDao;
+        this.apiService = apiService;
     }
 
     @RequestMapping(path = "/comic/{comicId}", method = RequestMethod.GET)
@@ -31,6 +32,14 @@ public class ComicController {
     public Comic getComicByAuthor(@PathVariable String author){
         return comicDao.getComicByAuthor(author);
     }
+
+    //TODO: USE FOR EXPLORATION AND DELETE WHEN IMPLEMENTED FORMALLY
+
+    @GetMapping(path = "/comic/search/{title}")
+    public Object getComicsByCreator(@PathVariable String title){
+        return  apiService.searchComicsByTitle(title);
+    }
+
     @RequestMapping(path = "/comic", method = RequestMethod.PUT)
     public Comic saveComic(@RequestBody Comic comic){
         return comicDao.saveComic(comic);

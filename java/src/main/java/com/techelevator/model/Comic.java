@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import com.techelevator.model.marvel.comics.Result;
+
 import java.time.LocalDate;
 
 public class Comic {
@@ -67,5 +69,14 @@ public class Comic {
 
     public void setCoverArt(String coverArt) {
         this.coverArt = coverArt;
+    }
+
+    public static Comic convertMarvelResult(Result mrvlResult){
+
+        Comic appComic = new Comic();
+
+        appComic.coverArt = mrvlResult.thumbnail.path + "." + mrvlResult.thumbnail.extension;
+
+        return  appComic;
     }
 }
