@@ -10,6 +10,7 @@ export function createStore(currentToken, currentUser) {
       // test comics and collections; remove later!
       comics:[
         {
+          id: 1,
           title: 'The Amazing Spiderman',
           issue: 1,
           publisher: 'Marvel',
@@ -18,6 +19,7 @@ export function createStore(currentToken, currentUser) {
         },
 
         {
+          id: 2,
           title: 'The Incredible Hulk',
           issue: 1,
           publisher: 'Marvel',
@@ -26,6 +28,7 @@ export function createStore(currentToken, currentUser) {
         },
 
         {
+          id: 3,
           title: 'The Punisher',
           issue: 1,
           publisher: 'Marvel',
@@ -34,6 +37,7 @@ export function createStore(currentToken, currentUser) {
         },
 
         {
+          id: 4,
           title: 'Iron Man Vol 1',
           issue: 300,
           publisher: 'Marvel',
@@ -44,25 +48,34 @@ export function createStore(currentToken, currentUser) {
       ],
       collections:[
         {
+          id: 1,
           title: 'Spiderman Collection',
           description: 'A collection of Spiderman comics',
-          comics: []
+          comics: [
+            {
+              id: 1,
+              title: 'The Amazing Spiderman',
+              issue: 1,
+              publisher: 'Marvel',
+              date: '1993-01-01',
+              isbn: '9780785136927'
+            },
+          ]
         },
 
         {
+          id: 2,
           title: 'Hulk Collection',
           description: 'A collection of Hulk comics',
           comics: []
         },
 
         {
+          id: 3,
           title: 'Punisher Collection',
           description: 'A collection of Punisher comics',
           comics: []
         },
-
-        {
-        }
       ],
 
       token: currentToken || '',
