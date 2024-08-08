@@ -9,7 +9,7 @@
     <input name="release-date-input" class="release-date-input" type="text" placeholder="Release Date" v-model="comic.date" />
     <input name="isbn-input" class="isbn-input" type="text" placeholder="ISBN" v-model="comic.isbn" /> -->
     <!-- added method and @click to route back to my-comics -->
-    <button class= "submit" type="submit" @click="getComicByTitle">Search</button> 
+    <button class= "submit" @click="getComicByTitle">Search</button> 
     
 
 </form>
@@ -31,41 +31,7 @@ export default {
         },
         getComicByTitle() {
             comicService.getComicByTitle(this.comic.title).then(response => {
-                if (response.status === 200) {
-                    this.$store.commit('SET_NOTIFICATION',
-                        {
-                            message: `Comic already exists in the database`,
-                            type: 'error'
-                        });
-                } else {
-                    comicService.addComic(this.comic).then(response => {
-                        if (response.status === 201) {
-                            this.comic = response.data;
-                            this.$store.commit('SET_NOTIFICATION',
-                                {
-                                    message: `Comic has been added`,
-                                    type: 'success'
-                                });
-                            this.$router.push({ name: 'my-comics' });
-                        }
-                    }).catch(error => {
-                        if (error.response) {
-                            this.$store.commit('SET_NOTIFICATION',
-                                {
-                                    message: `Error adding comic: ${error.response.data.message}`,
-                                    type: 'error'
-                                });
-                        }
-                    });
-                }
-            }).catch(error => {
-                if (error.response) {
-                    this.$store.commit('SET_NOTIFICATION',
-                        {
-                            message: `Error adding comic: ${error.response.data.message}`,
-                            type: 'error'
-                        });
-                }
+                this.comic = response.data;
             });
         }
     }

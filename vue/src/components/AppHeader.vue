@@ -62,5 +62,10 @@ h1 {
   border-radius: 50%;
 }
 
+a {
+  text-decoration: none;
+  color: #ee5454;
+}
+
 
 </style>
