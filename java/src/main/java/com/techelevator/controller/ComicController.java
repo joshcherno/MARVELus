@@ -3,6 +3,8 @@ package com.techelevator.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.dao.ComicDao;
 import com.techelevator.model.Comic;
+import com.techelevator.model.marvel.characters.ResultCharacters;
+import com.techelevator.model.marvel.comics.ResultComics;
 import com.techelevator.service.ApiService;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,11 +52,12 @@ public class ComicController {
     }
 
 
-    @RequestMapping(path = "/comic", method = RequestMethod.PUT)
-    public Comic saveComic(@RequestBody Comic comic){
-        return comicDao.saveComic(comic);
-
-    }
+    //Intelij wants the same parameters as the method in the ApiService class, not sure if it should be a Comic or ResultComic/Result/Character
+//    @RequestMapping(path = "/comic", method = RequestMethod.PUT)
+//    public Comic saveComic(@RequestBody ResultComics comic, ResultCharacters charComic){
+//        return apiService.saveComicFromResult(comic, charComic);
+//
+//    }
 
 
 

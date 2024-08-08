@@ -1,8 +1,10 @@
 package com.techelevator.service;
 
+import com.techelevator.dao.ComicDao;
 import com.techelevator.model.Comic;
 import com.techelevator.model.marvel.MarvelComic;
-import com.techelevator.model.marvel.comics.Result;
+import com.techelevator.model.marvel.characters.ResultCharacters;
+import com.techelevator.model.marvel.comics.ResultComics;
 import com.techelevator.model.marvel.comics.Root;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //TODO get this communicating and storing info
@@ -29,7 +30,7 @@ public class ApiService {
     public static final String MARVEL_PARAM_APIKEY = "25b2c83d1b49f1d2ab163802b4a2cda6";
     public static final String MARVEL_PARAM_HASH = "bd3b0817e4b8aee1b1e8f226a56de70b";
     public static final String AUTHORITY_STRING = "&ts=1&apikey=25b2c83d1b49f1d2ab163802b4a2cda6&hash=bd3b0817e4b8aee1b1e8f226a56de70b";
-
+    private ComicDao comicDao;
 
 
     private HttpEntity<Void> makeHeaders(){
@@ -54,7 +55,7 @@ public class ApiService {
 
 
 
-    public List<Result> searchComicsByTitle(String title){
+    public List<ResultComics> searchComicsByTitle(String title){
 
         MarvelComic.Result[] results = null;
 
@@ -75,7 +76,7 @@ public class ApiService {
 
     }
 
-    public List<Result> searchComicsByIsbn(int isbn){
+    public List<ResultComics> searchComicsByIsbn(int isbn){
 
         MarvelComic.Result[] results = null;
         Root root = null;
@@ -94,7 +95,7 @@ public class ApiService {
     //TODO search by character. need to go over what the return is and see if we need to make
     //another model folder to go with the comic folder
 
-    public List<Result> searchComicsByCharacter(String character){
+    public List<ResultComics> searchComicsByCharacter(String character){
         MarvelComic.Result[] results = null;
         Root root = null;
         try{
@@ -107,6 +108,21 @@ public class ApiService {
         }
         return root.data.results;
     }
+
+    //TODO make sure this is a POST not a PUT
+
+    //Ability to save comics from search in OUR database, was private void but changed to public Comic to accomodate Controller
+//    public Comic saveComicFromResult(ResultComics comicResult, ResultCharacters characterResult) {
+//        Comic comic = new Comic();
+//        comic.setTitle(comicResult.title);
+//        comic.setAuthor("Marvel API Author"); // Modify based on available data
+//        comic.setDescription(comicResult.description);
+//        // comic.setReleaseDate(comicResult.dates != null && !comicResult.dates.isEmpty() ? comicResult.dates.get(0).date.toLocalDate() : null);
+//        comic.setCoverArt(comicResult.thumbnail != null ? comicResult.thumbnail.path + "." + comicResult.thumbnail.extension : null);
+//        comicDao.saveComic(comic);
+//        return comic;
+//    }
+
 
 
 }

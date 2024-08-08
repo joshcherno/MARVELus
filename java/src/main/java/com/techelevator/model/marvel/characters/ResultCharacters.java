@@ -4,7 +4,7 @@ import com.techelevator.model.marvel.MarvelComicCharacter;
 
 import java.util.ArrayList;
 
-public class Result {
+public class ResultCharacters {
     public int id;
     public String name;
     public String description;

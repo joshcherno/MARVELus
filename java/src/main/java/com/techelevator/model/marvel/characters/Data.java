@@ -9,5 +9,5 @@ public class Data {
     public int limit;
     public int total;
     public int count;
-    public ArrayList<Result> results;
+    public ArrayList<ResultComic> results;
 }

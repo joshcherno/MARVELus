@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
-import com.techelevator.model.marvel.comics.Result;
+import com.techelevator.model.marvel.characters.ResultCharacters;
+import com.techelevator.model.marvel.comics.ResultComics;
 
 import java.time.LocalDate;
 
@@ -74,12 +75,19 @@ public class Comic {
 
 
     //TODO convert to comic model from json reply
-    public static Comic convertMarvelResult(Result mrvlResult){
+    public static Comic convertMarvelResult(ResultComics comicResult, ResultCharacters characterResult){
 
         Comic appComic = new Comic();
 
-        appComic.coverArt = mrvlResult.thumbnail.path + "." + mrvlResult.thumbnail.extension;
+        appComic.coverArt = comicResult.thumbnail.path + "." + comicResult.thumbnail.extension;
+        appComic.title = comicResult.title;
+        appComic.characterName = characterResult.name;
 
         return  appComic;
     }
+
+
+
+
+
 }

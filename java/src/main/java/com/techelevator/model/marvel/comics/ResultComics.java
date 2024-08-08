@@ -1,8 +1,10 @@
 package com.techelevator.model.marvel.comics;
 
+import com.techelevator.model.marvel.MarvelComic;
+
 import java.util.ArrayList;
 
-public class Result{
+public class ResultComics {
     public int id;
     public int digitalId;
     public String title;
