@@ -71,6 +71,9 @@ public class Comic {
         this.coverArt = coverArt;
     }
 
+
+
+    //TODO convert to comic model from json reply
     public static Comic convertMarvelResult(Result mrvlResult){
 
         Comic appComic = new Comic();
