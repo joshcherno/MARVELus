@@ -38,15 +38,15 @@ public class ComicController {
 
     //TODO: USE FOR EXPLORATION AND DELETE WHEN IMPLEMENTED FORMALLY
 
-    @GetMapping(path = "/comic/search/{title}")
+    @GetMapping(path = "/comic/search/title/{title}")
     public Object getComicsByTitle(@PathVariable String title){
         return  apiService.searchComicsByTitle(title);
     }
-    @GetMapping(path = "/comic/search/{isbn}")
+    @GetMapping(path = "/comic/search/isbn/{isbn}")
     public Object getComicsByIsbn(@PathVariable int isbn){
         return apiService.searchComicsByIsbn(isbn);
     }
-    @GetMapping(path = "/character/search/{character}")
+    @GetMapping(path = "/character/search/character/{character}")
     public Object getComicsByCharacter(@PathVariable String character){
         return apiService.searchComicsByCharacter(character);
     }
