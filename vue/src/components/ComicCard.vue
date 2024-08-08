@@ -31,7 +31,8 @@ export default {
 }
 
 .img{
-    width: 80%;
+    width: 250px;
+    height: 300px;
 }
 
 

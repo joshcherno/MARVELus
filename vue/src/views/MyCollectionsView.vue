@@ -1,6 +1,6 @@
 <template>
 
-  <h1 class="collections-title">My Collections</h1>
+  <h1 class="header-text">My Collections</h1>
 
   <div id="my-collections">
   <create-collection-card/>
@@ -37,21 +37,17 @@ export default {
   flex-wrap: nowrap;
 }
 
-.collections-title {
+.header-text {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: rgba(0,0,0,.75);
+  background-color: rgba(0,0,0,.5);
   width: 33%;
   color: white;
   margin: auto;
+  margin-top: 30px;
   padding: 0%;
-}
-
-.create-collection-img{
-    width: 100%;
-    height: 60%;
 }
 
 </style>
