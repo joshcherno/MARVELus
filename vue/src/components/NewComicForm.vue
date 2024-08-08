@@ -2,14 +2,14 @@
 
 <form class="new-comic-form" v-on:submit.prevent="">
 
-    <h2 class="form-title">Add a New Comic</h2>
-    <input name="title-input" class="title-input" type="text" placeholder="Title" v-model="comic.title" />
-    <input name="issue-input" class="issue-input" type="text" placeholder="Issue" v-model="comic.issue"/>
+    <h2 class="form-title">Search Comics to Add to your Library</h2>
+    <input name="title-input" class="title-input" type="text" placeholder="Search by comic title" />
+    <!-- <input name="issue-input" class="issue-input" type="text" placeholder="Issue" v-model="comic.issue"/>
     <input name="publisher-input" class="publisher-input" type="text" placeholder="Publisher" v-model="comic.publisher" />
     <input name="release-date-input" class="release-date-input" type="text" placeholder="Release Date" v-model="comic.date" />
-    <input name="isbn-input" class="isbn-input" type="text" placeholder="ISBN" v-model="comic.isbn" />
+    <input name="isbn-input" class="isbn-input" type="text" placeholder="ISBN" v-model="comic.isbn" /> -->
     <!-- added method and @click to route back to my-comics -->
-    <button class= "submit" type="submit" @click="goToMyComics">Add Comic</button> 
+    <button class= "submit" type="submit" @click="getComicByTitle">Search</button> 
     
 
 </form>
@@ -17,21 +17,56 @@
 </template>
 
 <script>
+import comicService from '../services/ComicService';
+
 export default {
     data() {
         return {
-            comic: {
-                title: '',
-                issue: '',
-                publisher: '',
-                date: '',
-                isbn: ''
-            }
+            comic: {}
         }
     },
     methods:{
         goToMyComics(){
             this.$router.push('/my-comics')
+        },
+        getComicByTitle() {
+            comicService.getComicByTitle(this.comic.title).then(response => {
+                if (response.status === 200) {
+                    this.$store.commit('SET_NOTIFICATION',
+                        {
+                            message: `Comic already exists in the database`,
+                            type: 'error'
+                        });
+                } else {
+                    comicService.addComic(this.comic).then(response => {
+                        if (response.status === 201) {
+                            this.comic = response.data;
+                            this.$store.commit('SET_NOTIFICATION',
+                                {
+                                    message: `Comic has been added`,
+                                    type: 'success'
+                                });
+                            this.$router.push({ name: 'my-comics' });
+                        }
+                    }).catch(error => {
+                        if (error.response) {
+                            this.$store.commit('SET_NOTIFICATION',
+                                {
+                                    message: `Error adding comic: ${error.response.data.message}`,
+                                    type: 'error'
+                                });
+                        }
+                    });
+                }
+            }).catch(error => {
+                if (error.response) {
+                    this.$store.commit('SET_NOTIFICATION',
+                        {
+                            message: `Error adding comic: ${error.response.data.message}`,
+                            type: 'error'
+                        });
+                }
+            });
         }
     }
 
@@ -40,7 +75,7 @@ export default {
 
 <style>
 .new-comic-form {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-content: center ;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

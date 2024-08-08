@@ -1,9 +1,9 @@
 <template>
 <router-link id="add-comic-router" :to="{ name: 'add-comic' }">
   <div class = "add-comic-card">
-    <h2 class = "add-comic-text">Add Comic</h2>
+    <!-- <h2 class = "add-comic-text">Add Comic</h2> -->
         <img class="add-comic-img" v-bind:src="'src/assets/AddComic.jpg'" alt="add-comic">
-        <h3>Search comics to add to your library</h3>
+        <!-- <h3>Search comics to add to your library</h3> -->
         <!-- <button class="add-comic-button" @click="goToAddComic">Add Comic</button> -->
     </div>
 </router-link>
@@ -35,7 +35,7 @@ export default {
 
 .add-comic-img{
     width: 250px;
-    height: 300px;
+    height: 500px;
    
 }
 
