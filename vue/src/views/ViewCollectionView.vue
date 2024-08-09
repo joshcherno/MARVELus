@@ -9,9 +9,9 @@
     <div v-else>
         <div class="header">
             <h1> {{collection.title}} </h1>
-            <router-link class="btn btn-submit" :to="{ name: 'AddComicView', params: { collectionId: collection.id } }">Add
+            <router-link class="btn-submit" :to="{ name: 'AddComicView', params: { collectionId: collection.id } }">Add
                 New Comic</router-link>
-                <button class="btn btn-cancel deleteCollection" v-on:click="deleteCollection">Delete Collection</button>
+                <button class="btn-cancel deleteCollection" v-on:click="deleteCollection">Delete Collection</button>
             <!-- <p> {{ collection.description }} </p> -->
         </div>
 

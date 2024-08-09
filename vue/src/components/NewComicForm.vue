@@ -7,14 +7,14 @@
         name="title-input"
         class="title-input"
         type="text"
-        placeholder="Search by comic title"
+        placeholder="Enter search terms"
         v-model="searchString"
       />
 
       <div id="radio-buttons">
           <div id="radio-name">
               <input type="radio" name="rdoType" id="opt1" value="name" v-model="searchTypes"/>
-             <label for="opt1"> Name   </label>
+             <label for="opt1"> Character </label>
           </div>
 
           <div id="radio-title">
@@ -39,12 +39,15 @@
     <div id="resultsList">
       <div id="srchResults" v-for="result in searchResults" :key="result.id">
         <h3 id="cTitle">{{ result.title }}</h3>
+        <h3 id="cName">{{ result.name }}</h3>
+        <h3 id="cUPC">{{ result.upc }}</h3>
         <img
           id="srchImage"
           :src="result.thumbnail.path + '.' + result.thumbnail.extension"
           alt="cover"
         />
-        <button id="btnResultAdd">Add To Collection/My Comics</button>
+        <button id="btnResultAdd" class = "searchResultActionBtn">Add To Collection</button>
+        <button id="btnAddToComics" class = "searchResultActionBtn">Add To My Comics</button>
       </div>
     </div>
   </div>
@@ -126,14 +129,19 @@ export default {
   background-color: transparent;
 }
 
+
+
 #resultsList {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
   display: inline-block;
   margin: auto;
+  margin-top: 10%;
+  margin-left: 10%;
+
 }
 
 input[type="text"] {
@@ -151,13 +159,28 @@ input[type="radio"] {
 #srchResults {
   display: flex;
   flex-direction: column;
-  flex-wrap: unset;
   align-content: center;
   justify-content: center;
   display: inline-block;
   margin: auto;
-  width: 200px;
+    border: 3px solid #4c94f6;
+    border-radius: 10px;
+    width: 250px;
+    height: 500px;
+    background-color: white;
+  
 }
+
+#srchResults h3 {
+  text-align: center;
+}
+
+#srchResults button {
+  margin:auto;
+  margin-bottom: 10px;
+}
+
+
 
 
 .new-comic-form {
@@ -187,8 +210,8 @@ input[type="radio"] {
 }
 
 #srchImage {
-  width: 78px;
-  height: 100px;
+  width: 250px;
+  height: 300px;
 }
 
 input[name="title-input"] {
@@ -201,6 +224,28 @@ input[name="title-input"] {
   justify-content: space-evenly;
   padding: 2%;
 }
+
+#btnAddToComics{
+  background-color: #2c3e50;
+  color: white;
+  padding: 2%;
+  margin-top: 2%;
+}
+
+#btnResultAdd {
+  background-color: #2c3e50;
+  color: white;
+  padding: 2%;
+  margin-top: 2%;
+} 
+
+.searchResultActionBtn {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
 
 
 </style>

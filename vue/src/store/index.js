@@ -51,7 +51,7 @@ export function createStore(currentToken, currentUser) {
       collections:[
         {
           id: 1,
-          title: 'First Editions Collection',
+          title: 'First Editions',
           description: 'A collection of First Edition comics',
           comics: [
             {

@@ -11,7 +11,7 @@ export default {
   },
 
   getCollectionById(collectionId) {
-    return http.get(`/collections/${collectionId}`)
+    return http.get(`/collection/id/${collectionId}`)
   },
 
   getComicById(comicId) {

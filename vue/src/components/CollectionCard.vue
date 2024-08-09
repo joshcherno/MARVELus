@@ -1,12 +1,12 @@
 <template>
     <router-link id="view-collection-router" :to="{ name: 'view-collection', params: { id: collection.id } }"> 
-    <div class = "card">
-        <h2 class = "collection-card-header">{{collection.title}}</h2>
-        <img class="collection-img" v-bind:src="'src/assets/createdcollectionimage.jpg'" alt="created-collection-cover-image">
-        <!-- Change method for addToCollection in here to viewCollection which will be a routerpush that will get the user's comics in collection, probably from CollectionService -->
-        <!-- <button class="view-collection-button" @click="viewCollectionDetails(collection)">View Collection</button> -->
-    </div>
-</router-link>
+        <div class = "card">
+            <h2 class = "collection-card-header">{{collection.title}}</h2>
+            <img class="collection-img" v-bind:src="'src/assets/createdcollectionimage.jpg'" alt="created-collection-cover-image">
+         <!-- Change method for addToCollection in here to viewCollection which will be a routerpush that will get the user's comics in collection, probably from CollectionService -->
+         <!-- <button class="view-collection-button" @click="viewCollectionDetails(collection)">View Collection</button> -->
+        </div>
+    </router-link>
 </template>
 
 <script>
