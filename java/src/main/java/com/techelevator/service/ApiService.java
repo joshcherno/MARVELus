@@ -1,7 +1,6 @@
 package com.techelevator.service;
 
 import com.techelevator.dao.ComicDao;
-import com.techelevator.model.Comic;
 import com.techelevator.model.marvel.MarvelComic;
 import com.techelevator.model.marvel.characters.ResultCharacters;
 import com.techelevator.model.marvel.comics.ResultComics;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 //TODO get this communicating and storing info
@@ -33,12 +34,12 @@ public class ApiService {
     private ComicDao comicDao;
 
 
-    private HttpEntity<Void> makeHeaders(){
+    private HttpEntity<Void> makeHeaders() {
         HttpHeaders headers = new HttpHeaders();
         return new HttpEntity<>(headers);
     }
 
-    public List<ResultComics> searchComicsByTitle(String title){
+    public List<ResultComics> searchComicsByTitle(String title) {
 
         MarvelComic.Result[] results = null;
 
@@ -51,7 +52,7 @@ public class ApiService {
             root = response.getBody();
 
 
-        } catch (RestClientResponseException re){
+        } catch (RestClientResponseException re) {
             System.out.println(re.getMessage());
         }
 
@@ -59,7 +60,7 @@ public class ApiService {
 
     }
 
-    public List<ResultComics> searchComicsByIsbn(String isbn){
+    public List<ResultComics> searchComicsByIsbn(String isbn) {
 
         MarvelComic.Result[] results = null;
         Root root = null;
@@ -68,14 +69,14 @@ public class ApiService {
             String path = MARVEL_URL_API + "/comics?isbn=" + isbn + AUTHORITY_STRING;
             ResponseEntity<Root> response = restTemplate.exchange(path, HttpMethod.GET, makeHeaders(), Root.class);
             root = response.getBody();
-        } catch (RestClientResponseException re){
+        } catch (RestClientResponseException re) {
             System.out.println(re.getMessage());
         }
         return root.data.results;
 
     }
 
-    public List<ResultComics> searchComicsByUPC(String upc){
+    public List<ResultComics> searchComicsByUPC(String upc) {
 
         MarvelComic.Result[] results = null;
         Root root = null;
@@ -84,59 +85,68 @@ public class ApiService {
             String path = MARVEL_URL_API + "/comics?upc=" + upc + AUTHORITY_STRING;
             ResponseEntity<Root> response = restTemplate.exchange(path, HttpMethod.GET, makeHeaders(), Root.class);
             root = response.getBody();
-        } catch (RestClientResponseException re){
+        } catch (RestClientResponseException re) {
             System.out.println(re.getMessage());
         }
         return root.data.results;
 
     }
 
-    //TODO search by character. need to go over what the return is and see if we need to make
-    //another model folder to go with the comic folder
-
-    public List<ResultComics> searchComicsByCharacter(String character){
-        MarvelComic.Result[] results = null;
+    //TODO #1 search by character but return comics
+    public List<ResultComics> searchComicsByCharacter(String character) {
+        List<ResultComics> results = new ArrayList<>();
         Root root = null;
-        try{
+        try {
             String path = MARVEL_URL_API + "/characters?nameStartsWith=" + character + AUTHORITY_STRING;
             ResponseEntity<Root> response = restTemplate.exchange(path, HttpMethod.GET, makeHeaders(), Root.class);
             root = response.getBody();
-            // TODO comicDao.saveComic(root.data.results)
 
-        } catch (RestClientResponseException re){
+            if ( root != null && root.data.results != null){
+                for (ResultComics characterResult : root.data.results){
+                    int characterId = characterResult.id;
+                    String pathWithId = MARVEL_URL_API + "/characters/" + characterId + "/comics" + AUTHORITY_STRING;
+                    ResponseEntity<Root> comicsResponse = restTemplate.exchange(pathWithId, HttpMethod.GET, makeHeaders(), Root.class);
+                    Root comicsRoot = comicsResponse.getBody();
+                    if (comicsRoot != null){
+                        //results.addAll;
+                        return null;
+
+                    }
+                }
+
+
+            }
+
+        } catch (RestClientResponseException re) {
             System.out.println(re.getMessage());
         }
         return root.data.results;
     }
 
-    //TODO make sure this is a POST not a PUT
-
-    //Ability to save comics from search in OUR database, was private void but changed to public Comic to accomodate Controller
-//    public Comic saveComicFromResult(ResultComics comicResult, ResultCharacters characterResult) {
-//        Comic comic = new Comic();
-//        comic.setTitle(comicResult.title);
-//        comic.setAuthor("Marvel API Author"); // Modify based on available data
-//        comic.setDescription(comicResult.description);
-//        // comic.setReleaseDate(comicResult.dates != null && !comicResult.dates.isEmpty() ? comicResult.dates.get(0).date.toLocalDate() : null);
-//        comic.setCoverArt(comicResult.thumbnail != null ? comicResult.thumbnail.path + "." + comicResult.thumbnail.extension : null);
-//        comicDao.saveComic(comic);
-//        return comic;
-//    }
-    //TODO make sure we can delete this
-//    public Comic getComicById(int id){
-//        String listComicJsonString = null;
-//        Comic comic = null;
+//    public int getCharacterIdByName(String characterName) {
+//        int characterId = 0;
 //        try {
-//            String path = MARVEL_URL_API + "/comics" + id + AUTHORITY_STRING;
-//            ResponseEntity<String> response = restTemplate.exchange(path, HttpMethod.GET, makeHeaders(), String.class);
-//            comic = restTemplate.getForObject(path, Comic.class);
-//            listComicJsonString = response.getBody();
-//        } catch (RestClientResponseException re){
+//            String exchangePath = MARVEL_URL_API + "/characters?nameStartsWith=" + characterName + AUTHORITY_STRING;
+//            ResponseEntity<String> response = restTemplate.exchange(exchangePath, HttpMethod.GET, makeHeaders(), String.class);
+//            String characterJsonString = response.getBody();
+//
+//            // Extract the character ID from the JSON string using a JSON parser
+//            characterId = extractCharacterIdFromJson(characterJsonString);
+//        } catch (RestClientResponseException re) {
 //            System.out.println(re.getMessage());
 //        }
-//        return comic;
-//        //TODO make a method to convert to json comicJsonString()
+//
+//        characterId = Integer.valueOf(("\"id\""));
+//
+//        return characterId;
+//
+//
 //    }
-
-
+//    private int extractCharacterIdFromJson(String jsonString) {
+//        JSONObject jsonObject = new JSONObject(jsonString);
+//        // Assuming the structure returned by the Marvel API
+//        return jsonObject.getJSONObject("data")
+//                .getJSONArray("results")
+//                .getJSONObject(0)
+//                .getInt("id");
 }
