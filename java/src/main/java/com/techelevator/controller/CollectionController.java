@@ -7,12 +7,14 @@ import com.techelevator.exception.DaoException;
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
 import com.techelevator.service.CollectionService;
+import com.techelevator.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -23,6 +25,7 @@ public class CollectionController {
     private CollectionDao collectionDao;
     private ComicDao comicDao;
     private UserDao userDao;
+    private UserService userService;
     private CollectionService collectionService;
 
     @Autowired
@@ -47,13 +50,15 @@ public class CollectionController {
         }
         return collection;
     }
-    // TODO it needs to be figured out
+    // TODO Principal needs to be properly implemented
     @RequestMapping(path = "/collection/user/{userId}", method = RequestMethod.GET)
-    public Collection getCollectionByUserId(@PathVariable("userId") int userId){
+    public Collection getCollectionByUserId(Principal principal){
 
         Collection collection = null;
 
         try{
+            String username = principal.getName();
+            int userId = userService.getUserIdByUsername(username);
             collection = collectionService.getCollectionByUserId(userId);
         }catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Collection not found for this User ID.");
