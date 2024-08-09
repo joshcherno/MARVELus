@@ -36,8 +36,8 @@ public class CollectionController {
 
     //extending CollectionService methods
     //TODO Consider how to add methods for restTemplate purposes to make sure we are talking to the client side appropriately
-    @RequestMapping(path = "/{collectionId}", method = RequestMethod.GET)
-    public Collection getCollectionById(@PathVariable ("id") int collectionId){
+    @RequestMapping(path = "/collection/{collectionId}", method = RequestMethod.GET)
+    public Collection getCollectionById(@PathVariable ("collectionId") int collectionId){
 
         Collection collection = null;
 
@@ -49,8 +49,8 @@ public class CollectionController {
         return collection;
     }
     // TODO it needs to be figured out
-    @RequestMapping(path = "/{userId}", method = RequestMethod.GET)
-    public Collection getCollectionByUserId(@PathVariable("id") int userId){
+    @RequestMapping(path = "/collection/{userId}", method = RequestMethod.GET)
+    public Collection getCollectionByUserId(@PathVariable("userId") int userId){
 
         Collection collection = null;
 
@@ -63,8 +63,9 @@ public class CollectionController {
 
     }
 
+    //TODO map out endpoints a bit better. refactor some methods
 
-    @RequestMapping(path = "/{collectionName}", method = RequestMethod.GET)
+    @RequestMapping(path = "/collection/{collectionName}", method = RequestMethod.GET)
     public Collection getCollectionByName(@PathVariable("name") String name){
         Collection collection = null;
 
@@ -76,21 +77,21 @@ public class CollectionController {
         return collection;
     }
 
-    @RequestMapping(path="/{myCollections}", method = RequestMethod.GET)
+    @RequestMapping(path="/collection/{myCollections}", method = RequestMethod.GET)
     public List<Collection>getCollections(){
 
             return collectionService.getCollections();
 
     }
 
-    @RequestMapping(path="/create-collection", method = RequestMethod.PUT)
+    @RequestMapping(path="/collection/create-collection", method = RequestMethod.PUT)
     public Collection createCollection (Collection collection){
         return collectionService.createCollection(collection);
     }
 
     @RequestMapping(path="/add-comic", method = RequestMethod.PUT)
-    public Collection addingComic (Comic comic) {
-        return collectionService.addingComic(comic);
+    public Collection addingComic (int collectionId, Comic comic) {
+        return collectionService.addingComic(collectionId, comic);
     }
 
 

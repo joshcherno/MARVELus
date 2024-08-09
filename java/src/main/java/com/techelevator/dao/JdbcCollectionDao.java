@@ -46,7 +46,7 @@ public class JdbcCollectionDao implements CollectionDao{
 
         Collection collection = null;
 
-        String sql = "SELECT * FROM collection";
+        String sql = "SELECT * FROM collection WHERE user_id = ?";
 
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
@@ -123,16 +123,22 @@ public class JdbcCollectionDao implements CollectionDao{
         return collection;
     }
 
+
+    //TODO insert into collection
     @Override
-    public Collection addingComic(Comic comic) {
+    public Collection addingComic(int collectionId, Comic comic) {
 
-        String sql = "INSERT INTO collection (collection_name, collection_description, user_id, comic_id)"
-                + "VALUES (?,?,?,?) RETURNING collection_id";
+        String sql = "INSERT INTO collection_comics (collection_id, comic_id) VALUES (?,?)";
 
+        try{
+            jdbcTemplate.update(sql, collectionId, comic.getComicId());
+            return getCollectionById(collectionId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database.", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
 
-        
-
-        return null;
     }
 
     private  Collection mapRowToCollection(SqlRowSet rs){
@@ -147,4 +153,5 @@ public class JdbcCollectionDao implements CollectionDao{
         return collection;
 
     }
+
 }

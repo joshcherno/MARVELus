@@ -18,7 +18,7 @@ public interface CollectionDao {
 
     public Collection createCollection(Collection newCollection);
 
-    public Collection addingComic( Comic comic);
+    public Collection addingComic(int collectionId, Comic comic);
 
 
 }

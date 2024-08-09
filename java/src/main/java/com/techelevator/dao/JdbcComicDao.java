@@ -118,6 +118,8 @@ public class JdbcComicDao implements ComicDao{
         return comicList;
     }
 
+
+    //TODO are we pulling the comic ID or assigning one. I think it needs to be pulled from api and inserted here
     @Override
     public Comic saveComic(Comic comic) {
 

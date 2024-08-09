@@ -37,23 +37,6 @@ public class ApiService {
         HttpHeaders headers = new HttpHeaders();
         return new HttpEntity<>(headers);
     }
-    //TODO make sure we can delete this
-//    public Comic getComicById(int id){
-//        String listComicJsonString = null;
-//        Comic comic = null;
-//        try {
-//            String path = MARVEL_URL_API + "/comics" + id + AUTHORITY_STRING;
-//            ResponseEntity<String> response = restTemplate.exchange(path, HttpMethod.GET, makeHeaders(), String.class);
-//            comic = restTemplate.getForObject(path, Comic.class);
-//            listComicJsonString = response.getBody();
-//        } catch (RestClientResponseException re){
-//            System.out.println(re.getMessage());
-//        }
-//        return comic;
-//        //TODO make a method to convert to json comicJsonString()
-//    }
-
-
 
     public List<ResultComics> searchComicsByTitle(String title){
 
@@ -102,6 +85,7 @@ public class ApiService {
             String path = MARVEL_URL_API + "/characters?nameStartsWith=" + character + AUTHORITY_STRING;
             ResponseEntity<Root> response = restTemplate.exchange(path, HttpMethod.GET, makeHeaders(), Root.class);
             root = response.getBody();
+            // TODO comicDao.saveComic(root.data.results)
 
         } catch (RestClientResponseException re){
             System.out.println(re.getMessage());
@@ -122,7 +106,21 @@ public class ApiService {
 //        comicDao.saveComic(comic);
 //        return comic;
 //    }
-
+    //TODO make sure we can delete this
+//    public Comic getComicById(int id){
+//        String listComicJsonString = null;
+//        Comic comic = null;
+//        try {
+//            String path = MARVEL_URL_API + "/comics" + id + AUTHORITY_STRING;
+//            ResponseEntity<String> response = restTemplate.exchange(path, HttpMethod.GET, makeHeaders(), String.class);
+//            comic = restTemplate.getForObject(path, Comic.class);
+//            listComicJsonString = response.getBody();
+//        } catch (RestClientResponseException re){
+//            System.out.println(re.getMessage());
+//        }
+//        return comic;
+//        //TODO make a method to convert to json comicJsonString()
+//    }
 
 
 }

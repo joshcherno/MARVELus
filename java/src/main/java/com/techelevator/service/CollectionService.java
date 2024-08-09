@@ -56,8 +56,8 @@ public class CollectionService {
         return collectionDao.createCollection(collection);
     }
 
-    public Collection addingComic (Comic comic){
-        return collectionDao.addingComic(comic);
+    public Collection addingComic (int collectionId, Comic comic){
+        return collectionDao.addingComic(collectionId,comic);
     }
 
 
