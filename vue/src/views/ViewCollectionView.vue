@@ -77,7 +77,7 @@ export default {
   },
   created() {
     let collectionId = parseInt(this.$route.params.id);
-    collectionService.getCollection(collectionId)
+    collectionService.getCollectionById(collectionId)
       .then(response => {
         this.board = response.data;
         this.isLoading = false;
