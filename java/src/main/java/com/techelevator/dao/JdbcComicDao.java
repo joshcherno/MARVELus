@@ -119,16 +119,6 @@ public class JdbcComicDao implements ComicDao{
         return comicList;
     }
 
-    //TODO I WAS WORKING HERE
-//    @Override
-//    public List<Comic> getComicsFromCollection(){
-//        List<Comic> comicList = new ArrayList<>();
-//        String sql = "SELECT c.* FROM comic c JOIN collection_comics cc ON c.comic_id = cc.comic_id WHERE cc.collection_id = ?";
-//
-//    }
-
-
-    //TODO are we pulling the comic ID or assigning one. I think it needs to be pulled from api and inserted here
     @Override
     public Comic saveComic(Comic comic) {
 
@@ -150,8 +140,23 @@ public class JdbcComicDao implements ComicDao{
     }
 
     @Override
-    public List<Comic> getComicsFromCollection(Collection collectionId) {
-        return null;
+    public List<Comic> getComicsFromCollection(int collectionId) {
+        List<Comic> comicList = new ArrayList<>();
+        String sql = "SELECT c.* FROM comic c JOIN collection_comics cc ON c.comic_id = cc.comic_id WHERE cc.collection_id = ?";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, collectionId);
+            while (results.next()) {
+                Comic comic = mapRowToComic(results);
+                comicList.add(comic);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database.", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+
+        return comicList;
+
     }
 
     private Comic mapRowToComic(SqlRowSet rs) {
