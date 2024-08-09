@@ -93,6 +93,7 @@ public class ApiService {
     }
 
     //TODO #1 search by character but return comics
+    //TODO character ID must be supplied by seperate API call
     public List<ResultComics> searchComicsByCharacter(String character) {
         List<ResultComics> results = new ArrayList<>();
         Root root = null;
@@ -113,8 +114,6 @@ public class ApiService {
 
                     }
                 }
-
-
             }
 
         } catch (RestClientResponseException re) {
