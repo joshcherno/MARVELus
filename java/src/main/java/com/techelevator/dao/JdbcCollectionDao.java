@@ -125,7 +125,6 @@ public class JdbcCollectionDao implements CollectionDao{
     }
 
 
-    //TODO insert into collection
     @Override
     public Collection addingComic(int collectionId, Comic comic) {
 
