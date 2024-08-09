@@ -11,21 +11,29 @@
         v-model="searchString"
       />
 
-      <input type="radio" name="rdoType" id="opt1" value="name" v-model="searchType"/>
-      <label for="opt1">Name</label>
+      <div id="radio-buttons">
+          <div id="radio-name">
+              <input type="radio" name="rdoType" id="opt1" value="name" v-model="searchTypes"/>
+             <label for="opt1"> Name   </label>
+          </div>
 
-      <input type="radio" name="rdoType" id="opt2" value="title" v-model="searchType" checked />
-      <label for="opt2">Title</label>
+          <div id="radio-title">
+             <input type="radio" name="rdoType" id="opt2" value="title" v-model="searchTypes" checked />
+             <label for="opt2"> Title </label>
+          </div>
 
-      <input type="radio" name="rdoType" id="opt3" value="upc" v-model="searchType"/>
-      <label for="opt3">UPC</label>
+          <div id = "radio-upc">
+              <input type="radio" name="rdoType" id="opt3" value="upc" v-model="searchTypes"/>
+             <label for="opt3"> UPC</label>
+         </div>
+        </div>
 
       <!-- <input name="issue-input" class="issue-input" type="text" placeholder="Issue" v-model="comic.issue"/>
     <input name="publisher-input" class="publisher-input" type="text" placeholder="Publisher" v-model="comic.publisher" />
     <input name="release-date-input" class="release-date-input" type="text" placeholder="Release Date" v-model="comic.date" />
     <input name="isbn-input" class="isbn-input" type="text" placeholder="ISBN" v-model="comic.isbn" /> -->
       <!-- added method and @click to route back to my-comics -->
-      <button class="submit" @click="getComicByTitle">Search</button>
+      <button class="submit" @click="getComicBySearchQuery">Search</button>
     </form>
 
     <div id="resultsList">
@@ -52,13 +60,15 @@ export default {
       searchResults: [],
       searchString: "",
       loading: false,
-      searchType: 'title',
+      // searchType: 'title',
+      searchTypes: ['name', 'title', 'upc']
     };
   },
   methods: {
     goToMyComics() {
       this.$router.push("/my-comics");
     },
+
     getComicByTitle() {
       this.loading = true;
 
@@ -67,6 +77,39 @@ export default {
         this.loading = false;
       });
     },
+
+    getComicByUPC() {
+      this.loading = true;
+
+      comicService.getComicByUPC(this.searchString).then((response) => {
+        this.searchResults = response.data;
+        this.loading = false;
+      });
+    },
+
+    getComicByCharacter() {
+      this.loading = true;
+
+      comicService.getComicByCharacter(this.searchString).then((response) => {
+        this.searchResults = response.data;
+        this.loading = false;
+      });
+    },
+
+    getComicBySearchQuery(){
+      this.loading = true;
+
+      if(this.searchTypes === 'name'){
+        this.getComicByCharacter();
+      } else if(this.searchTypes === 'title'){
+        this.getComicByTitle();
+      } else if(this.searchTypes === 'upc'){
+        this.getComicByUPC();
+      }
+
+    },
+
+
     toggleLoad() {
       this.loading = !this.loading;
     },
@@ -116,6 +159,7 @@ input[type="radio"] {
   width: 200px;
 }
 
+
 .new-comic-form {
   /* display: flex; */
   justify-content: center;
@@ -130,7 +174,7 @@ input[type="radio"] {
 
 .form-title {
   background-color: rgba(0, 0, 0, 0.5);
-  width: 33%;
+  width: 100%;
   color: white;
   margin: auto;
   padding: 2%;
@@ -146,4 +190,17 @@ input[type="radio"] {
   width: 78px;
   height: 100px;
 }
+
+input[name="title-input"] {
+  width: 100%;
+}
+
+#radio-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 2%;
+}
+
+
 </style>

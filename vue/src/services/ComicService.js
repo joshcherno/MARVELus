@@ -14,8 +14,8 @@ export default {
     return http.get(`/comic/search/title/${comicTitle}`)
   },
 
-  getComicByIsbn(comicIsbn) {
-    return http.get(`/comic/search/isbn/${comicIsbn}`)
+  getComicByUPC(comicUPC) {
+    return http.get(`/comic/search/upc/${comicUPC}`)
   },
 
   getComicByCharacter(comicCharacter) {
@@ -23,9 +23,9 @@ export default {
   },
   
 //   TODO: FINISH THIS FUNCTION
-//     addComicToLibrary(comic) {
-//     return http.post('/comics', comic);
-//   },
+    addComicToLibrary(comic) {
+     return http.post('/comics/save/', comic);
+   },
 
 //   deleteComicFromLibrary(comicId) {
 //     return http.delete(`/comics/${comicId}`);

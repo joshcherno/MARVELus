@@ -32,7 +32,7 @@ export default {
 }
 
 .card{
-  background-color: white
+  background-color: white;
 }
 
 .header-text{
