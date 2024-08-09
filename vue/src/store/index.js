@@ -4,6 +4,8 @@ import axios from 'axios';
 // LOOKING AT M3D17 LECTURE finally, Store.JS LOOKS TO BE WHERE THE STATE NOTIFICATIONS ARE STORED - 
 // THINK WHEN YOU ADD A COMIC AND AFTER ITS ADDED YOU GET A QUICK NOTIFICATION AT THE TOP THAT SAYS "COMIC ADDED TO YOUR LIBRARY"
 
+const NOTIFICATION_TIMEOUT = 6000;
+
 export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
@@ -49,8 +51,8 @@ export function createStore(currentToken, currentUser) {
       collections:[
         {
           id: 1,
-          title: 'Spiderman Collection',
-          description: 'A collection of Spiderman comics',
+          title: 'First Editions Collection',
+          description: 'A collection of First Edition comics',
           comics: [
             {
               id: 1,
@@ -60,6 +62,23 @@ export function createStore(currentToken, currentUser) {
               date: '1993-01-01',
               isbn: '9780785136927'
             },
+            {
+              id: 2,
+              title: 'The Incredible Hulk',
+              issue: 1,
+              publisher: 'Marvel',
+              date: '1962-05-01',
+              isbn: '9780785129387'
+            },
+    
+            {
+              id: 3,
+              title: 'The Punisher',
+              issue: 1,
+              publisher: 'Marvel',
+              date: '1986-01-01',
+              isbn: '9780785157359'
+            }
           ]
         },
 
@@ -79,7 +98,8 @@ export function createStore(currentToken, currentUser) {
       ],
 
       token: currentToken || '',
-      user: currentUser || {}
+      user: currentUser || {},
+      notification: null,
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -97,7 +117,42 @@ export function createStore(currentToken, currentUser) {
         state.token = '';
         state.user = {};
         axios.defaults.headers.common = {};
-      }
+      },
+      //lines 7, and lines 105-134 is straight copy pasta from exercise m3d17 - this is the notification stuff and timeout stuff
+      SET_NOTIFICATION(state, notification) {
+        // Clear the current notification if one exists
+        if (state.notification) {
+          this.commit('CLEAR_NOTIFICATION');
+        }
+
+        if (typeof notification === 'string') {
+          // If only a string was sent, create a notification object with defaults
+          notification = {
+            message: notification,
+            type: 'error',
+            timeout: NOTIFICATION_TIMEOUT
+          }
+        } else {
+          // Else add default values if needed
+          notification.type = notification.type || 'error';
+          notification.timeout = notification.timeout || NOTIFICATION_TIMEOUT;
+        }
+
+        // Set the notification in state
+        state.notification = notification;
+
+        // Clear the message after timeout (see https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
+        notification.timer = window.setTimeout(() => {
+          this.commit('CLEAR_NOTIFICATION');
+        }, notification.timeout);
+      },
+
+      CLEAR_NOTIFICATION(state) {
+        if (state.notification && state.notification.timer) {
+          window.clearTimeout(state.notification.timer);
+        }
+        state.notification = null;
+      },
     },
   });
   return store;
