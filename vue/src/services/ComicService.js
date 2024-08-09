@@ -19,7 +19,7 @@ export default {
   },
 
   getComicByCharacter(comicCharacter) {
-    return http.get(`/character/search/character/${comicCharacter}`)
+    return http.get(`/comic/search/character/${comicCharacter}`)
   },
   
 //   TODO: FINISH THIS FUNCTION

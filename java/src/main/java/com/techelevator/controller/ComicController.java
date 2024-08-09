@@ -36,7 +36,7 @@ public class ComicController {
     public Object getComicsByUPC(@PathVariable String upc){
         return apiService.searchComicsByUPC(upc);
     }
-    @GetMapping(path = "/character/search/character/{character}")
+    @GetMapping(path = "/comic/search/character/{character}")
     public Object getComicsByCharacter(@PathVariable String character){
         return apiService.searchComicsByCharacter(character);
     }
