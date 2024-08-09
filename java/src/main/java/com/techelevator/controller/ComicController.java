@@ -33,9 +33,15 @@ public class ComicController {
         return  apiService.searchComicsByTitle(title);
     }
     @GetMapping(path = "/comic/search/isbn/{isbn}")
-    public Object getComicsByIsbn(@PathVariable int isbn){
+    public Object getComicsByIsbn(@PathVariable String isbn){
         return apiService.searchComicsByIsbn(isbn);
     }
+
+    @GetMapping(path = "/comic/search/upc/{upc}")
+    public Object getComicsByUPC(@PathVariable String upc){
+        return apiService.searchComicsByUPC(upc);
+    }
+
     @GetMapping(path = "/character/search/character/{character}")
     public Object getComicsByCharacter(@PathVariable String character){
         return apiService.searchComicsByCharacter(character);

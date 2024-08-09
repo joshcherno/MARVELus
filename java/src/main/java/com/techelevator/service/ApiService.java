@@ -59,13 +59,29 @@ public class ApiService {
 
     }
 
-    public List<ResultComics> searchComicsByIsbn(int isbn){
+    public List<ResultComics> searchComicsByIsbn(String isbn){
 
         MarvelComic.Result[] results = null;
         Root root = null;
 
         try {
             String path = MARVEL_URL_API + "/comics?isbn=" + isbn + AUTHORITY_STRING;
+            ResponseEntity<Root> response = restTemplate.exchange(path, HttpMethod.GET, makeHeaders(), Root.class);
+            root = response.getBody();
+        } catch (RestClientResponseException re){
+            System.out.println(re.getMessage());
+        }
+        return root.data.results;
+
+    }
+
+    public List<ResultComics> searchComicsByUPC(String upc){
+
+        MarvelComic.Result[] results = null;
+        Root root = null;
+
+        try {
+            String path = MARVEL_URL_API + "/comics?upc=" + upc + AUTHORITY_STRING;
             ResponseEntity<Root> response = restTemplate.exchange(path, HttpMethod.GET, makeHeaders(), Root.class);
             root = response.getBody();
         } catch (RestClientResponseException re){
