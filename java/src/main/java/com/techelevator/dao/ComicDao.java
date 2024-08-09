@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
 
 import java.util.List;
@@ -12,5 +13,6 @@ public interface ComicDao {
     Comic getComicByAuthor(String author);
     List<Comic> getComics();
     Comic saveComic(Comic comic);
+    List<Comic> getComicsFromCollection(Collection collectionId);
 
 }

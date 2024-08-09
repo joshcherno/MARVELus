@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
@@ -118,6 +119,14 @@ public class JdbcComicDao implements ComicDao{
         return comicList;
     }
 
+    //TODO I WAS WORKING HERE
+//    @Override
+//    public List<Comic> getComicsFromCollection(){
+//        List<Comic> comicList = new ArrayList<>();
+//        String sql = "SELECT c.* FROM comic c JOIN collection_comics cc ON c.comic_id = cc.comic_id WHERE cc.collection_id = ?";
+//
+//    }
+
 
     //TODO are we pulling the comic ID or assigning one. I think it needs to be pulled from api and inserted here
     @Override
@@ -125,19 +134,24 @@ public class JdbcComicDao implements ComicDao{
 
         Comic comics = null;
 
-        String sql = "INSERT INTO comic (comic_title, comic_author, description, release_date, cover_url) " +
-                "VALUES (?, ?, ?, ?, ?) RETURNING comic_id";
+        String sql = "INSERT INTO comic (comic_id, comic_title, comic_author, description, release_date, cover_url) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
         try{
-           String comicId = jdbcTemplate.queryForObject(sql, String.class, comic.getTitle(), comic.getAuthor(),
+           String comicId = jdbcTemplate.queryForObject(sql, String.class, comic.getComicId(), comic.getTitle(), comic.getAuthor(),
                    comic.getDescription(), comic.getReleaseDate(), comic.getCoverArt());
-           comics = getComicById(Integer.parseInt(comicId));
+           comics = getComicById(comic.getComicId());
         }catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database.", e);
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
         return comics;
+    }
+
+    @Override
+    public List<Comic> getComicsFromCollection(Collection collectionId) {
+        return null;
     }
 
     private Comic mapRowToComic(SqlRowSet rs) {

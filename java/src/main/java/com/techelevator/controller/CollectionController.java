@@ -16,9 +16,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @PreAuthorize("isAuthenticated()")
-@RequestMapping("/collection")
 public class CollectionController {
 
     private CollectionDao collectionDao;
@@ -36,7 +35,7 @@ public class CollectionController {
 
     //extending CollectionService methods
     //TODO Consider how to add methods for restTemplate purposes to make sure we are talking to the client side appropriately
-    @RequestMapping(path = "/collection/{collectionId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/collection/id/{collectionId}", method = RequestMethod.GET)
     public Collection getCollectionById(@PathVariable ("collectionId") int collectionId){
 
         Collection collection = null;
@@ -49,7 +48,7 @@ public class CollectionController {
         return collection;
     }
     // TODO it needs to be figured out
-    @RequestMapping(path = "/collection/{userId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/collection/user/{userId}", method = RequestMethod.GET)
     public Collection getCollectionByUserId(@PathVariable("userId") int userId){
 
         Collection collection = null;
@@ -65,7 +64,7 @@ public class CollectionController {
 
     //TODO map out endpoints a bit better. refactor some methods
 
-    @RequestMapping(path = "/collection/{collectionName}", method = RequestMethod.GET)
+    @RequestMapping(path = "/collection/name/{collectionName}", method = RequestMethod.GET)
     public Collection getCollectionByName(@PathVariable("name") String name){
         Collection collection = null;
 
@@ -77,6 +76,7 @@ public class CollectionController {
         return collection;
     }
 
+    //TODO distinguish between collections and mycollections
     @RequestMapping(path="/collection/{myCollections}", method = RequestMethod.GET)
     public List<Collection>getCollections(){
 
@@ -89,7 +89,7 @@ public class CollectionController {
         return collectionService.createCollection(collection);
     }
 
-    @RequestMapping(path="/add-comic", method = RequestMethod.PUT)
+    @RequestMapping(path="/collection/add-comic", method = RequestMethod.PUT)
     public Collection addingComic (int collectionId, Comic comic) {
         return collectionService.addingComic(collectionId, comic);
     }
