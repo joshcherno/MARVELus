@@ -52,13 +52,13 @@ public class CollectionController {
     }
     // TODO Principal needs to be properly implemented
     @RequestMapping(path = "/collection/user/{userId}", method = RequestMethod.GET)
-    public Collection getCollectionByUserId(Principal principal){
+    public Collection getCollectionByUserId(@PathVariable("userId") int userId,Principal principal){
 
         Collection collection = null;
 
         try{
             String username = principal.getName();
-            int userId = userService.getUserIdByUsername(username);
+            int authUserId = userService.getUserIdByUsername(username);
             collection = collectionService.getCollectionByUserId(userId);
         }catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Collection not found for this User ID.");
@@ -89,8 +89,8 @@ public class CollectionController {
 
     }
 
-    @RequestMapping(path="/collection/create-collection", method = RequestMethod.PUT)
-    public Collection createCollection (Collection collection){
+    @RequestMapping(path="/collection/create-collection", method = RequestMethod.POST)
+    public Collection createCollection (@RequestBody Collection collection){
         return collectionService.createCollection(collection);
     }
 

@@ -147,7 +147,7 @@ public class JdbcCollectionDao implements CollectionDao{
 
         collection.setCollectionId(rs.getInt("collection_id"));
         collection.setCollectionName(rs.getString("collection_name"));
-        collection.setColDescription(rs.getString("col_description"));
+        collection.setColDescription(rs.getString("collection_description"));
         collection.setUserId(rs.getInt("user_id"));
 
         return collection;

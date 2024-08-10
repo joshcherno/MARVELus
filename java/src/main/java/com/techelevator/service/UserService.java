@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
+    //TODO use this class to call on users if needed
+
 private UserDao userDao;
 
     public UserService(UserDao userDao) {
