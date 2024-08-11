@@ -18,7 +18,7 @@ CREATE TABLE comic (
     comic_author varchar(50),
     description varchar(250),
     release_date date,
-    cover_url varchar(100),
+    cover_url varchar(250),
     CONSTRAINT PK_comic_id PRIMARY KEY (comic_id)
 );
 CREATE TABLE collection (
@@ -28,12 +28,12 @@ CREATE TABLE collection (
    user_id int,
    comic_id int,
    CONSTRAINT PK_collection_id PRIMARY KEY (collection_id),
--- TODO: Cherno changed this during team backend review, gotta see if this works and then remove this comment
    CONSTRAINT FK_collection_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 CREATE TABLE collection_comics (
     collection_id int NOT NULL,
     comic_id int NOT NULL,
+    CONSTRAINT pk_collection_comics PRIMARY KEY (collection_id, comic_id),
     CONSTRAINT FK_collection_comics_comic FOREIGN KEY (comic_id) REFERENCES comic (comic_id),
     CONSTRAINT FK_collection_comics_collection FOREIGN KEY (collection_id) REFERENCES collection (collection_id)
 );
