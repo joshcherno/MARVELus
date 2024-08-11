@@ -27,9 +27,10 @@ import AppHeader from './components/AppHeader.vue'
 
 .form-container {
   background-image: url('src/assets/backgroundImage.jpg');
-  width: 100vw;
-  height: 100vh;
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 

@@ -13,12 +13,14 @@
 import CreateCollectionCard from '../components/CreateCollectionCard.vue';
 import CollectionList from '../components/CollectionList.vue';
 //TODO: implement collectionService
-import collectionService from '../services/CollectionService';
 
 export default {
     components: {
         CreateCollectionCard,
-        CollectionList
+        CollectionList,
+        
+    
+        
     }
 
 }

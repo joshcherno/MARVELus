@@ -91,6 +91,7 @@ export default {
   flex-direction: column;
 
 }
+
 .home{
   display: flex;
   justify-content: center;
