@@ -2,7 +2,9 @@
 <template>
 
     <header>
+      <router-link id="header-home-router" :to="{ name: 'home' }">
       <h1>MARVELus</h1>
+      </router-link>
         <div id="nav">
             <button class="hamburger" @click="toggleMenu">
                <div class="line" :class="{'line1' : menuOpen}"></div>
