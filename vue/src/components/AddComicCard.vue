@@ -26,7 +26,7 @@ export default {
     border: 3px solid #ee5454;
     border-radius: 10px;
     width: 250px;
-    height: 500px;
+    height: 300px;
     margin: 10px;
     position: relative;
     background-color: white;
@@ -35,7 +35,7 @@ export default {
 
 .add-comic-img{
     width: 250px;
-    height: 500px;
+    height: 300px;
    
 }
 

@@ -2,7 +2,7 @@
   
 <div> 
 
-<h1 class="add-comic-headline">Add Comic</h1>
+<h1 class="add-comic-headline">Search Comics</h1>
 
 </div>
 

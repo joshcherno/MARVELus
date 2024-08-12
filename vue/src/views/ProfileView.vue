@@ -21,10 +21,6 @@ export default {
 </script>
 
 
-
-
-
-
 <style>
 .header-text{
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -40,10 +36,15 @@ export default {
 }
 
 .profile-form{
-    padding: 1%;
+    padding: 0%;
+    margin-left: 35%;
+    margin-right: 10%;
     display: flex;
     justify-content: center;
     background-color: rgb(0, 0, 0, .75);
+}
+.submit{
+    margin-right: 30%;
 }
 
 

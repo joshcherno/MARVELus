@@ -26,6 +26,9 @@
             <li>
               <div @click="toggleMenu"><router-link to="/profile">Profile</router-link></div>
             </li>
+            <li>
+              <div @click="toggleMenu"><router-link to="/login">Login/Sign Up</router-link></div>
+            </li>
           
            </ul>
           </nav>
@@ -33,8 +36,8 @@
               <!-- <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
               <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
               <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>&nbsp;|&nbsp;
-              TODO: Add a router link to a Profile view 
-              <router-link class="profile" v-bind:to="{ name: 'profile' }"><img class="profile-img" v-bind:src="'src/assets/ProfileImage.jpg'" alt="profile"></router-link>   -->
+              TODO: Add a router link to a Profile view -->
+              <router-link class="profile" v-bind:to="{ name: 'profile' }"><img class="profile-img" v-bind:src="'src/assets/ProfileImage.jpg'" alt="profile"></router-link>   
       </div>
     </header>
 
@@ -91,8 +94,8 @@ header {
   width: 2rem;
   height: 4px;
   background-color: #ee5454;
-  margin: 8px;
-  transition: all 1s ease;
+  margin: 7px;
+  transition: all .5s ease;
 }
 
 #nav {
@@ -105,16 +108,16 @@ h1 {
 }
 
 .profile{
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
-  padding: 5%;
-  width: 1%;
-  height: 1%;
+  padding: 2%;
+  width: auto;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   border: none;
 }
 
@@ -131,7 +134,7 @@ a {
 
 
 .line1 {
-  transform: rotate(45deg) translate(12px,12px);
+  transform: rotate(45deg) translate(13px,12px);
   top: 0px;
 }
 
@@ -140,7 +143,7 @@ a {
 }
 
 .line3 {
-  transform: rotate(-45deg) translate(5px, -5px);
+  transform: rotate(-45deg) translate(4px, -2px);
 }
 
 .menu {
@@ -148,16 +151,16 @@ a {
   top: 30px;
   left: 5px;
   background-color: rgb(228, 223, 223, .95);
-  height: 50vh;
-  width: 25vw;
+  height: 80vh;
+  width: 30vw;
   border: 1px solid #ee5454;
   z-index: 1;
   border-radius: 5%;
 }
 
 .menu li {
-  margin-bottom: 15%;
-  font-size: 1.8rem;
+  margin-bottom: 5%;
+  font-size: 1.5rem;
   font-family: monospace;
 }
 
@@ -171,7 +174,8 @@ a {
 .menu a:hover{
   background-color:#4c94f6;
   color: white;
-  border-radius: 100%;
+  border-radius: 1rem;
+  width: 65%;
 }
 
 .menu ul {

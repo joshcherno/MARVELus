@@ -13,6 +13,7 @@
 
     <div class="search">
       <h2>Search our database for comics!</h2>
+      <button class="searchBtn" @click="goToAddComicView">GO</button>
     </div>
 
   </div>
@@ -32,6 +33,11 @@
 
 
 export default {
+  methods: {
+    goToAddComicView() {
+      this.$router.push({ name: 'add-comic' });
+    }
+  }
 
 
 };
@@ -99,6 +105,14 @@ export default {
   font-family:monospace;
 }
 
+.searchBtn{
+  background-color: #4c94f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
 
 
 </style>

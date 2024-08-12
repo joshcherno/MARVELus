@@ -18,8 +18,6 @@ import AppHeader from './components/AppHeader.vue'
      
   }
 
-
-
 </script>
 
 
@@ -32,6 +30,12 @@ import AppHeader from './components/AppHeader.vue'
   background-position: center center;
   background-repeat: no-repeat;
 }
+
+/* @media (max-width: 768px) {
+  .form-container {
+   background-size: cover;
+  }
+} */
 
 
 </style>

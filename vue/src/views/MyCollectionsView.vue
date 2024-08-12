@@ -34,9 +34,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2C3E50;
-  margin: 30px;
+  margin: 50px;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .header-text {
