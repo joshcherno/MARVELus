@@ -4,13 +4,14 @@
     
         <h2 class="form-title">Give your collection a name!</h2>
         <input name="name-input" class="name-input" type="text" placeholder="Collection Name" v-model="collection.name" />
-        <button class= "submit" type="submit" @click="createCollection">CREATE</button>
+        <button class= "submit" type="submit" @click="createCollection(collection)">CREATE</button>
     
     </form>
     
     </template>
     
     <script>
+    import collectionService from '../services/CollectionService'
     export default {
         data() {
             return {
@@ -20,8 +21,10 @@
             }
         },
         methods: {
-            createCollection(){
-                this.$router.push({ name: 'my-collections' });
+            createCollection(collection){
+                collectionService.addCollection(this.collection).then(() => {
+                    this.$router.push({ name: 'my-collections' });
+                });
             }
         }
     
@@ -42,7 +45,7 @@
     }
     
     .form-title{
-        background-color: rgba(0,0,0,.75);
+        
         color: white;
         padding: 1rem;
         font-size: 1rem;
@@ -58,6 +61,7 @@
     .submit{
         padding: 1%;
         margin: 2%;
+        cursor: pointer;
     }
     
     

@@ -23,7 +23,7 @@ export default {
   },
   
     addComicToLibrary(comic) {
-     return http.post('/comics/save/', comic);
+     return http.post('/comic/save/', comic);
    },
 
 

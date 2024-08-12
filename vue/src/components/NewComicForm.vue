@@ -42,16 +42,19 @@
       <div id="srchResults" v-for="result in searchResults" :key="result.id">
         <h3 id="cTitle">{{ result.title }}</h3>
         <h3 id="cName">{{ result.name }}</h3>
-        <h3 id="cUPC">{{ result.upc }}</h3>
         <img
           id="srchImage"
           :src="result.thumbnail.path + '.' + result.thumbnail.extension"
           alt="cover"
         />
-        <button id="btnResultAdd" class = "searchResultActionBtn">Add To Collection</button>
-        <button id="btnAddToComics" class = "searchResultActionBtn" @click="addComicToLibrary(comic)">Add To My Comics</button>
+        <div class = "buttons">
+        <button id="btn" class = "searchResultActionBtn" @click="addComicToCollection(comic, collectionId)">Add To Collection</button>
+        <button id="btn" class = "searchResultActionBtn" @click="addComicToLibrary(comic)">Add To My Comics</button>
+        </div>
       </div>
+
     </div>
+
   </div>
 </template>
 
@@ -60,16 +63,17 @@ import comicService from "../services/ComicService";
 import collectionService from "../services/CollectionService";
 
 export default {
+
   data() {
     return {
       comic: {},
       searchResults: [],
       searchString: "",
       loading: false,
-      // searchType: 'title',
       searchTypes: ['name', 'title', 'upc']
     };
   },
+
   methods: {
     goToMyComics() {
       this.$router.push("/my-comics");
@@ -147,15 +151,10 @@ export default {
 
 #resultsList {
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
-  align-content: center;
+  gap: 1.8rem;
   justify-content: center;
-  display: inline-block;
-  margin: auto;
-  margin-top: 10%;
-  margin-left: 10%;
-
+  padding: 8%;
 }
 
 input[type="text"] {
@@ -171,18 +170,26 @@ input[type="radio"] {
 }
 
 #srchResults {
+  border: 3px solid #4c94f6;
+  border-radius: 10px;
+  width: 250px;
+  height: 450px;
+  background-color: white;
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  display: inline-block;
-  margin: auto;
-    border: 3px solid #4c94f6;
-    border-radius: 10px;
-    width: 250px;
-    height: 500px;
-    background-color: white;
-  
+  align-items: center;
+  justify-content: space-between; 
+  padding: 12px;    
+  overflow: hidden;
+  position: relative;
+}
+
+#srchResults:hover #srchImage{
+  opacity: .6;
+}
+
+#srchResults:hover .buttons{
+  opacity: 1;
 }
 
 #srchResults h3 {
@@ -193,9 +200,6 @@ input[type="radio"] {
   margin:auto;
   margin-bottom: 10px;
 }
-
-
-
 
 .new-comic-form {
   /* display: flex; */
@@ -219,14 +223,18 @@ input[type="radio"] {
 }
 
 .submit {
-  margin-left: 1%;
   padding: 2%;
+  border-radius: 10%;
+  margin: auto;
+  background-color: #4c94f6;
 }
 
 #srchImage {
-  width: 250px;
-  height: 300px;
+  width: 100%;
+  height: 70%;
+  transition: opacity 0.3s ease-in-out;
 }
+
 
 input[name="title-input"] {
   width: 100%;
@@ -239,18 +247,14 @@ input[name="title-input"] {
   padding: 2%;
 }
 
-#btnAddToComics{
+#btn {
   background-color: #2c3e50;
   color: white;
   padding: 2%;
   margin-top: 2%;
-}
-
-#btnResultAdd {
-  background-color: #2c3e50;
-  color: white;
-  padding: 2%;
-  margin-top: 2%;
+  cursor: pointer;
+  opacity: 1;
+  z-index: 1;
 } 
 
 .searchResultActionBtn {
@@ -258,6 +262,26 @@ input[name="title-input"] {
   flex-direction: column;
   
 }
+
+#cUPC{
+  font-size: 0.8rem;
+}
+#cTitle{
+  padding: 0%;
+}
+
+.buttons{
+ 
+  background-color: rgba(0, 0, 0, 1); /* Transparent overlay */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  position : absolute;
+  top: 50%;
+  
+  
+  
+}
+
 
 
 

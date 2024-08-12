@@ -33,7 +33,7 @@ export default {
   },
   
   addCollection(collection) {
-    return http.post('/collections', collection);
+    return http.post('/collection/create-collection', collection);
   },
   deleteCollection(collectionId) {
     return http.delete(`/collections/${collectionId}`);
