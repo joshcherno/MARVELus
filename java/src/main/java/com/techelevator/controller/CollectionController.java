@@ -94,11 +94,14 @@ public class CollectionController {
         return collectionService.createCollection(collection);
     }
 
-    @RequestMapping(path="/collection/add-comic", method = RequestMethod.PUT)
-    public Collection addingComic (int collectionId, Comic comic) {
-        return collectionService.addingComic(collectionId, comic);
+    @RequestMapping(path="/collection/{collectionId}/add-comic", method = RequestMethod.PUT)
+    public Collection addComicToCollection (@PathVariable("collectionId") int collectionId, @RequestBody List<Integer> comicIds) {
+        return collectionService.addingComic(collectionId, comicIds);
     }
-
+    @RequestMapping(path="/collection/{collectionId}/comics", method = RequestMethod.GET)
+    public List<Comic> getComicsByCollectionId (@PathVariable("collectionId") int collectionId) {
+        return collectionService.getComicByCollectionId(collectionId);
+    }
 
 
 

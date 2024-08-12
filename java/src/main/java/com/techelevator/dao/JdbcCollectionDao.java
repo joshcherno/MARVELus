@@ -126,12 +126,12 @@ public class JdbcCollectionDao implements CollectionDao{
 
 
     @Override
-    public Collection addingComic(int collectionId, Comic comic) {
+    public Collection addComicToCollection(int collectionId, int comicId) {
 
         String sql = "INSERT INTO collection_comics (collection_id, comic_id) VALUES (?,?)";
 
         try{
-            jdbcTemplate.update(sql, collectionId, comic.getComicId());
+            jdbcTemplate.update(sql, collectionId, comicId);
             return getCollectionById(collectionId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database.", e);
@@ -139,6 +139,28 @@ public class JdbcCollectionDao implements CollectionDao{
             throw new DaoException("Data integrity violation", e);
         }
 
+    }
+
+    @Override
+    public List<Comic> getComicsByCollectionId(int collectionId) {
+        List<Comic> comics = new ArrayList<>();
+
+        String sql = "SELECT c.* FROM comic c " +
+                "JOIN collection_comics cc ON c.comic_id = cc.comic_id " +
+                "WHERE cc.collection_id = ?";
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, collectionId);
+            while (results.next()) {
+                comics.add(mapRowToComic(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database.", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+
+        return comics;
     }
 
     private  Collection mapRowToCollection(SqlRowSet rs){
@@ -152,6 +174,20 @@ public class JdbcCollectionDao implements CollectionDao{
 
         return collection;
 
+    }
+    private Comic mapRowToComic(SqlRowSet rs) {
+
+        Comic comic = new Comic();
+        comic.setComicId(rs.getInt("comic_id"));
+        comic.setTitle(rs.getString("title"));
+        comic.setAuthor(rs.getString("author"));
+        comic.setDescription(rs.getString("description"));
+        if(rs.getDate("release_date") != null){
+            comic.setReleaseDate(rs.getDate("release_date").toLocalDate());
+        }
+        comic.setCoverArt(rs.getString("cover_art"));
+
+        return comic;
     }
 
 }

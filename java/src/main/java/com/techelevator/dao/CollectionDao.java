@@ -2,7 +2,6 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
-import com.techelevator.model.User;
 
 import java.util.List;
 
@@ -18,7 +17,8 @@ public interface CollectionDao {
 
     public Collection createCollection(Collection newCollection);
 
-    public Collection addingComic(int collectionId, Comic comic);
+    public Collection addComicToCollection(int collectionId, int comic);
 
 
+    List<Comic> getComicsByCollectionId(int collectionId);
 }
