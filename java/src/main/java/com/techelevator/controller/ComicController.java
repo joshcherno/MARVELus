@@ -7,6 +7,7 @@ import com.techelevator.model.marvel.characters.ResultCharacters;
 import com.techelevator.model.marvel.comics.ResultComics;
 import com.techelevator.service.ApiService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -30,17 +31,50 @@ public class ComicController {
     //TODO: USE FOR EXPLORATION AND DELETE WHEN IMPLEMENTED FORMALLY
 
     @GetMapping(path = "/comic/search/title/{title}")
-    public Object getComicsByTitle(@PathVariable String title){
-        return  apiService.searchComicsByTitle(title);
+    public ResponseEntity<?> getComicsByTitle(@PathVariable String title) {
+        try {
+            Object comicsRoot = apiService.searchComicsByTitle(title);
+
+            if (comicsRoot == null || (comicsRoot instanceof List && ((List<?>) comicsRoot).isEmpty())) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No comics found with this title.");
+            }
+
+            return ResponseEntity.ok(comicsRoot);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred while searching for comics by title.");
+        }
     }
     @GetMapping(path = "/comic/search/upc/{upc}")
-    public Object getComicsByUPC(@PathVariable String upc){
-        return apiService.searchComicsByUPC(upc);
+    public ResponseEntity<?> getComicsByUPC(@PathVariable String upc) {
+        try {
+            Object comicsRoot = apiService.searchComicsByUPC(upc);
+
+            if (comicsRoot == null || (comicsRoot instanceof List && ((List<?>) comicsRoot).isEmpty())) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No comics found with this UPC.");
+            }
+
+            return ResponseEntity.ok(comicsRoot);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred while searching for comics by UPC.");
+        }
     }
-    @GetMapping(path = "/comic/search/character/{character}")
-    public Object getComicsByCharacter(@PathVariable String character){
-        return apiService.searchComicsByCharacter(character);
+@GetMapping(path = "/comic/search/character/{character}")
+public ResponseEntity<?> getComicsByCharacter(@PathVariable String character) {
+    try {
+        Object comicsRoot = apiService.searchComicsByCharacter(character);
+
+        if (comicsRoot == null || (comicsRoot instanceof List && ((List<?>) comicsRoot).isEmpty())) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("This character doesn't exist.");
+        }
+
+        return ResponseEntity.ok(comicsRoot);
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("This character doesn't exist.");
     }
+}
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/comic/save/")
     public Comic saveComic(@RequestBody Comic comic){
@@ -58,5 +92,10 @@ public class ComicController {
     public Comic getComicById(@PathVariable int comicId){
         return comicDao.getComicById(comicId);
     }
+    @GetMapping(path = "search/comic/{collectionId")
+    public List<Comic> getComicsFromCollection(int collectionId){
+        return comicDao.getComicsFromCollection(collectionId);
+    }
+
 
 }
