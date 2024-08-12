@@ -11,15 +11,17 @@ export default {
   },
 
   getCollectionById(collectionId) {
-    return http.get(`/collection/id/${collectionId}`)
+    return http.get(`/collections/${collectionId}`)
   },
 
   getComicById(comicId) {
     return http.get(`/collections/${comicId}`)
   },
   
-  addComicToCollection(comic) {
-    return http.post('/comics', comic);
+  //Does this jawn work?  I don't know.  I'm just trying to get the collections to show up in the console.
+
+  addComicToCollection(comic, collectionId) {
+    return http.post(`/collections/${collectionId}`, comic);
   },
 
   updateComic(comic) {

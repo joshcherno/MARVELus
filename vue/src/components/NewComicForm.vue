@@ -1,6 +1,8 @@
 <template>
   <div id="main">
-    <div id="loading" v-show="loading">PLEASE WAIT</div>
+    <div id="loading" v-show="loading">
+      <img src="../assets/spiderman-loading.gif" alt="loading" />
+    </div>
     <form class="new-comic-form" v-on:submit.prevent="">
       <h2 class="form-title">Search Comics to Add to your Library</h2>
       <input
@@ -47,7 +49,7 @@
           alt="cover"
         />
         <button id="btnResultAdd" class = "searchResultActionBtn">Add To Collection</button>
-        <button id="btnAddToComics" class = "searchResultActionBtn">Add To My Comics</button>
+        <button id="btnAddToComics" class = "searchResultActionBtn" @click="addComicToLibrary(comic)">Add To My Comics</button>
       </div>
     </div>
   </div>
@@ -55,6 +57,7 @@
 
 <script>
 import comicService from "../services/ComicService";
+import collectionService from "../services/CollectionService";
 
 export default {
   data() {
@@ -112,6 +115,17 @@ export default {
 
     },
 
+    addComicToLibrary(comic) {
+      comicService.addComicToLibrary(comic).then((response) => {
+        this.$router.push("/my-comics");
+      });
+    },
+
+    addComicToCollection(comic, collectionId) {
+      collectionService.addComicToCollection(comic, collectionId).then((response) => {
+        this.$router.push("/my-collections");
+      });
+    },
 
     toggleLoad() {
       this.loading = !this.loading;

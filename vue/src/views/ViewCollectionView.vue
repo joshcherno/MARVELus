@@ -79,18 +79,19 @@ export default {
     let collectionId = parseInt(this.$route.params.id);
     collectionService.getCollectionById(collectionId)
       .then(response => {
-        this.board = response.data;
+        console.log(response.data);
+        this.collection = response.data;
         this.isLoading = false;
       })
       .catch(error => {
         if (error.response) {
           if (error.response.status === 404) {
             this.$store.commit('SET_NOTIFICATION',
-              "Error: Collection " + collectionId + " was not found. This board may have been deleted or you have entered an invalid collection ID.");
+              "Error: Collection " + collectionId + " was not found. This collection may have been deleted or you have entered an invalid collection ID.");
             this.$router.push({ name: 'MyCollectionsView' });
           } else {
             this.$store.commit('SET_NOTIFICATION',
-              "Error getting board " + collectionId + ". Response received was '" + error.response.statusText + "'.");
+              "Error getting collection " + collectionId + ". Response received was '" + error.response.statusText + "'.");
           }
         } else if (error.request) {
           this.$store.commit('SET_NOTIFICATION', "Error getting collection. Server could not be reached.");

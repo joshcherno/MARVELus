@@ -1,78 +1,96 @@
-
 <template>
 
-    <header>
-      <router-link id="header-home-router" :to="{ name: 'home' }">
+  <header>
+    <router-link id="header-home-router" :to="{ name: 'home' }">
       <h1>MARVELus</h1>
-      </router-link>
-        <div id="nav">
-            <button class="hamburger" @click="toggleMenu">
-               <div class="line" :class="{'line1' : menuOpen}"></div>
-                <div class="line" :class="{'line2' : menuOpen}"></div>
-                <div class="line" :class="{'line3' : menuOpen}"></div>
-            </button>
+    </router-link>
+    <div id="nav">
+      <button class="hamburger" @click="toggleMenu">
+        <div class="line" :class="{ 'line1': menuOpen }"></div>
+        <div class="line" :class="{ 'line2': menuOpen }"></div>
+        <div class="line" :class="{ 'line3': menuOpen }"></div>
+      </button>
 
-         <nav v-if="menuOpen" class="menu">
-           <ul>
-            <li>
-             <div @click="toggleMenu"><router-link to="/">Home</router-link></div>
-              </li>
-            <li>
-              <div @click="toggleMenu"><router-link to="/my-comics" >My Comics</router-link></div>
-            </li>
-            <li>
-              <div @click="toggleMenu"><router-link to="/my-collections" >My Collections</router-link></div>
-            </li>
-            <li>
-              <div @click="toggleMenu"><router-link to="/profile">Profile</router-link></div>
-            </li>
-            <li>
-              <div @click="toggleMenu"><router-link to="/login">Login/Sign Up</router-link></div>
-            </li>
-          
-           </ul>
-          </nav>
+      <nav v-if="menuOpen" class="menu">
+        <ul>
+          <li>
+            <div @click="toggleMenu"><router-link to="/">Home</router-link></div>
+          </li>
+          <li>
+            <div @click="toggleMenu"><router-link to="/my-comics">My Comics</router-link></div>
+          </li>
+          <li>
+            <div @click="toggleMenu"><router-link to="/my-collections">My Collections</router-link></div>
+          </li>
+          <li>
+            <div @click="toggleMenu"><router-link to="/profile">Profile</router-link></div>
+          </li>
+          <li>
+            <div @click="toggleMenu"><router-link to="/login">Login/Sign Up</router-link></div>
+          </li>
+          <li>
+            <div @click="toggleMenu"><router-link to="/logout">Logout</router-link></div>
+          </li>
 
-              <!-- <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
+        </ul>
+      </nav>
+
+      <!-- <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
               <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
               <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>&nbsp;|&nbsp;
               TODO: Add a router link to a Profile view -->
-              <router-link class="profile" v-bind:to="{ name: 'profile' }"><img class="profile-img" v-bind:src="'src/assets/ProfileImage.jpg'" alt="profile"></router-link>   
-      </div>
-    </header>
+      <router-link class="profile" v-bind:to="{ name: 'profile' }"><img class="profile-img"
+          v-bind:src="'src/assets/ProfileImage.jpg'" alt="profile"></router-link>
+    </div>
+  </header>
 
-  <body>    
-  </body>    
+  <body>
+  </body>
 
 </template>
 
 <script>
 export default {
 
-  data(){
-    return{
-      menuOpen: false
+  data() {
+    return {
+      menuOpen: false,
+      isLoggedIn: false
     };
   },
+  // created() {
+  //   this.isLoggedIn = this.checkUserLoggedIn();
+  // },
   methods: {
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
     },
+    // checkUserLoggedIn() {
+    //   // Assuming you store an auth token or user data in localStorage
+    //   const token = localStorage.getItem('token');
+    //   const user = localStorage.getItem('user');
+    //   // Check if token or user data exists and is valid
+    //   if (token && user) {
+    //     // Optionally, you can add additional checks for token validity here
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
   }
 
 }
 </script>
 
 <style>
-
 header {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;     
-    font-size: 2rem;         
-    color: red;
-    text-align: center;
-    padding: .5rem; 
-    background-color: white;
-    position: relative;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  color: red;
+  text-align: center;
+  padding: .5rem;
+  background-color: white;
+  position: relative;
 
 }
 
@@ -90,7 +108,7 @@ header {
 
 }
 
-.line{
+.line {
   width: 2rem;
   height: 4px;
   background-color: #ee5454;
@@ -99,7 +117,7 @@ header {
 }
 
 #nav {
-    font-size: 1rem;    
+  font-size: 1rem;
 }
 
 h1 {
@@ -107,7 +125,7 @@ h1 {
   margin-bottom: 0px;
 }
 
-.profile{
+.profile {
   position: absolute;
   top: 0;
   right: 0;
@@ -121,7 +139,7 @@ h1 {
   border: none;
 }
 
-.profile-img{
+.profile-img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -134,7 +152,7 @@ a {
 
 
 .line1 {
-  transform: rotate(45deg) translate(13px,12px);
+  transform: rotate(45deg) translate(13px, 12px);
   top: 0px;
 }
 
@@ -171,8 +189,8 @@ a {
   width: 65%;
 }
 
-.menu a:hover{
-  background-color:#4c94f6;
+.menu a:hover {
+  background-color: #4c94f6;
   color: white;
   border-radius: 1rem;
   width: 65%;
@@ -181,6 +199,4 @@ a {
 .menu ul {
   list-style-type: none;
 }
-
-
 </style>

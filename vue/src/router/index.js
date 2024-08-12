@@ -27,7 +27,7 @@ const routes = [
     name: 'home',
     component: HomeView,
     meta: {
-      requiresAuth: false  //will need to change to true 
+      requiresAuth: false 
     }
   },
   {

@@ -22,10 +22,11 @@ export default {
     return http.get(`/comic/search/character/${comicCharacter}`)
   },
   
-//   TODO: FINISH THIS FUNCTION
     addComicToLibrary(comic) {
      return http.post('/comics/save/', comic);
    },
+
+
 
 //   deleteComicFromLibrary(comicId) {
 //     return http.delete(`/comics/${comicId}`);
