@@ -38,7 +38,7 @@ public class CollectionController {
 
     //extending CollectionService methods
     //TODO Consider how to add methods for restTemplate purposes to make sure we are talking to the client side appropriately
-    @RequestMapping(path = "/collection/id/{collectionId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/collections/{collectionId}", method = RequestMethod.GET)
     public Collection getCollectionById(@PathVariable ("collectionId") int collectionId){
 
         Collection collection = null;

@@ -1,51 +1,55 @@
 <template>
 
-  <header>
-    <router-link id="header-home-router" :to="{ name: 'home' }">
-      <h1>MARVELus</h1>
-    </router-link>
-    <div id="nav">
-      <button class="hamburger" @click="toggleMenu">
-        <div class="line" :class="{ 'line1': menuOpen }"></div>
-        <div class="line" :class="{ 'line2': menuOpen }"></div>
-        <div class="line" :class="{ 'line3': menuOpen }"></div>
-      </button>
+  <div id="main">
 
-      <nav v-if="menuOpen" class="menu">
-        <ul>
-          <li>
-            <div @click="toggleMenu"><router-link to="/">Home</router-link></div>
-          </li>
-          <li>
-            <div @click="toggleMenu"><router-link to="/my-comics">My Comics</router-link></div>
-          </li>
-          <li>
-            <div @click="toggleMenu"><router-link to="/my-collections">My Collections</router-link></div>
-          </li>
-          <li>
-            <div @click="toggleMenu"><router-link to="/profile">Profile</router-link></div>
-          </li>
-          <li>
-            <div @click="toggleMenu"><router-link to="/login">Login/Sign Up</router-link></div>
-          </li>
-          <li>
-            <div @click="toggleMenu"><router-link to="/logout">Logout</router-link></div>
-          </li>
+    <header>
+      <router-link id="header-home-router" :to="{ name: 'home' }">
+        <h1>MARVELus</h1>
+      </router-link>
+      <div id="nav">
+        <button class="hamburger" @click="toggleMenu">
+          <div class="line" :class="{ 'line1': menuOpen }"></div>
+          <div class="line" :class="{ 'line2': menuOpen }"></div>
+          <div class="line" :class="{ 'line3': menuOpen }"></div>
+        </button>
 
-        </ul>
-      </nav>
+        <nav v-if="menuOpen" class="menu">
+          <ul>
+            <li>
+              <div @click="toggleMenu"><router-link to="/">Home</router-link></div>
+            </li>
+            <li v-show="isLoggedIn">
+              <div @click="toggleMenu"><router-link to="/my-comics">My Comics</router-link></div>
+            </li>
+            <li v-show="isLoggedIn">
+              <div @click="toggleMenu"><router-link to="/my-collections">My Collections</router-link></div>
+            </li>
+            <li v-show="isLoggedIn">
+              <div @click="toggleMenu"><router-link to="/profile">Profile</router-link></div>
+            </li>
+            <li v-show="!isLoggedIn">
+              <div @click="toggleMenu"><router-link to="/login">Login/Sign Up</router-link></div>
+            </li>
+            <li v-show="isLoggedIn">
+              <div @click="toggleMenu"><router-link to="/logout">Logout</router-link></div>
+            </li>
 
-      <!-- <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-              <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
-              <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>&nbsp;|&nbsp;
-              TODO: Add a router link to a Profile view -->
-      <router-link class="profile" v-bind:to="{ name: 'profile' }"><img class="profile-img"
-          v-bind:src="'src/assets/ProfileImage.jpg'" alt="profile"></router-link>
-    </div>
-  </header>
+          </ul>
+        </nav>
 
-  <body>
-  </body>
+        <!-- <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
+                <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
+                <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>&nbsp;|&nbsp;
+                TODO: Add a router link to a Profile view -->
+        <router-link class="profile" v-bind:to="{ name: 'profile' }"><img class="profile-img"
+            v-bind:src="'src/assets/ProfileImage.jpg'" alt="profile"></router-link>
+      </div>
+    </header>
+
+    <body>
+    </body>
+
+  </div>
 
 </template>
 
@@ -55,28 +59,18 @@ export default {
   data() {
     return {
       menuOpen: false,
-      isLoggedIn: false
     };
   },
-  // created() {
-  //   this.isLoggedIn = this.checkUserLoggedIn();
-  // },
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.token != '';
+    }
+  },
   methods: {
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
     },
-    // checkUserLoggedIn() {
-    //   // Assuming you store an auth token or user data in localStorage
-    //   const token = localStorage.getItem('token');
-    //   const user = localStorage.getItem('user');
-    //   // Check if token or user data exists and is valid
-    //   if (token && user) {
-    //     // Optionally, you can add additional checks for token validity here
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
+    
   }
 
 }

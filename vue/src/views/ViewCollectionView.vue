@@ -1,7 +1,7 @@
 <template>
   <div>
         <div class="collection-actions">
-            <router-link v-bind:to="{ name: 'MyCollectionsView' }">Back to My Collections</router-link>
+            <router-link v-bind:to="{ name: 'my-collections' }">Back to My Collections</router-link>
         </div>
         <div class="loading" v-if="isLoading">
             <img src="../assets/spiderman-loading.gif" />
@@ -9,7 +9,7 @@
     <div v-else>
         <div class="header">
             <h1> {{collection.title}} </h1>
-            <router-link class="btn-submit" :to="{ name: 'AddComicView', params: { collectionId: collection.id } }">Add
+            <router-link class="btn-submit" :to="{ name: 'add-comic', params: { collectionId: collection.id } }">Add
                 New Comic</router-link>
                 <button class="btn-cancel deleteCollection" v-on:click="deleteCollection">Delete Collection</button>
             <!-- <p> {{ collection.description }} </p> -->
@@ -57,7 +57,7 @@ export default {
                 message: `Collection has been deleted`,
                 type: 'success'
               });
-            this.$router.push({ name: 'MyCollectionsView' });
+            this.$router.push({ name: "my-collections" });
           }
         }).catch(error => {
           if (error.response) {
@@ -78,7 +78,7 @@ export default {
   created() {
     let collectionId = parseInt(this.$route.params.id);
     collectionService.getCollectionById(collectionId)
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
         this.collection = response.data;
         this.isLoading = false;
@@ -88,7 +88,7 @@ export default {
           if (error.response.status === 404) {
             this.$store.commit('SET_NOTIFICATION',
               "Error: Collection " + collectionId + " was not found. This collection may have been deleted or you have entered an invalid collection ID.");
-            this.$router.push({ name: 'MyCollectionsView' });
+            this.router.push({ name: "my-collections" });
           } else {
             this.$store.commit('SET_NOTIFICATION',
               "Error getting collection " + collectionId + ". Response received was '" + error.response.statusText + "'.");
