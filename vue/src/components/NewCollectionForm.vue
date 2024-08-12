@@ -17,9 +17,11 @@
             return {
                 collection: {
 
+                    // collectionId : '',
+                    // comics: [],
                     name: '',
+                    description: '',
                     user_id: ''
-                
                 }
             }
         },

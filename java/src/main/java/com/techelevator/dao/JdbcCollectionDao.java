@@ -10,6 +10,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,11 @@ public class JdbcCollectionDao implements CollectionDao{
 
     private  final JdbcTemplate jdbcTemplate;
 
-    public  JdbcCollectionDao(JdbcTemplate jdbcTemplate){
+    private final UserDao userdao;
+
+    public  JdbcCollectionDao(JdbcTemplate jdbcTemplate, UserDao userdao){
         this.jdbcTemplate = jdbcTemplate;
+        this.userdao = userdao;
     }
 
 
@@ -105,16 +109,18 @@ public class JdbcCollectionDao implements CollectionDao{
 
 
     @Override
-    public Collection createCollection(Collection newCollection) {
+    public Collection createCollection(Collection newCollection, Principal principal) {
 
         Collection collection = null;
+
+        int userid = userdao.getUserByUsername(principal.getName()).getId();
 
         String sql = "INSERT INTO collection (collection_name, collection_description, user_id)" +
                 "VALUES (?, ?, ?) RETURNING collection_id";
 
         try{
             int collectId = jdbcTemplate.queryForObject(sql, Integer.class, newCollection.getCollectionName(),
-                    newCollection.getColDescription(), newCollection.getUserId());
+                    newCollection.getColDescription(), userid);
             collection = getCollectionById(collectId);
         }catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database.", e);

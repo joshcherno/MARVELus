@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-//@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
 public class CollectionController {
 
     private CollectionDao collectionDao;
@@ -90,8 +90,8 @@ public class CollectionController {
     }
 
     @RequestMapping(path="/collection/create-collection", method = RequestMethod.POST)
-    public Collection createCollection (@RequestBody Collection collection){
-        return collectionService.createCollection(collection);
+    public Collection createCollection (@RequestBody Collection collection, Principal principal){
+        return collectionService.createCollection(collection, principal);
     }
 
     @RequestMapping(path="/collection/{collectionId}/add-comic", method = RequestMethod.PUT)

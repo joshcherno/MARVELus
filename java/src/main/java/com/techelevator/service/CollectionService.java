@@ -20,6 +20,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import java.security.Principal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +53,8 @@ public class CollectionService {
         return collectionDao.getCollections();
     }
 
-    public Collection createCollection(Collection collection){
-        return collectionDao.createCollection(collection);
+    public Collection createCollection(Collection collection, Principal principal){
+        return collectionDao.createCollection(collection, principal);
     }
 
     public Collection addingComic (int collectionId, List<Integer> comicIds){

@@ -1,43 +1,59 @@
 import axios from 'axios';
 
-const http = axios.create({
-  baseURL: import.meta.env.VITE_REMOTE_API
-});
+axios.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token');
+    console.log(`Token being used in request: ${token}`); // Log the token
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
+
+//delete this later before final delivery
+// const http = axios.create({
+//   baseURL: import.meta.env.VITE_REMOTE_API
+// });
 
 export default {
 
   getCollections() {
-    return http.get('/collections');
+    return axios.get('/collections');
   },
 
   getCollectionById(collectionId) {
-    return http.get(`/collections/${collectionId}`)
+    return axios.get(`/collections/${collectionId}`)
   },
 
   getComicById(comicId) {
-    return http.get(`/collections/${comicId}`)
+    return axios.get(`/collections/${comicId}`)
   },
   
   //Does this jawn work?  I don't know.  I'm just trying to get the collections to show up in the console.
 
   addComicToCollection(comic, collectionId) {
-    return http.post(`/collections/${collectionId}`, comic);
+    return axios.post(`/collections/${collectionId}`, comic);
   },
 
   updateComic(comic) {
-    return http.put(`/comics/${comic.id}`, comic);
+    return axios.put(`/comics/${comic.id}`, comic);
   },
 
   deleteComicFromCollection(comicId) {
-    return http.delete(`/comics/${comicId}`);
+    return axios.delete(`/comics/${comicId}`);
   },
   
   addCollection(collection) {
-    return http.post('/collection/create-collection', collection);
+    return axios.post('/collection/create-collection', collection);
   },
   
   deleteCollection(collectionId) {
-    return http.delete(`/collections/${collectionId}`);
+    return axios.delete(`/collections/${collectionId}`);
   }
 
 }
