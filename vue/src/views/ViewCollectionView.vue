@@ -36,7 +36,7 @@ export default {
     },
     data() {
         return {
-            collection: { title: '', description: '', comics: [] },
+            collection: { id: '', title: '', description: '', comics: [] },
             isLoading: true
         };
     },
