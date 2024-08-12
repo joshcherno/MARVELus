@@ -56,8 +56,15 @@ public class CollectionService {
         return collectionDao.createCollection(collection);
     }
 
-    public Collection addingComic (int collectionId, Comic comic){
-        return collectionDao.addingComic(collectionId,comic);
+    public Collection addingComic (int collectionId, List<Integer> comicIds){
+        for (int comicId : comicIds) {
+            collectionDao.addComicToCollection(collectionId,comicId);
+        }
+        return collectionDao.getCollectionById(collectionId);
+    }
+
+    public List<Comic> getComicByCollectionId (int collectionId){
+        return collectionDao.getComicsByCollectionId(collectionId);
     }
 
 
