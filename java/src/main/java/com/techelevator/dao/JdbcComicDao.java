@@ -21,6 +21,8 @@ public class JdbcComicDao implements ComicDao{
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
+    //TODO try to get rid of this method safely. its useless right now
     @Override
     public Comic getAllComics() {
         Comic comic = null;
@@ -60,22 +62,23 @@ public class JdbcComicDao implements ComicDao{
 
 
     @Override
-    public Comic getComicByTitle(String title) {
+    public List<Comic> getComicByTitle(String title) {
 
-        Comic comic = null;
+        List<Comic> comicList = new ArrayList<>();
 
-        String sql = "SELECT * FROM comic WHERE comic_title = ?";
+        String sql = "SELECT * FROM comic WHERE comic_title LIKE ?";
 
         try{
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, title);
-            if(results.next()){
-                comic = mapRowToComic(results);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, title + "%");
+            while(results.next()){
+                Comic comicResult = mapRowToComic(results);
+                comicList.add(comicResult);
             }
         }catch(CannotGetJdbcConnectionException e){
             throw new DaoException("Unable to connect to server or database", e);
         }
 
-        return comic;
+        return comicList;
     }
 
     @Override
@@ -163,13 +166,13 @@ public class JdbcComicDao implements ComicDao{
 
         Comic comic = new Comic();
         comic.setComicId(rs.getInt("comic_id"));
-        comic.setTitle(rs.getString("title"));
-        comic.setAuthor(rs.getString("author"));
+        comic.setTitle(rs.getString("comic_title"));
+        comic.setAuthor(rs.getString("comic_author"));
         comic.setDescription(rs.getString("description"));
         if(rs.getDate("release_date") != null){
             comic.setReleaseDate(rs.getDate("release_date").toLocalDate());
         }
-        comic.setCoverArt(rs.getString("cover_art"));
+        comic.setCoverArt(rs.getString("cover_url"));
 
         return comic;
     }

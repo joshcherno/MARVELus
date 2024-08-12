@@ -179,13 +179,13 @@ public class JdbcCollectionDao implements CollectionDao{
 
         Comic comic = new Comic();
         comic.setComicId(rs.getInt("comic_id"));
-        comic.setTitle(rs.getString("title"));
-        comic.setAuthor(rs.getString("author"));
+        comic.setTitle(rs.getString("comic_title"));
+        comic.setAuthor(rs.getString("comic_author"));
         comic.setDescription(rs.getString("description"));
         if(rs.getDate("release_date") != null){
             comic.setReleaseDate(rs.getDate("release_date").toLocalDate());
         }
-        comic.setCoverArt(rs.getString("cover_art"));
+        comic.setCoverArt(rs.getString("cover_url"));
 
         return comic;
     }

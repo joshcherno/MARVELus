@@ -9,7 +9,7 @@ public interface ComicDao {
 
     Comic getAllComics();
     Comic getComicById(int comicId);
-    Comic getComicByTitle(String title);
+    List<Comic> getComicByTitle(String title);
     Comic getComicByAuthor(String author);
     List<Comic> getComics();
     Comic saveComic(Comic comic);

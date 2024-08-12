@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -44,6 +45,18 @@ public class ComicController {
     @PostMapping(path = "/comic/save/")
     public Comic saveComic(@RequestBody Comic comic){
         return comicDao.saveComic(comic);
+    }
+    @GetMapping(path = "/search/comic/")
+    public List<Comic> getAllComics(){
+        return comicDao.getComics();
+    }
+    @GetMapping(path = "search/comic/title/{title}")
+    public List<Comic> getComicByTitle(@PathVariable String title){
+        return comicDao.getComicByTitle(title);
+    }
+    @GetMapping(path = "search/comic/id/{comicId}")
+    public Comic getComicById(@PathVariable int comicId){
+        return comicDao.getComicById(comicId);
     }
 
 }
