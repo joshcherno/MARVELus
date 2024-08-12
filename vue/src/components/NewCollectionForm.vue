@@ -16,8 +16,16 @@
         data() {
             return {
                 collection: {
+
                     name: '',
+                    user_id: ''
+                
                 }
+            }
+        },
+        computed:{
+            user_id(){
+                return this.$store.state.user.id;
             }
         },
         methods: {
