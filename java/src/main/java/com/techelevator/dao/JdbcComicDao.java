@@ -126,7 +126,7 @@ public class JdbcComicDao implements ComicDao{
 
     @Override
     public Comic saveComic(ResultComics rcomic, int collectionId) {
-        // COMICS ARE ALWAYS AND ONLY SAVED TO THE APP DB BY ASSOCIATING THEM TO A COLLECTION
+        // TODO: NOTE: COMICS ARE ALWAYS AND ONLY SAVED TO THE APP DB BY ASSOCIATING THEM TO A COLLECTION
 
         Comic comic = Comic.convertMarvelResult(rcomic);
 
@@ -150,10 +150,10 @@ public class JdbcComicDao implements ComicDao{
                 throw new DaoException("Data integrity violation", e);
             }
         }
-        String checkSql = "SELECT COUNT(*) FROM comic_collection WHERE comic_id = ? AND collection_id = ?";
+        String checkSql = "SELECT COUNT(*) FROM collection_comics WHERE comic_id = ? AND collection_id = ?";
         int count = jdbcTemplate.queryForObject(checkSql, Integer.class, comic.getComicId(), collectionId);
         if (count == 0) {
-            String linkSql = "INSERT INTO comic_collection (comic_id, collection_id) VALUES (?, ?)";
+            String linkSql = "INSERT INTO collection_comics (comic_id, collection_id) VALUES (?, ?)";
 
             try {
                 jdbcTemplate.update(linkSql, comic.getComicId(), collectionId);
@@ -165,10 +165,6 @@ public class JdbcComicDao implements ComicDao{
         }
 
         return comic;
-        // IF COMIC NOT ALREADY ASSOCIATED WITH COLLECTION THEN ADD ASSOCIATIVE ENTITY TO LINK COMIC ID WITH COLLECTION ID
-        //TODO: RGS -> IF COMIC NOT ALREADY ASSOCIATED WITH COLLECTION THEN ADD ASSOCIATIVE ENTITY TO LINK COMIC ID WITH COLLECTION ID
-        //TODO: RGS -> CONT THIS IS TOTALLY DEPENDENT ON THE REFACTOR DECISIONS MADE IN COLLECTION CONTROLLER TODOs
-
     }
 
     @Override
