@@ -99,7 +99,7 @@ const routes = [
     requiresAuth: false
   },
   {
-    path: "/collections/:id",
+    path: "/collection/:id/comics",
     name: "view-collection",
     component: ViewCollectionView,
   }

@@ -27,11 +27,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2C3E50;
-  margin: 10%;
+  margin-top: 3%;
   display: flex;
   /* flex-wrap: wrap; */
   justify-content: space-around;
-
 }
 
 .card{

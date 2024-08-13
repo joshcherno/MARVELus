@@ -11,90 +11,90 @@ export function createStore(currentToken, currentUser) {
     state: {
       // test comics and collections; remove later!
       comics:[
-        {
-          id: 1,
-          title: 'The Amazing Spiderman',
-          issue: 1,
-          publisher: 'Marvel',
-          date: '1993-01-01',
-          isbn: '9780785136927'
-        },
+        // {
+        //   id: 1,
+        //   title: 'The Amazing Spiderman',
+        //   issue: 1,
+        //   publisher: 'Marvel',
+        //   date: '1993-01-01',
+        //   isbn: '9780785136927'
+        // },
 
-        {
-          id: 2,
-          title: 'The Incredible Hulk',
-          issue: 1,
-          publisher: 'Marvel',
-          date: '1962-05-01',
-          isbn: '9780785129387'
-        },
+        // {
+        //   id: 2,
+        //   title: 'The Incredible Hulk',
+        //   issue: 1,
+        //   publisher: 'Marvel',
+        //   date: '1962-05-01',
+        //   isbn: '9780785129387'
+        // },
 
-        {
-          id: 3,
-          title: 'The Punisher',
-          issue: 1,
-          publisher: 'Marvel',
-          date: '1986-01-01',
-          isbn: '9780785157359'
-        },
+        // {
+        //   id: 3,
+        //   title: 'The Punisher',
+        //   issue: 1,
+        //   publisher: 'Marvel',
+        //   date: '1986-01-01',
+        //   isbn: '9780785157359'
+        // },
 
-        {
-          id: 4,
-          title: 'Iron Man Vol 1',
-          issue: 300,
-          publisher: 'Marvel',
-          date: '2013-01-01',
-          isbn: '9780785168331'
-        }
+        // {
+        //   id: 4,
+        //   title: 'Iron Man Vol 1',
+        //   issue: 300,
+        //   publisher: 'Marvel',
+        //   date: '2013-01-01',
+        //   isbn: '9780785168331'
+        // }
 
       ],
       collections:[
-        {
-          id: 1,
-          title: 'First Editions',
-          description: 'A collection of First Edition comics',
-          comics: [
-            {
-              id: 1,
-              title: 'The Amazing Spiderman',
-              issue: 1,
-              publisher: 'Marvel',
-              date: '1993-01-01',
-              isbn: '9780785136927'
-            },
-            {
-              id: 2,
-              title: 'The Incredible Hulk',
-              issue: 1,
-              publisher: 'Marvel',
-              date: '1962-05-01',
-              isbn: '9780785129387'
-            },
+        // {
+        //   id: 1,
+        //   title: 'First Editions',
+        //   description: 'A collection of First Edition comics',
+        //   comics: [
+        //     {
+        //       id: 1,
+        //       title: 'The Amazing Spiderman',
+        //       issue: 1,
+        //       publisher: 'Marvel',
+        //       date: '1993-01-01',
+        //       isbn: '9780785136927'
+        //     },
+        //     {
+        //       id: 2,
+        //       title: 'The Incredible Hulk',
+        //       issue: 1,
+        //       publisher: 'Marvel',
+        //       date: '1962-05-01',
+        //       isbn: '9780785129387'
+        //     },
     
-            {
-              id: 3,
-              title: 'The Punisher',
-              issue: 1,
-              publisher: 'Marvel',
-              date: '1986-01-01',
-              isbn: '9780785157359'
-            }
-          ]
-        },
+        //     {
+        //       id: 3,
+        //       title: 'The Punisher',
+        //       issue: 1,
+        //       publisher: 'Marvel',
+        //       date: '1986-01-01',
+        //       isbn: '9780785157359'
+        //     }
+        //   ]
+        // },
 
-        {
-          id: 2,
-          title: 'Hulk Collection',
-          description: 'A collection of Hulk comics',
-          comics: []
-        },
+        // {
+        //   id: 2,
+        //   title: 'Hulk Collection',
+        //   description: 'A collection of Hulk comics',
+        //   comics: []
+        // },
 
-        {
-          id: 3,
-          title: 'Punisher Collection',
-          description: 'A collection of Punisher comics',
-          comics: []
-        },
+        // {
+        //   id: 3,
+        //   title: 'Punisher Collection',
+        //   description: 'A collection of Punisher comics',
+        //   comics: []
+        // },
       ],
 
       token: currentToken || '',
@@ -150,6 +150,27 @@ export function createStore(currentToken, currentUser) {
       setCollections(state, collections){
         state.collections = collections;
       },
+
+      // ------------------------------- trying to change the state of the store to be adding comics from database
+      setCollection(state, collection) {
+        const index = state.collections.findIndex(c => c.id === collection.id);
+        if (index !== -1) {
+          state.collections.splice(index, 1, collection);
+        } else {
+          state.collections.push(collection);
+        }
+      },
+    
+      setComicsForCollection(state, { collectionId, comics }) {
+        const collection = state.collections.find(c => c.id === collectionId);
+        if (collection) {
+          collection.comics = comics;
+        }
+      },
+
+      // --------------------------
+
+
 
       CLEAR_NOTIFICATION(state) {
         if (state.notification && state.notification.timer) {

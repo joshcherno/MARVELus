@@ -5,10 +5,16 @@
   
     <div class = "comicsInDb">
       <h2>Comics in Database</h2>
+      <h4>We have access to over 60,000 comics</h4>
+      <p>Click "GO" to search the database</p>
+      <button class="searchBtn" @click="goToAddComicView">GO</button>
     </div>
     
     <div class = "stats"> 
       <h2>Statistics</h2>
+      <h4>Total Collections: 5</h4>
+      <h4>Total Users: 3</h4>
+      <h4></h4>
     </div>
 
     <div class="search">
@@ -89,13 +95,13 @@ export default {
     text-align: center;
     display: flex;
     justify-content: center;
-
+    margin-left: 5%;
 }
 
 .left-home{
   display: flex;
   flex-direction: column;
-
+  margin-bottom: 10%;
 }
 
 .home{

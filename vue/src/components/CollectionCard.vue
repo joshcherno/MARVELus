@@ -1,6 +1,6 @@
 <template>
     <!-- Use the router-link to navigate to the collection's details page -->
-    <router-link id="view-collection-router" :to="{ name: 'my-collections', params: { id: collection.id } }"> 
+    <!-- <router-link id="view-collection-router" :to="{ name: 'my-collections', params: { id: collection.id } }">  -->
       <div class="card">
         <!-- Display the collection's title -->
         <h2 class="collection-card-header">{{ collection.collectionName }}</h2>
@@ -8,7 +8,7 @@
         <img class="collection-img" src="@/assets/createdcollectionimage.jpg" alt="created-collection-cover-image">
         <button class = "collectionDetails" @click="viewCollection">View Collection</button>
       </div>
-    </router-link>
+    <!-- </router-link> -->
   </template>
   
   <script>
@@ -22,9 +22,10 @@
     },
     methods:{
         viewCollection(){
-            CollectionService.getCollectionById(this.collection.collectionId).then((response) => {
-                console.log('Collection:', response.data);
-                this.$store.commit('setCollection', response.data);
+            CollectionService.getComicsByCollectionId(this.collection.collectionId)
+              .then((response) => {
+                console.log('Comics:', response.data);
+                this.$store.commit('setComicsForCollection', {collectionId: this.collection.collectionId, comics:response.data});
                 this.$router.push({ name: 'view-collection', params: { id: this.collection.collectionId } });
               });
         },

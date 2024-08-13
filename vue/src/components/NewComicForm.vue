@@ -223,7 +223,8 @@ input[type="radio"] {
 }
 
 .submit {
-  padding: 2%;
+  padding-right: 4%;
+  padding-left: 4%;
   border-radius: 10%;
   margin: auto;
   background-color: #4c94f6;

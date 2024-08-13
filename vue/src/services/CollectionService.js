@@ -26,6 +26,10 @@ export default {
   },
   //add a method to get comics by collection ID so that when you click "view collection" it will show the comics in that collection
 
+  getComicsByCollectionId(collectionId) {
+    return axios.get(`/collection/${collectionId}/comics`)
+  },
+
   getCollectionById(collectionId) {
     return axios.get(`/collections/${collectionId}`)
   },

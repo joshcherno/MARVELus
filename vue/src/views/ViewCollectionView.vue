@@ -8,7 +8,7 @@
         </div>
     <div v-else>
         <div class="header">
-            <h1> {{collection.title}} </h1>
+            <h1> {{collection.collectionName}} </h1>
             <router-link class="btn-submit" :to="{ name: 'add-comic', params: { collectionId: collection.id } }">Add
                 New Comic</router-link>
                 <button class="btn-cancel deleteCollection" v-on:click="deleteCollection">Delete Collection</button>
@@ -17,7 +17,7 @@
 
         <div id="comics-in-collection">
             <!-- TODO: Figure out how to make this show comics in the collection -->
-            <comic-list :comics="comics" :collectionId="collection.id" />
+            <comic-list/>
 
         </div>
 
@@ -27,6 +27,9 @@
 </template>
 
 <script>
+
+import { mapState } from 'vuex';
+
 import ComicList from '../components/ComicList.vue';
 import collectionService from '../services/CollectionService';
 
@@ -41,8 +44,11 @@ export default {
         };
     },
     computed: {
+
+        ...mapState(['collection']),
+
         comics() {
-            return this.collection.comics;
+            return this.collection.comics || [];
         }
     },
     methods: {
@@ -79,8 +85,9 @@ export default {
     let collectionId = parseInt(this.$route.params.id);
     collectionService.getCollectionById(collectionId)
       .then((response) => {
-        console.log(response.data);
-        this.collection = response.data;
+        const collection = response.data;
+        this.$store.commit('setCollection', collection);
+        this.$store.commit('setComicsForCollection', {collectionId, comics: collection.comics});
         this.isLoading = false;
       })
       .catch(error => {
