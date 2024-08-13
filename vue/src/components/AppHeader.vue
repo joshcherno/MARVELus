@@ -42,7 +42,7 @@
                 <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>&nbsp;|&nbsp;
                 TODO: Add a router link to a Profile view -->
         <router-link class="profile" v-bind:to="{ name: 'profile' }"><img class="profile-img"
-            v-bind:src="'src/assets/ProfileImage.jpg'" alt="profile"></router-link>
+            src="@/assets/ProfileImage.jpg" alt="profile"></router-link>
       </div>
     </header>
 

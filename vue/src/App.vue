@@ -24,11 +24,12 @@ import AppHeader from './components/AppHeader.vue'
 <style scoped>
 
 .form-container {
-  background-image: url('src/assets/backgroundImage.jpg');
+  background-image: url('@/assets/backgroundImage.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 
 /* @media (max-width: 768px) {

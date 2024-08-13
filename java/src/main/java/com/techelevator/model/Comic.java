@@ -79,9 +79,23 @@ public class Comic {
 
         Comic appComic = new Comic();
 
+        appComic.setComicId(comicResult.id);
+
         appComic.coverArt = comicResult.thumbnail.path + "." + comicResult.thumbnail.extension;
         appComic.title = comicResult.title;
         appComic.characterName = characterResult.name;
+
+        return  appComic;
+    }
+
+    public static Comic convertMarvelResult(ResultComics comicResult){
+
+        Comic appComic = new Comic();
+
+        appComic.setComicId(comicResult.id);
+
+        appComic.coverArt = comicResult.thumbnail.path + "." + comicResult.thumbnail.extension;
+        appComic.title = comicResult.title;
 
         return  appComic;
     }

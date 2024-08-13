@@ -152,7 +152,7 @@ export function createStore(currentToken, currentUser) {
       },
 
       // ------------------------------- trying to change the state of the store to be adding comics from database
-      setCollection(state, collection) {
+      /* setCollection(state, collection) {
         const index = state.collections.findIndex(c => c.id === collection.id);
         if (index !== -1) {
           state.collections.splice(index, 1, collection);
@@ -166,7 +166,7 @@ export function createStore(currentToken, currentUser) {
         if (collection) {
           collection.comics = comics;
         }
-      },
+      }, */
 
       // --------------------------
 

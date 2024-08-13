@@ -6,6 +6,7 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
+import com.techelevator.model.marvel.comics.ResultComics;
 import com.techelevator.service.CollectionService;
 import com.techelevator.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,9 +96,14 @@ public class CollectionController {
         return collectionService.createCollection(collection, principal);
     }
 
-    @RequestMapping(path="/collection/{collectionId}/add-comic", method = RequestMethod.PUT)
-    public Collection addComicToCollection (@PathVariable("collectionId") int collectionId, @RequestBody List<Integer> comicIds) {
-        return collectionService.addingComic(collectionId, comicIds);
+
+    //TODO: RGS -> ONLY EVER USE THIS END POINT TO ADD  A COMIC TO A USER COLLECTION
+    @RequestMapping(path="/collection/{collectionId}", method = RequestMethod.POST)
+    public Collection addComicToCollection (@PathVariable("collectionId") int collectionId, @RequestBody ResultComics comic) {
+
+        //TODO: RGS ->  \/ \/ \/ \/REFACTOR \/ \/ \/ \/ TO MIMIC LOGIC OUTLINED IN JdbcComicDao.saveComic(ResultComics rcomic)
+        //TODO: RGS -> ...CONT ... OR REFACTOR THE ABOVE METHOD AND CALL IT BELOW INSTEAD OF COLLECTION SERVICE METHOD
+        return collectionService.addComic(collectionId, comic);
     }
     @RequestMapping(path="/collection/{collectionId}/comics", method = RequestMethod.GET)
     public List<Comic> getComicsByCollectionId (@PathVariable("collectionId") int collectionId) {

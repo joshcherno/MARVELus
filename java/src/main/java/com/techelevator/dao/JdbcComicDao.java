@@ -3,6 +3,8 @@ package com.techelevator.dao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
+import com.techelevator.model.marvel.MarvelComic;
+import com.techelevator.model.marvel.comics.ResultComics;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -123,23 +125,37 @@ public class JdbcComicDao implements ComicDao{
     }
 
     @Override
-    public Comic saveComic(Comic comic) {
+    public Comic saveComic(ResultComics rcomic) {
+        // COMICS ARE ALWAYS AND ONLY SAVED TO THE APP DB BY ASSOCIATING THEM TO A COLLECTION
 
-        Comic comics = null;
+        Comic comic = Comic.convertMarvelResult(rcomic);
 
-        String sql = "INSERT INTO comic (comic_id, comic_title, comic_author, description, release_date, cover_url) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        // CHECK TO SEE IF COMIC RECORD ALREADY EXISTS IN DB
 
-        try{
-           String comicId = jdbcTemplate.queryForObject(sql, String.class, comic.getComicId(), comic.getTitle(), comic.getAuthor(),
-                   comic.getDescription(), comic.getReleaseDate(), comic.getCoverArt());
-           comics = getComicById(comic.getComicId());
-        }catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database.", e);
-        } catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data integrity violation", e);
+        Comic existingComicRecord = getComicById(rcomic.id);
+
+        // IF IT DOESN'T EXIST, ADD TO COMIC DB
+        if( existingComicRecord == null) {
+
+            String sql = "INSERT INTO comic (comic_id, comic_title, comic_author, description, release_date, cover_url) " +
+                    "VALUES (?, ?, ?, ?, ?, ?) RETURNING comic_id";
+
+            try {
+                String comicId = jdbcTemplate.queryForObject(sql, String.class, comic.getComicId(), comic.getTitle(), comic.getAuthor(),
+                        comic.getDescription(), comic.getReleaseDate(), comic.getCoverArt());
+                comic = getComicById(comic.getComicId());
+            } catch (CannotGetJdbcConnectionException e) {
+                throw new DaoException("Unable to connect to server or database.", e);
+            } catch (DataIntegrityViolationException e) {
+                throw new DaoException("Data integrity violation", e);
+            }
         }
-        return comics;
+
+        // IF COMIC NOT ALREADY ASSOCIATED WITH COLLECTION THEN ADD ASSOCIATIVE ENTITY TO LINK COMIC ID WITH COLLECTION ID
+        //TODO: RGS -> IF COMIC NOT ALREADY ASSOCIATED WITH COLLECTION THEN ADD ASSOCIATIVE ENTITY TO LINK COMIC ID WITH COLLECTION ID
+        //TODO: RGS -> CONT THIS IS TOTALLY DEPENDENT ON THE REFACTOR DECISIONS MADE IN COLLECTION CONTROLLER TODOs
+
+        return comic;
     }
 
     @Override

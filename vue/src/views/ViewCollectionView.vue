@@ -9,7 +9,7 @@
     <div v-else>
         <div class="header">
             <h1> {{collection.collectionName}} </h1>
-            <router-link class="btn-submit" :to="{ name: 'add-comic', params: { collectionId: collection.id } }">Add
+            <router-link class="btn-submit" :to="{ name: 'add-comic', params: { collectionId: 1 } }">Add
                 New Comic</router-link>
                 <button class="btn-cancel deleteCollection" v-on:click="deleteCollection">Delete Collection</button>
             <!-- <p> {{ collection.description }} </p> -->
@@ -45,7 +45,7 @@ export default {
     },
     computed: {
 
-        ...mapState(['collection']),
+        //...mapState(['collection']),
 
         comics() {
             return this.collection.comics || [];
@@ -83,11 +83,10 @@ export default {
   },
   created() {
     let collectionId = parseInt(this.$route.params.id);
+
     collectionService.getCollectionById(collectionId)
       .then((response) => {
-        const collection = response.data;
-        this.$store.commit('setCollection', collection);
-        this.$store.commit('setComicsForCollection', {collectionId, comics: collection.comics});
+        this.collection = response.data;
         this.isLoading = false;
       })
       .catch(error => {

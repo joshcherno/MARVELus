@@ -48,8 +48,8 @@
           alt="cover"
         />
         <div class = "buttons">
-        <button id="btn" class = "searchResultActionBtn" @click="addComicToCollection(comic, collectionId)">Add To Collection</button>
-        <button id="btn" class = "searchResultActionBtn" @click="addComicToLibrary(comic)">Add To My Comics</button>
+        <button id="btn" class = "searchResultActionBtn" @click="addComicToCollection(result, collectionId)">Add To Collection</button>
+        <button id="btn" class = "searchResultActionBtn" @click="addComicToLibrary(result)">Add To My Comics</button>
         </div>
       </div>
 
@@ -72,6 +72,13 @@ export default {
       loading: false,
       searchTypes: ['name', 'title', 'upc']
     };
+  },
+
+  props: {
+    collectionId: {
+      type: Number,
+      required: false,
+    },
   },
 
   methods: {

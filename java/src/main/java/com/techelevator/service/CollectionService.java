@@ -3,6 +3,7 @@ package com.techelevator.service;
 import com.techelevator.dao.CollectionDao;
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
+import com.techelevator.model.marvel.comics.ResultComics;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestClientResponseException;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@CrossOrigin(origins = "*")
 public class CollectionService {
     //TODO ALL OF THE WORK HERE JASDOLFKJAPSLIEFGJRVAOELPSRDIKJGVAOLPIKWESJ
 
@@ -61,6 +64,13 @@ public class CollectionService {
         for (int comicId : comicIds) {
             collectionDao.addComicToCollection(collectionId,comicId);
         }
+        return collectionDao.getCollectionById(collectionId);
+    }
+
+    public Collection addComic (int collectionId, ResultComics comic){
+
+            collectionDao.addComicToCollection(collectionId, comic.id);
+
         return collectionDao.getCollectionById(collectionId);
     }
 

@@ -25,7 +25,6 @@
             CollectionService.getComicsByCollectionId(this.collection.collectionId)
               .then((response) => {
                 console.log('Comics:', response.data);
-                this.$store.commit('setComicsForCollection', {collectionId: this.collection.collectionId, comics:response.data});
                 this.$router.push({ name: 'view-collection', params: { id: this.collection.collectionId } });
               });
         },

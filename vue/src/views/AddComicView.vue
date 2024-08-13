@@ -6,7 +6,7 @@
 
 </div>
 
-<new-comic-form/>
+<new-comic-form v-bind:collectionId="userCollectionId"/>
 
 
 </template>
@@ -14,9 +14,18 @@
 <script>
 import NewComicForm from '../components/NewComicForm.vue'
 export default {
+    data() {
+        return {
+            userCollectionId: Number.parseInt(this.$route.params.collectionId),
+        };
+    },
     components: {
         NewComicForm,
-}
+},
+
+created() {
+
+},
 
 
 }

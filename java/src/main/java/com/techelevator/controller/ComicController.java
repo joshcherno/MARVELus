@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.dao.ComicDao;
 import com.techelevator.model.Comic;
+import com.techelevator.model.marvel.MarvelComic;
 import com.techelevator.model.marvel.characters.ResultCharacters;
 import com.techelevator.model.marvel.comics.ResultComics;
 import com.techelevator.service.ApiService;
@@ -91,9 +92,10 @@ public ResponseEntity<?> getRecentReleases(){
     }
 }
     @ResponseStatus(HttpStatus.CREATED)
+    // MAP TO "/collection/{id}/add"
     @PostMapping(path = "/comic/save/")
-    public Comic saveComic(@RequestBody Comic comic){
-        return comicDao.saveComic(comic);
+    public Comic saveComic(@RequestBody ResultComics rComic){
+        return comicDao.saveComic(rComic);
     }
     @GetMapping(path = "/search/comic/")
     public List<Comic> getAllComics(){
