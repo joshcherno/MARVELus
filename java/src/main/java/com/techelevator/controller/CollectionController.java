@@ -97,7 +97,7 @@ public class CollectionController {
     }
 
 
-    //TODO: RGS -> ONLY EVER USE THIS END POINT TO ADD  A COMIC TO A USER COLLECTION
+    //TODO: RGS -> ONLY EVER USE THIS END POINT TO ADD  A COMIC TO A USER COLLECTION. ask Rich if this needs deleted now
     @RequestMapping(path="/collection/{collectionId}", method = RequestMethod.POST)
     public Collection addComicToCollection (@PathVariable("collectionId") int collectionId, @RequestBody ResultComics comic) {
 

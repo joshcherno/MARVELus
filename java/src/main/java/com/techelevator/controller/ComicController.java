@@ -93,9 +93,9 @@ public ResponseEntity<?> getRecentReleases(){
 }
     @ResponseStatus(HttpStatus.CREATED)
     // MAP TO "/collection/{id}/add"
-    @PostMapping(path = "/comic/save/")
-    public Comic saveComic(@RequestBody ResultComics rComic){
-        return comicDao.saveComic(rComic);
+    @PostMapping(path = "/collection/{collectionId}/add")
+    public Comic saveComic(@RequestBody ResultComics rComic,@PathVariable int collectionId){
+        return comicDao.saveComic(rComic, collectionId);
     }
     @GetMapping(path = "/search/comic/")
     public List<Comic> getAllComics(){

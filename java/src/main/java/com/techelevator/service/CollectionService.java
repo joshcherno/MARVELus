@@ -67,6 +67,7 @@ public class CollectionService {
         return collectionDao.getCollectionById(collectionId);
     }
 
+    //TODO new implementation? --------
     public Collection addComic (int collectionId, ResultComics comic){
 
             collectionDao.addComicToCollection(collectionId, comic.id);

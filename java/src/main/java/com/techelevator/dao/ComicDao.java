@@ -13,7 +13,7 @@ public interface ComicDao {
     List<Comic> getComicByTitle(String title);
     Comic getComicByAuthor(String author);
     List<Comic> getComics();
-    Comic saveComic(ResultComics rcomic);
+    Comic saveComic(ResultComics rcomic, int collectionId);
     List<Comic> getComicsFromCollection(int collectionId);
 
 
