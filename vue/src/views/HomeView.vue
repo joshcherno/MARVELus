@@ -13,7 +13,7 @@
     <div class = "stats"> 
       <h2>Statistics</h2>
       <h4>Total Collections: 5</h4>
-      <h4>Total Users: 3</h4>
+      <h4>{{ getNumCollections() }}</h4>
       <h4></h4>
     </div>
 
@@ -37,12 +37,18 @@
 
 <script>
 
+import StatService from '../services/StatService';
 
 export default {
   methods: {
     goToAddComicView() {
       this.$router.push({ name: 'add-comic' });
+    },
+
+    getNumCollections(){
+      StatService.numberOfCollections;
     }
+
   }
 
 
