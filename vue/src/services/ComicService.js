@@ -22,8 +22,8 @@ export default {
     return http.get(`/comic/search/character/${comicCharacter}`)
   },
   
-    addComicToLibrary(comic) {
-     return http.post('/comic/save/', comic);
+    addComicToLibrary(collectionId, comic) {
+     return http.post(`/collection/${collectionId}/add`, comic);
    },
 
 

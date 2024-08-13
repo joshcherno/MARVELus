@@ -1,26 +1,18 @@
 <template>
-
 <div class="home">
   <div class="left-home">
   
     <div class = "comicsInDb">
       <h2>Comics in Database</h2>
-      <h4>We have access to over 60,000 comics</h4>
-      <p>Click "GO" to search the database</p>
-      <button class="searchBtn" @click="goToAddComicView">GO</button>
+      <router-link :to="'/collection/:collectionId/add'"><img class= "lotsComicPic" src="src\assets\SearchComics.jpg" alt="60k"></router-link>
+      <p>Click above to search the database</p>
     </div>
     
     <div class = "stats"> 
       <h2>Statistics</h2>
-      <h4>Total Collections: 5</h4>
-      <h4>{{ getNumCollections() }}</h4>
-      <h4></h4>
+      <h4>Total Collections: {{ numCollections }}</h4>
     </div>
 
-    <div class="search">
-      <h2>Search our database for comics!</h2>
-      <button class="searchBtn" @click="goToAddComicView">GO</button>
-    </div>
 
   </div>
       <div class="right-home">
@@ -40,15 +32,34 @@
 import StatService from '../services/StatService';
 
 export default {
+  data(){
+    return {
+      numCollections: 0
+    }
+  },
+  
   methods: {
     goToAddComicView() {
-      this.$router.push({ name: 'add-comic' });
+      const collectionId = this.collectionId;
+      if (!collectionId) {
+        console.error("Missing collectionId");
+        return;
+      }
+      this.$router.push({ name: 'add-comic', params: { id: collectionId} });
     },
 
-    getNumCollections(){
-      StatService.numberOfCollections;
+    async getNumCollections() {
+      try {
+        const response = await StatService.numberOfCollections();
+        this.numCollections = response.data; // Assuming response.data contains the number of collections
+      } catch (error) {
+        console.error("Error fetching number of collections:", error);
+      }
     }
 
+  }, 
+  mounted (){
+    this.getNumCollections();
   }
 
 
@@ -61,7 +72,7 @@ export default {
     border: 3px solid #4c94f6;
     border-radius: 20px;
     width: 450px;
-    height: 250px;
+    height: 400px;
     margin: 10px;
     position: relative;
     background-color: white;
@@ -72,23 +83,13 @@ export default {
     border: 3px solid #4c94f6;
     border-radius: 20px;
     width: 450px;
-    height: 250px;
+    height: 400px;
     margin: 10px;
     position: relative;
     background-color: white;
     text-align: center;
 }
 
-.search{
-  border: 3px solid #4c94f6;
-    border-radius: 20px;
-    width: 450px;
-    height: 250px;
-    margin: 10px;
-    position: relative;
-    background-color: white;
-    text-align: center;
-}
 
 .right-home{
   border: 3px solid #4c94f6;
@@ -97,10 +98,10 @@ export default {
     height: 528px;
     margin: 10px;
     position: relative;
-    background-color: white;
     text-align: center;
     display: flex;
     justify-content: center;
+    background-color: white;
     margin-left: 5%;
 }
 
@@ -125,6 +126,10 @@ export default {
   padding: 10px;
   margin-top: 10px;
 }
-
+ .lotsComicPic{
+    width: 300px;
+    height: 300px;
+   
+ }
 
 </style>

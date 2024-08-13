@@ -73,7 +73,7 @@ const routes = [
     }
   },
   {
-    path: "/add-comic/:collectionId",
+    path: "/collection/:collectionId/add",
     name: "add-comic",
     component: AddComicView,
     meta: {

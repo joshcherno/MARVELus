@@ -7,11 +7,13 @@
         <h1>MARVELus</h1>
       </router-link>
       <div id="nav">
-        <button class="hamburger" @click="toggleMenu">
+        <div class="hamburger-container" @click="toggleMenu">
+        <button class="hamburger">
           <div class="line" :class="{ 'line1': menuOpen }"></div>
           <div class="line" :class="{ 'line2': menuOpen }"></div>
           <div class="line" :class="{ 'line3': menuOpen }"></div>
         </button>
+        </div>
 
         <nav v-if="menuOpen" class="menu">
           <ul>
@@ -24,9 +26,9 @@
             <li v-show="isLoggedIn">
               <div @click="toggleMenu"><router-link to="/my-collections">My Collections</router-link></div>
             </li>
-            <li v-show="isLoggedIn">
+            <!-- <li v-show="isLoggedIn">
               <div @click="toggleMenu"><router-link to="/profile">Profile</router-link></div>
-            </li>
+            </li> -->
             <li v-show="!isLoggedIn">
               <div @click="toggleMenu"><router-link to="/login">Login/Sign Up</router-link></div>
             </li>
@@ -41,8 +43,6 @@
                 <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
                 <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>&nbsp;|&nbsp;
                 TODO: Add a router link to a Profile view -->
-        <router-link class="profile" v-bind:to="{ name: 'profile' }"><img class="profile-img"
-            src="@/assets/ProfileImage.jpg" alt="profile"></router-link>
       </div>
     </header>
 
@@ -97,8 +97,8 @@ header {
   position: absolute;
   left: 10px;
   top: 20%;
-  width: 30px;
-  height: 30px;
+  width: 4rem;
+  height: 60px;
 
 }
 
@@ -117,26 +117,6 @@ header {
 h1 {
   margin-top: 0px;
   margin-bottom: 0px;
-}
-
-.profile {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 2%;
-  width: auto;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-}
-
-.profile-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
 }
 
 a {
@@ -193,4 +173,7 @@ a {
 .menu ul {
   list-style-type: none;
 }
+
+
+
 </style>

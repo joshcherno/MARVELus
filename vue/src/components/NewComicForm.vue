@@ -48,8 +48,7 @@
           alt="cover"
         />
         <div class = "buttons">
-        <button id="btn" class = "searchResultActionBtn" @click="addComicToCollection(result, collectionId)">Add To Collection</button>
-        <button id="btn" class = "searchResultActionBtn" @click="addComicToLibrary(result)">Add To My Comics</button>
+        <button id="btn" class = "searchResultActionBtn" @click="addComicToLibrary(collectionId, result)">Add To Collection</button>
         </div>
       </div>
 
@@ -126,9 +125,11 @@ export default {
 
     },
 
-    addComicToLibrary(comic) {
-      comicService.addComicToLibrary(comic).then((response) => {
-        this.$router.push("/my-comics");
+    addComicToLibrary(collectionId, comic) {
+      comicService.addComicToLibrary(collectionId, comic)
+        .then((response) => {
+          console.log("Comic added successfully:", response.data)
+          this.$router.push({ name: 'view-collection', params: { id: collectionId } });
       });
     },
 

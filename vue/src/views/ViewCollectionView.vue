@@ -1,7 +1,7 @@
 <template>
   <div>
         <div class="collection-actions">
-            <router-link v-bind:to="{ name: 'my-collections' }">Back to My Collections</router-link>
+            <router-link v-bind:to="{ name: 'my-collections' }"> Back to My Collections</router-link>
         </div>
         <div class="loading" v-if="isLoading">
             <img src="../assets/spiderman-loading.gif" />
@@ -28,8 +28,6 @@
 
 <script>
 
-import { mapState } from 'vuex';
-
 import ComicList from '../components/ComicList.vue';
 import collectionService from '../services/CollectionService';
 
@@ -44,9 +42,6 @@ export default {
         };
     },
     computed: {
-
-        //...mapState(['collection']),
-
         comics() {
             return this.collection.comics || [];
         }
@@ -123,5 +118,28 @@ export default {
 
 .header h1 {
   flex-grow: 1;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  background-color: rgba(0,0,0,.5);
+  width: 33%;
+  color: white;
+  margin: auto;
+  margin-top: 30px;
+  padding: 0%;
+}
+.collection-actions {
+  margin-top: 20px;
+  margin-left:10px;
+  margin-right: 85%;
+  background-color: white;
+    color: white;
+    border: none;
+    padding: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    font-family: monospace;
+
 }
 </style>
