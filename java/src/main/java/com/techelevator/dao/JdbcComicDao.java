@@ -162,6 +162,8 @@ public class JdbcComicDao implements ComicDao{
 
     }
 
+
+
     private Comic mapRowToComic(SqlRowSet rs) {
 
         Comic comic = new Comic();

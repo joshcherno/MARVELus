@@ -19,7 +19,9 @@ public interface CollectionDao {
     public Collection createCollection(Collection collection, Principal principal);
 
     public Collection addComicToCollection(int collectionId, int comic);
-
+    int totalNumberOfCollections();
+    int numberOfSavedComics();
+    int numberOfComicsInCollections();
 
     List<Comic> getComicsByCollectionId(int collectionId);
 }

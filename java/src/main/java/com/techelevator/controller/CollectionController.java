@@ -103,6 +103,18 @@ public class CollectionController {
     public List<Comic> getComicsByCollectionId (@PathVariable("collectionId") int collectionId) {
         return collectionService.getComicByCollectionId(collectionId);
     }
+    @GetMapping(path = "/collection/collection-total")
+    public int totalNumberOfCollections(){
+        return collectionService.totalNumberOfCollections();
+    }
+    @GetMapping(path = "/collection/saved-total")
+    int numberOfSavedComics(){
+        return collectionService.numberOfSavedComics();
+    }
+    @GetMapping(path = "/collection/collection-comics")
+    int numberOfComicsInCollections(){
+        return collectionService.numberOfComicsInCollections();
+    }
 
 
 

@@ -15,4 +15,5 @@ public interface ComicDao {
     Comic saveComic(Comic comic);
     List<Comic> getComicsFromCollection(int collectionId);
 
+
 }
