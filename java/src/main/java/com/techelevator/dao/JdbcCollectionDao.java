@@ -168,6 +168,47 @@ public class JdbcCollectionDao implements CollectionDao{
 
         return comics;
     }
+    @Override
+    public int totalNumberOfCollections() {
+        String sql = "SELECT COUNT(*) FROM collection";
+        int count = 0;
+        try {
+            count = jdbcTemplate.queryForObject(sql, Integer.class);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database.", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return count;
+    }
+
+    @Override
+    public int numberOfSavedComics() {
+        String sql = "SELECT COUNT(*) FROM comic";
+        int count = 0;
+        try {
+            count = jdbcTemplate.queryForObject(sql, Integer.class);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database.", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return count;
+    }
+
+    @Override
+    public int numberOfComicsInCollections() {
+        String sql = "SELECT COUNT(*) FROM collection_comics";
+        int count = 0;
+        try {
+            count = jdbcTemplate.queryForObject(sql, Integer.class);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database.", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return count;
+    }
 
     private  Collection mapRowToCollection(SqlRowSet rs){
 

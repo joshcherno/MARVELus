@@ -67,6 +67,15 @@ public class CollectionService {
     public List<Comic> getComicByCollectionId (int collectionId){
         return collectionDao.getComicsByCollectionId(collectionId);
     }
+    public int totalNumberOfCollections(){
+        return collectionDao.totalNumberOfCollections();
+    }
+    public int numberOfSavedComics(){
+        return collectionDao.numberOfSavedComics();
+    }
+    public int numberOfComicsInCollections(){
+        return collectionDao.numberOfComicsInCollections();
+    }
 
 
 

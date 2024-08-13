@@ -75,6 +75,21 @@ public ResponseEntity<?> getComicsByCharacter(@PathVariable String character) {
                 .body("This character doesn't exist.");
     }
 }
+@GetMapping(path = "/comic/search/upcoming-releases")
+public ResponseEntity<?> getRecentReleases(){
+    try {
+        Object comicsRoot = apiService.getRecentReleases();
+
+        if (comicsRoot == null || (comicsRoot instanceof List && ((List<?>) comicsRoot).isEmpty())) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Upcoming realeases not found.");
+        }
+
+        return ResponseEntity.ok(comicsRoot);
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("This character doesn't exist.");
+    }
+}
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/comic/save/")
     public Comic saveComic(@RequestBody Comic comic){
