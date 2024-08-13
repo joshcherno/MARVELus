@@ -3,7 +3,7 @@
     <form class="new-collection-form" v-on:submit.prevent="">
     
         <h2 class="form-title">Give your collection a name!</h2>
-        <input name="name-input" class="name-input" type="text" placeholder="Collection Name" v-model="collection.name" />
+        <input name="name-input" class="name-input" type="text" placeholder="Collection Name" v-model="collection.collectionName" />
         <button class= "submit" type="submit" @click="createCollection(collection)">CREATE</button>
     
     </form>
@@ -19,9 +19,9 @@
 
                     // collectionId : '',
                     // comics: [],
-                    name: '',
+                    collectionName: '',
                     description: '',
-                    user_id: ''
+                    userId: ''
                 }
             }
         },
@@ -32,10 +32,12 @@
         },
         methods: {
             createCollection(collection){
+                console.log('Collection being sent:', this.collection);
                 collectionService.addCollection(this.collection).then(() => {
                     this.$router.push({ name: 'my-collections' });
                 });
-            }
+            },
+            
         }
     
     }

@@ -36,8 +36,8 @@ export default {
 } 
 
 .create-collection-img{
-    width: 250px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     /* margin-top: 2px; */
 }
 

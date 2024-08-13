@@ -146,6 +146,10 @@ export function createStore(currentToken, currentUser) {
           this.commit('CLEAR_NOTIFICATION');
         }, notification.timeout);
       },
+      
+      setCollections(state, collections){
+        state.collections = collections;
+      },
 
       CLEAR_NOTIFICATION(state) {
         if (state.notification && state.notification.timer) {

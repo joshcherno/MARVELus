@@ -3,26 +3,38 @@
   <h1 class="header-text">My Collections</h1>
 
   <div id="my-collections">
-  <create-collection-card/>
-  <collection-list/> 
+    <create-collection-card/>
+    <collection-card v-for="collection in this.$store.state.collections" :key="collection.id" :collection="collection" />
   </div>
   
 </template>
 
 <script>
 import CreateCollectionCard from '../components/CreateCollectionCard.vue';
-import CollectionList from '../components/CollectionList.vue';
-//TODO: implement collectionService
+import CollectionCard from '../components/CollectionCard.vue';
+import CollectionService from '../services/CollectionService';
 
 export default {
-    components: {
-        CreateCollectionCard,
-        CollectionList,
-        
-    
-        
+  components: {
+    CreateCollectionCard,
+    CollectionCard
+  },
+  computed: {
+    collections() {
+      return this.$store.state.collections;
     }
-
+  },
+  mounted() {
+    this.getCollectionByUserId();
+  },
+  methods: {
+    getCollectionByUserId(){
+      CollectionService.getCollectionByUserId(this.$store.state.user.id).then((response) => {
+        console.log('Collections:', response.data);
+        this.$store.commit('setCollections', response.data);
+      });
+    }
+  }
 }
 </script>
 

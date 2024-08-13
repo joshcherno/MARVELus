@@ -46,16 +46,16 @@ public class JdbcCollectionDao implements CollectionDao{
     }
 
     @Override
-    public Collection getCollectionByUserId(int userId) {
+    public List <Collection> getCollectionsByUserId(int userId) {
 
-        Collection collection = null;
+        List <Collection> collection = new ArrayList<>();
 
         String sql = "SELECT * FROM collection WHERE user_id = ?";
 
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-            if(results.next()){
-                collection = mapRowToCollection(results);
+            while(results.next()){
+                collection.add(mapRowToCollection(results));
             }
         }catch(CannotGetJdbcConnectionException e){
             throw new DaoException("Unable to connect to server or database", e);
@@ -111,13 +111,13 @@ public class JdbcCollectionDao implements CollectionDao{
     @Override
     public Collection createCollection(Collection newCollection, Principal principal) {
 
-        Collection collection = null;
+        Collection collection;
 
         int userid = userdao.getUserByUsername(principal.getName()).getId();
 
         String sql = "INSERT INTO collection (collection_name, collection_description, user_id)" +
                 "VALUES (?, ?, ?) RETURNING collection_id";
-
+        System.out.println("COLLECTION NAME HERE: " + newCollection.getCollectionName());
         try{
             int collectId = jdbcTemplate.queryForObject(sql, Integer.class, newCollection.getCollectionName(),
                     newCollection.getColDescription(), userid);

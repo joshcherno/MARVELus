@@ -42,8 +42,8 @@ public class CollectionService {
     public Collection getCollectionById(int collID) {
        return collectionDao.getCollectionById(collID);
     }
-    public Collection getCollectionByUserId(int userId){
-        return collectionDao.getCollectionByUserId(userId);
+    public List <Collection> getCollectionsByUserId(int userId){
+        return collectionDao.getCollectionsByUserId(userId);
     }
     public Collection getCollectionByName(String collectionName){
         return collectionDao.getCollectionByName(collectionName);

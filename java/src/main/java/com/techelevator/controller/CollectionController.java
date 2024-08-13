@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -41,7 +42,7 @@ public class CollectionController {
     @RequestMapping(path = "/collections/{collectionId}", method = RequestMethod.GET)
     public Collection getCollectionById(@PathVariable ("collectionId") int collectionId){
 
-        Collection collection = null;
+        Collection collection;
 
         try{
             collection = collectionService.getCollectionById(collectionId);
@@ -52,14 +53,14 @@ public class CollectionController {
     }
     // TODO Principal needs to be properly implemented
     @RequestMapping(path = "/collection/user/{userId}", method = RequestMethod.GET)
-    public Collection getCollectionByUserId(@PathVariable("userId") int userId,Principal principal){
+    public List <Collection> getCollectionByUserId(@PathVariable("userId") int userId,Principal principal){
 
-        Collection collection = null;
+        List <Collection> collection = new ArrayList<>();
 
         try{
             String username = principal.getName();
-            int authUserId = userService.getUserIdByUsername(username);
-            collection = collectionService.getCollectionByUserId(userId);
+            int authUserId = userDao.getUserByUsername(username).getId();
+            collection = collectionService.getCollectionsByUserId(userId);
         }catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Collection not found for this User ID.");
         }
@@ -71,7 +72,7 @@ public class CollectionController {
 
     @RequestMapping(path = "/collection/name/{collectionName}", method = RequestMethod.GET)
     public Collection getCollectionByName(@PathVariable("name") String name){
-        Collection collection = null;
+        Collection collection;
 
         try{
             collection = collectionService.getCollectionByName(name);

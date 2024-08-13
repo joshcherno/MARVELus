@@ -1,47 +1,56 @@
 <template>
-    <router-link id="view-collection-router" :to="{ name: 'view-collection', params: { id: collection.id } }"> 
-        <div class = "card">
-            <h2 class = "collection-card-header">{{collection.title}}</h2>
-            <img class="collection-img" v-bind:src="'src/assets/createdcollectionimage.jpg'" alt="created-collection-cover-image">
-         <!-- Change method for addToCollection in here to viewCollection which will be a routerpush that will get the user's comics in collection, probably from CollectionService -->
-         <!-- <button class="view-collection-button" @click="viewCollectionDetails">View Collection</button>  -->
-        </div>
+    <!-- Use the router-link to navigate to the collection's details page -->
+    <router-link id="view-collection-router" :to="{ name: 'my-collections', params: { id: collection.id } }"> 
+      <div class="card">
+        <!-- Display the collection's title -->
+        <h2 class="collection-card-header">{{ collection.collectionName }}</h2>
+        <!-- Display the collection's image -->
+        <img class="collection-img" src="@/assets/createdcollectionimage.jpg" alt="created-collection-cover-image">
+        <button class = "collectionDetails" @click="viewCollection">View Collection</button>
+      </div>
     </router-link>
-</template>
-
-<script>
-export default {
-    props: ['collection'],
-    methods: {
-        //TODO: create viewCollection method that pushes to a viewCollection route of some sort... maybe a CollectionService method that gets the comics in a collection?
-        viewCollectionDetails() {
-            this.$router.push({ name: 'view-collection' });
-        }
+  </template>
+  
+  <script>
+  import CollectionService from '../services/CollectionService';
+  export default {
+    props: {
+      collection: {
+        type: Object,
+        required: true
+      }
+    },
+    methods:{
+        viewCollection(){
+            CollectionService.getCollectionById(this.collection.collectionId).then((response) => {
+                console.log('Collection:', response.data);
+                this.$store.commit('setCollection', response.data);
+                this.$router.push({ name: 'view-collection', params: { id: this.collection.collectionId } });
+              });
+        },
+       
     }
-
-}
-</script>
-
-<style>
-
-.card{
+  }
+  </script>
+  
+  <style scoped>
+  .card {
     border: 3px solid #4c69f6;
     border-radius: 10px;
     width: 250px;
     height: 500px;
     margin: 10px;
     position: relative;
-}
-
-.collection-img{
+  }
+  
+  .collection-img {
     width: 100%;
     height: 80%;
-
-}
-
-#view-collection-router {
-  text-decoration: none;
-  color: #4c69f6;
-}
-
-</style>
+  }
+  
+  #view-collection-router {
+    text-decoration: none;
+    color: #4c69f6;
+  }
+  </style>
+  
