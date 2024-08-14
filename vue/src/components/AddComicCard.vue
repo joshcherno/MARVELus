@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .add-comic-card{
     border: 3px solid #ee5454;

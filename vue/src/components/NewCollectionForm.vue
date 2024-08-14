@@ -43,7 +43,7 @@
     }
     </script>
     
-    <style>
+    <style scoped>
     .new-collection-form {
         display: flex;
         justify-content: center;

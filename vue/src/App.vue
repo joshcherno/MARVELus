@@ -1,28 +1,35 @@
 <template>
-  
-  <div class = "form-container" id="capstone-app">
+
+  <div class="form-container" id="capstone-app">
+
     <header>
-        <AppHeader />
+      <AppHeader />
     </header>
-  <router-view />
+
+    <router-view />
+
+    <footer>
+      <AppFooter />
+    </footer>
+    
   </div>
 </template>
 
 
 <script>
 import AppHeader from './components/AppHeader.vue'
+import AppFooter from './components/AppFooter.vue'
 
-  export default {
-  components: { AppHeader },
-    name: 'App',
-     
-  }
+export default {
+  components: { AppHeader, AppFooter },
+  name: 'App',
+
+}
 
 </script>
 
 
 <style scoped>
-
 .form-container {
   background-image: url('@/assets/backgroundImage.jpg');
   background-size: cover;
@@ -37,6 +44,4 @@ import AppHeader from './components/AppHeader.vue'
    background-size: cover;
   }
 } */
-
-
 </style>

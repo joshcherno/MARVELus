@@ -21,7 +21,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .header-text{
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

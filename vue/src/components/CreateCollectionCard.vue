@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .create-collection-card{
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

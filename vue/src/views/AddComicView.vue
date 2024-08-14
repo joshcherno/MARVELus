@@ -31,7 +31,7 @@ created() {
 }
 </script>
 
-<style>
+<style scoped>
 .add-comic-headline{
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

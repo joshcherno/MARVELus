@@ -38,7 +38,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 #my-collections {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

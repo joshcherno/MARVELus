@@ -19,7 +19,7 @@
     }
     </script>
     
-    <style>
+    <style scoped>
     .collection-container {
         display: flex;
         flex-wrap: wrap;
