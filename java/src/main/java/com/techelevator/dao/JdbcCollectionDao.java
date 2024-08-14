@@ -215,30 +215,66 @@ public class JdbcCollectionDao implements CollectionDao{
 
 
     //added by Dylan
-//    @Override
-//    public Collection deleteComicFromCollection(int collectionId, int comicId){
-//        Collection collection = getCollectionById(collectionId);
-//        List <Comic> comic = getComicsByCollectionId(comicId);
-////        String sql = "DELETE FROM collection_comics WHERE collection_id = ? AND comic_id = ?";
-//
-//
-//    return ;
-//
-//    }
+    @Override
+    public Collection deleteComicFromCollection(int collectionId, int comicId){
+        Collection collection = getCollectionById(collectionId);
+        List <Comic> comics = collection.getComics();
+        Comic comicToRemove = null;
+        for (Comic comic : comics) {
+            if (comic.getComicId() == comicId) {
+                comicToRemove = comic;
+                break;
+            }
+        }
+
+        if (comicToRemove == null) {
+            throw new RuntimeException("Comic not found in the collection");
+        }
+        //TODO RMR --- do we want to remove the comic from the comic db?
+        //comics.remove(comicToRemove);
+
+        String sql = "DELETE FROM collection_comics WHERE collection_id = ? AND comic_id = ?";
+        try {
+            jdbcTemplate.update(sql, collectionId, comicId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database.", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+
+    return collection;
+
+    }
+
+    @Override
+    public void deleteCollection(int collectionId) {
+        String deleteComicsSql = "DELETE FROM collection_comics WHERE collection_id = ?";
+        try {
+            jdbcTemplate.update(deleteComicsSql, collectionId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database.", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        String deleteCollectionSql = "DELETE FROM collection WHERE collection_id = ?";
+        try {
+            jdbcTemplate.update(deleteCollectionSql, collectionId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database.", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+    }
 
     /*   it wants me to implement the next two methods (when the one above is commented out)
             from the CollectionDao so i did below but how is it
             different from whats right above this? and why does it
             satisfy intellij if it doesn't have the parameters in the Dao???? ROb????*/
-    @Override
-    public Collection deleteComicFromCollection() {
-        return null;
-    }
+//    @Override
+//    public Collection deleteComicFromCollection() {
+//        return null;
+//    }
 
-    @Override
-    public Collection deleteComicFromCollection(int collectionId, int comicId) {
-        return null;
-    }
 
 
     private  Collection mapRowToCollection(SqlRowSet rs){

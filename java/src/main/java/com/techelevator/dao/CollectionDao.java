@@ -25,8 +25,9 @@ public interface CollectionDao {
 
     List<Comic> getComicsByCollectionId(int collectionId);
 
-    public Collection deleteComicFromCollection(); //added by Dylan
+    //public Collection deleteComicFromCollection(); //added by Dylan
 
     //added by Dylan
     public Collection deleteComicFromCollection(int collectionId, int comicId);
+    public void deleteCollection(int collectionId);
 }
