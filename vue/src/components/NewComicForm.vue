@@ -15,12 +15,12 @@
 
       <div id="radio-buttons">
           <div id="radio-name">
-              <input type="radio" name="rdoType" id="opt1" value="name" v-model="searchTypes"/>
+              <input type="radio" name="rdoType" id="opt1" value="name" v-model="searchTypes" checked />
              <label for="opt1"> Character </label>
           </div>
 
           <div id="radio-title">
-             <input type="radio" name="rdoType" id="opt2" value="title" v-model="searchTypes" checked />
+             <input type="radio" name="rdoType" id="opt2" value="title" v-model="searchTypes"/>
              <label for="opt2"> Title </label>
           </div>
 

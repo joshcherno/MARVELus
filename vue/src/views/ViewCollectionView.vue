@@ -86,7 +86,7 @@ export default {
    mounted() {
     this.activeCollectionId = parseInt(this.$route.params.id);
 
-    //alert(this.activeCollectionId);
+    
 
     collectionService.getCollectionById(this.activeCollectionId)
       .then((response) => {
@@ -141,7 +141,7 @@ export default {
   created() {
     this.activeCollectionId = parseInt(this.$route.params.id);
 
-    alert(this.activeCollectionId);
+    
 
     collectionService.getCollectionById(this.activeCollectionId)
       .then((response) => {
@@ -169,13 +169,7 @@ export default {
 </script>
 
 <style scoped>
-#comics-in-collection {
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-}
 
 .header {
   display: flex;
@@ -196,6 +190,13 @@ export default {
   background-color: #4c94f6;
   color: white;
   text-align: center;
+}
+
+.comic-container {
+  display: flex;
+  flex-wrap: wrap;
+  
+  
 }
 
 .collection-actions {

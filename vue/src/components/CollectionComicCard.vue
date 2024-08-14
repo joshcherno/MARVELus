@@ -27,7 +27,7 @@ export default {
     methods: {
         removeComic(){
             ComicService.deleteComicFromCollection(this.collectionId, this.comic.comicId).then(response => {
-                this.$router.push({ name: 'view-collection', params: { id: this.collectionId } });
+                window.location.reload();
             });
         }    
     },
@@ -42,7 +42,7 @@ export default {
     width: 250px;
     height: 450px;
     background-color: white;
-    margin: 10%;
+    margin: 1%;
 }
 
 img, button, h2, h3{
