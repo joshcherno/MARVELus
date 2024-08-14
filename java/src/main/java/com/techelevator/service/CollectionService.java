@@ -30,18 +30,12 @@ import java.util.List;
 @Service
 @CrossOrigin(origins = "*")
 public class CollectionService {
-    //TODO ALL OF THE WORK HERE JASDOLFKJAPSLIEFGJRVAOELPSRDIKJGVAOLPIKWESJ
 
     private final CollectionDao collectionDao;
 
-//constructor
     public CollectionService(CollectionDao collectionDao) {
         this.collectionDao = collectionDao;
     }
-
-    // extending the CollectionDao methods
-    //TODO Consider how to add methods for restTemplate purposes to make sure we are talking to the client side appropriately
-
     public Collection getCollectionById(int collID) {
        return collectionDao.getCollectionById(collID);
     }
@@ -90,6 +84,9 @@ public class CollectionService {
 
     //added by dylan
     public Collection deleteComicFromCollection(int collectionId, int comicId) {
-        return collectionDao.deleteComicFromCollection();
+        return collectionDao.deleteComicFromCollection(collectionId, comicId);
+    }
+    public void deleteCollection(int collectionId){
+        collectionDao.deleteCollection(collectionId);
     }
 }

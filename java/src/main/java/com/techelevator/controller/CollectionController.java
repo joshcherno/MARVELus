@@ -10,7 +10,9 @@ import com.techelevator.model.marvel.comics.ResultComics;
 import com.techelevator.service.CollectionService;
 import com.techelevator.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -121,10 +123,17 @@ public class CollectionController {
     int numberOfComicsInCollections(){
         return collectionService.numberOfComicsInCollections();
     }
-
-
+    @RequestMapping(path = "/collection/delete/{collectionId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteCollection(@PathVariable("collectionId") int collectionId) {
+        try {
+            collectionService.deleteCollection(collectionId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (RuntimeException e ){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     // added by dylan
-    @RequestMapping(path="/comics/delete/{comicId}")
+    @RequestMapping(path="/collection/{collectionId}/comic/{comicId}", method = RequestMethod.DELETE)
     public Collection deleteComicFromCollection(@PathVariable ("comicId") int comicId, @PathVariable("collectionId") int collectionId) {
         return collectionService.deleteComicFromCollection(collectionId, comicId);
     }
