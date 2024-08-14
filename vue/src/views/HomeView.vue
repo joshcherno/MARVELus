@@ -213,6 +213,16 @@ export default {
   padding-left: 20px;
   padding-right: 20px;
  }
+
+ .collections:hover {
+        transform: scale(1.10);
+        box-shadow: 0px 10px 20px rgb(30, 255, 0, 1);
+    }
+
+  .comicsInDb:hover {
+        transform: scale(1.10);
+        box-shadow: 0px 10px 20px rgb(30, 255, 0, 1);
+    }
  
 
 </style>

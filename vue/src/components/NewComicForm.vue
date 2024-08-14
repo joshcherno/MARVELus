@@ -42,6 +42,7 @@
           alt="cover"
         />
         <div class = "buttons">
+          <button id="btn" class="searchResultActionBtn" @click="addComicToLibrary(collectionId, result)">Add To Collection</button>
         </div>
       </div>
 

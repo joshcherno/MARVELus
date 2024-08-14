@@ -16,7 +16,6 @@
         </div>
 
         <div id="comics-in-collection">
-            <!-- TODO: Figure out how to make this show comics in the collection -->
             <comic-list :comics="collection.comics"/>
 
         </div>
@@ -173,11 +172,8 @@ export default {
 #comics-in-collection {
 
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 2%;
-  
 
 }
 
@@ -251,6 +247,13 @@ export default {
 .btn-delete:hover {
   background-color: #4c69f6;
   transform: scale(1.10);
-  box-shadow: 0px 10px 20px rgb(30, 255, 0, 1);
+  box-shadow: 0px 10px 20px #ee5454;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 </style>

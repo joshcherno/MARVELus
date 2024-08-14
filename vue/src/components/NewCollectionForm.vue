@@ -87,6 +87,11 @@
         cursor: pointer;
     }
     
+    .submit:hover {
+        background-color: #4c69f6;
+        transform: scale(1.10);
+        box-shadow: 0px 10px 20px rgb(30, 255, 0, 1);
+    }
     
     
     </style>
