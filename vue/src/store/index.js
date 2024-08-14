@@ -151,26 +151,6 @@ export function createStore(currentToken, currentUser) {
         state.collections = collections;
       },
 
-      // ------------------------------- trying to change the state of the store to be adding comics from database
-      /* setCollection(state, collection) {
-        const index = state.collections.findIndex(c => c.id === collection.id);
-        if (index !== -1) {
-          state.collections.splice(index, 1, collection);
-        } else {
-          state.collections.push(collection);
-        }
-      },
-    
-      setComicsForCollection(state, { collectionId, comics }) {
-        const collection = state.collections.find(c => c.id === collectionId);
-        if (collection) {
-          collection.comics = comics;
-        }
-      }, */
-
-      // --------------------------
-
-
 
       CLEAR_NOTIFICATION(state) {
         if (state.notification && state.notification.timer) {

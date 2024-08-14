@@ -39,10 +39,6 @@
           </ul>
         </nav>
 
-        <!-- <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-                <router-link v-bind:to="{ name: 'my-comics' }">My Comics</router-link>&nbsp;|&nbsp;
-                <router-link v-bind:to="{ name: 'my-collections' }">My Collections</router-link>&nbsp;|&nbsp;
-                TODO: Add a router link to a Profile view -->
       </div>
     </header>
 
@@ -143,7 +139,7 @@ a {
   top: 30px;
   left: 5px;
   background-color: rgb(228, 223, 223, .95);
-  height: 30vh;
+  height: 40vh;
   width: 30vw;
   border: 1px solid #ee5454;
   z-index: 1;

@@ -24,9 +24,11 @@
 
   </div>
     <div class="right-home">
+
         <div class="upcomingComics">
           <h2>Upcoming Comics</h2>
         </div>
+
         <div class = "about">
           <h2 class="aboutUs">About Us</h2>
           <p class="aboutUsText">
@@ -35,7 +37,6 @@
             We hope you enjoy our platform and find it useful for managing your comic book collection.
             </p>
             <p> We're happy you are here - Dylan, Josh, Rob, and Mehmet.</p>
-
         </div>
     </div>
 
@@ -88,7 +89,8 @@ export default {
       } catch (error) {
         console.error("Error fetching number of collections:", error);
       }
-    }
+    },
+    
 
   }, 
 
