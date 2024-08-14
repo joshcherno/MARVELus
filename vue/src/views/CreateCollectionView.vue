@@ -20,16 +20,19 @@ export default {
 
 <style scoped>
 .create-collection-headline{
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    background-color: rgba(0,0,0,.75);
-    width: 33%;
-    color: white;
-    margin: auto;
-    margin-top: 30px;
-    padding: 0%;
+  font-family: monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  width: 50%;
+  background-color: #4c94f6;
+  color: white;
+  text-align: center;
+  margin-left: 22%;
+  margin-top: 2%;
 }
 
 

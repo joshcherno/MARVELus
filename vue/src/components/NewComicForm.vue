@@ -4,7 +4,7 @@
       <img src="../assets/spiderman-loading.gif" alt="loading" />
     </div>
     <form class="new-comic-form" v-on:submit.prevent="">
-      <h2 class="form-title">Search Comics to Add to your Library</h2>
+      <h2 class="form-title">Search Comics</h2>
       <input
         name="title-input"
         class="title-input"
@@ -29,12 +29,6 @@
              <label for="opt3"> UPC</label>
          </div>
         </div>
-
-      <!-- <input name="issue-input" class="issue-input" type="text" placeholder="Issue" v-model="comic.issue"/>
-    <input name="publisher-input" class="publisher-input" type="text" placeholder="Publisher" v-model="comic.publisher" />
-    <input name="release-date-input" class="release-date-input" type="text" placeholder="Release Date" v-model="comic.date" />
-    <input name="isbn-input" class="isbn-input" type="text" placeholder="ISBN" v-model="comic.isbn" /> -->
-      <!-- added method and @click to route back to my-comics -->
       <button class="submit" @click="getComicBySearchQuery">Search</button>
     </form>
 
@@ -48,7 +42,6 @@
           alt="cover"
         />
         <div class = "buttons">
-        <button id="btn" class = "searchResultActionBtn" @click="addComicToLibrary(collectionId, result)">Add To Collection</button>
         </div>
       </div>
 
@@ -166,10 +159,8 @@ export default {
 }
 
 input[type="text"] {
-  width: 50%;
-  padding: 12px 20px;
-  margin: auto;
-  display: block;
+  padding: 12px 40px;
+  display: flex;
 }
 
 input[type="radio"] {
@@ -229,20 +220,21 @@ input[type="radio"] {
   border-radius: 5px;
   padding: 15px;
   margin: 10px;
-  width: 50%;
+  width: 100%;
   background-color: #4c94f6;
   color: white;
   text-align: center;
-  margin-left: 20%;
+  margin-left: 0%;
   margin-top: 2%;
 }
 
 .submit {
-  padding-right: 4%;
-  padding-left: 4%;
+  
   border-radius: 10%;
   margin: auto;
   background-color: #4c94f6;
+  font-family: monospace;
+  padding: 6%;
 }
 
 #srchImage {
@@ -260,7 +252,8 @@ input[name="title-input"] {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  padding: 2%;
+  padding-top: 8%;
+  padding-bottom: 8%;
 }
 
 #btn {

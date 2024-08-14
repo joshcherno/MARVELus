@@ -12,15 +12,25 @@ import ComicService from '../services/ComicService';
 <script>
 import ComicService from '../services/ComicService'
 export default {
-    props: ['comic'],
-    methods: {
-        removeComic(collectionId){
-            ComicService.removeComic(this.comic.id);
-            this.$router.push({ name: 'view-collection', params: { id: collectionId } });
-        }
-       
+    props: {
+    comic: {
+      type: Object,
+      required: true
     },
-
+    collectionId: {
+      type: [Number],
+      required: true
+    }
+  },
+  
+    
+    methods: {
+        removeComic(){
+            ComicService.deleteComicFromCollection(this.collectionId, this.comic.comicId).then(response => {
+                this.$router.push({ name: 'view-collection', params: { id: this.collectionId } });
+            });
+        }    
+    },
 }
 </script>
 
@@ -30,10 +40,9 @@ export default {
     border: 3px solid #4c94f6;
     border-radius: 10px;
     width: 250px;
-    height: 100%;
+    height: 450px;
     background-color: white;
     margin: 10%;
-    
 }
 
 img, button, h2, h3{

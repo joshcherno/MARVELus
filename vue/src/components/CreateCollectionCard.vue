@@ -27,13 +27,18 @@ export default {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     border: 3px solid #ee5454;
     border-radius: 10px;
-    width:20rem;
+    width: 20rem;
     height: 20rem;
     margin: 10px;
     position: relative;
     background-color: white;
     text-align: center;
 } 
+
+/* .create-collection-card:hover{
+    background-color: white;
+    color: white;
+} */
 
 .create-collection-img{
     width: 100%;

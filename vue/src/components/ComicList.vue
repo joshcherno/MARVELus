@@ -1,7 +1,7 @@
 <template>
   
 <div class = "comic-container">
-    <collection-comic-card v-for="comic in comics" :comic="comic" v-bind:key="comic.UPC"/>
+    <collection-comic-card v-for="comic in comics" :comic="comic" v-bind:key="comic.UPC" :collectionId="activeCollectionId"/>
 </div>
 
 </template>
@@ -9,7 +9,6 @@
 <script>
 
 import CollectionComicCard from './CollectionComicCard.vue';
-import { mapState } from 'vuex';
 
 export default {
     components: {
@@ -21,22 +20,21 @@ export default {
             required: true
         }
     },
-    computed: {
-       /*  ...mapState({
-            comics(state){
-                const collection = state.collections.find(c => c.id === parseInt(this.$route.params.id));
-                return collection ? collection.comics :[];
-            }
-        }) */
+    data(){
+        return {
+            activeCollectionId: 0,
+        }
+    },
+    mounted(){
+        this.activeCollectionId = parseInt(this.$route.params.id);
     }
+
+    
 
 }
 </script>
 
 <style scoped>
-.comic-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
+
+
 </style>

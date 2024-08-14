@@ -217,21 +217,20 @@ public class JdbcCollectionDao implements CollectionDao{
     //added by Dylan
     @Override
     public Collection deleteComicFromCollection(int collectionId, int comicId){
-        Collection collection = getCollectionById(collectionId);
-        List <Comic> comics = collection.getComics();
-        Comic comicToRemove = null;
-        for (Comic comic : comics) {
-            if (comic.getComicId() == comicId) {
-                comicToRemove = comic;
-                break;
-            }
-        }
-
-        if (comicToRemove == null) {
-            throw new RuntimeException("Comic not found in the collection");
-        }
+//        Collection collection = getCollectionById(collectionId);
+//        List <Comic> comics = collection.getComics();
+//        Comic comicToRemove = null;
+//        for (Comic comic : comics) {
+//            if (comic.getComicId() == comicId) {
+//                comicToRemove = comic;
+//                break;
+//            }
+//        }
+//
+//        if (comicToRemove == null) {
+//            throw new RuntimeException("Comic not found in the collection");
+//        }
         //TODO RMR --- do we want to remove the comic from the comic db?
-        //comics.remove(comicToRemove);
 
         String sql = "DELETE FROM collection_comics WHERE collection_id = ? AND comic_id = ?";
         try {
@@ -242,7 +241,9 @@ public class JdbcCollectionDao implements CollectionDao{
             throw new DaoException("Data integrity violation", e);
         }
 
-    return collection;
+//        comics.remove(comicToRemove);
+        Collection collection = new Collection();
+        return collection;
 
     }
 

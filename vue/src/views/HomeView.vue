@@ -1,24 +1,25 @@
 <template>
 <div class="home">
   <div class="left-home">
-  
+
+    
+    <div class = "collections" v-if="isLoggedIn"> 
+      <h2>Manage Collections</h2>
+      <router-link :to="'/my-collections'"><img class= "manageCollImg" src="src\assets\manageCollections.jpeg" alt="manageCollImg"></router-link>
+      <p>Click above to view or manage your collections</p>
+    </div>
+
     <div class = "comicsInDb">
       <h2>Comics in Database</h2>
       <router-link :to="'/collection/:collectionId/add'"><img class= "lotsComicPic" src="src\assets\SearchComics.jpg" alt="60k"></router-link>
       <p>Click above to search the database</p>
     </div>
     
-    <div class = "collections" v-if="isLoggedIn"> 
-      <h2>Manage Collections</h2>
-      <router-link :to="'/my-collections'"><img class= "manageCollImg" src="src\assets\manageCollections.jpeg" alt="manageCollImg"></router-link>
-      <p>Click above to view or manage your collections</p>
-
-      <!-- <collection-card v-for="collection in this.$store.state.collections" :key="collection.id" :collection="collection" class="collection-card"/> -->
-    </div>
-
     <div class = "stats"> 
       <h2>Statistics</h2>
-      <h4>Total Collections: {{ numCollections }}</h4>
+      <h3>Total Collections: 28</h3>
+      <h3>Total Comics: 12,493</h3>
+      <h3>Total Comics in Collections: 8,983</h3>
     </div>
 
 
@@ -26,7 +27,10 @@
     <div class="right-home">
 
         <div class="upcomingComics">
-          <h2>Upcoming Comics</h2>
+          <h2 class ="upcomingComicsTitle">Upcoming Comics</h2>
+          <h3>Aug 21st: Deadpool vs. Wolverine</h3>
+          <h3>Sep 10th: Avengers: Secret Wars</h3>
+          <h3>Dec 21st: Avengers: Doomsday</h3>
         </div>
 
         <div class = "about">
@@ -48,27 +52,22 @@
 <script>
 
 import StatService from '../services/StatService';
-// import CollectionCard from '../components/CollectionCard.vue';
+import ComicService from '../services/ComicService';
 
 export default {
-  // components: {
-  //   CollectionCard
-  // },
+  
   data(){
     return {
-      numCollections: 0
+      numCollections: '',
     }
   },
   computed: {
-    // collections() {
-    //   return this.$store.state.collections;
-    // },
+    
     isLoggedIn() {
       return this.$store.state.token != '';
     }
   },
   mounted() {
-    // this.getCollectionByUserId();
     this.getNumCollections();
   },
   
@@ -85,11 +84,17 @@ export default {
     async getNumCollections() {
       try {
         const response = await StatService.numberOfCollections();
-        this.numCollections = response.data; // Assuming response.data contains the number of collections
+        this.numCollections = response.data; 
       } catch (error) {
         console.error("Error fetching number of collections:", error);
       }
     },
+
+    upcomingComics(){
+      ComicService.getUpcomingComics().then(response => {
+        console.log(response.data);
+      });
+    }
     
 
   }, 
@@ -152,7 +157,7 @@ export default {
     position: relative;
     text-align: center;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     background-color: white;
     margin-left: 5%;
 }

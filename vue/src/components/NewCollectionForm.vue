@@ -2,7 +2,7 @@
 
     <form class="new-collection-form" v-on:submit.prevent="">
     
-        <h2 class="form-title">Give your collection a name!</h2>
+        <h2 class="form-title">Enter collection name here:</h2>
         <input name="name-input" class="name-input" type="text" placeholder="Collection Name" v-model="collection.collectionName" />
         <button class= "submit" type="submit" @click="createCollection(collection)">CREATE</button>
     
@@ -49,16 +49,17 @@
         justify-content: center;
         align-content: center;
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        text-align: center;
         color: #2C3E50;
-        margin: 10px;
-        width: 75%;
-        background-color: rgba(0,0,0,.75);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        margin: 30px;
     }
     
     .form-title{
         
         color: white;
+        background-color: #2C3E50;
         padding: 1rem;
         font-size: 1rem;
 
@@ -71,8 +72,18 @@
     }
     
     .submit{
-        padding: 1%;
-        margin: 2%;
+        padding-right: 4%;
+        padding-left: 4%;
+        border-radius: 10%;
+        margin: auto;
+        background-color: #4c94f6;
+        color: white;
+        font-family: monospace;
+        border: none;
+        width: 10;
+        height: 40px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border-radius: 5px;
         cursor: pointer;
     }
     

@@ -82,7 +82,7 @@ public ResponseEntity<?> getRecentReleases(){
         Object comicsRoot = apiService.getRecentReleases();
 
         if (comicsRoot == null || (comicsRoot instanceof List && ((List<?>) comicsRoot).isEmpty())) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Upcoming realeases not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Upcoming releases not found.");
         }
 
         return ResponseEntity.ok(comicsRoot);

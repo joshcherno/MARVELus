@@ -20,9 +20,9 @@
             <li>
               <div @click="toggleMenu"><router-link to="/">Home</router-link></div>
             </li>
-            <li v-show="isLoggedIn">
+            <!-- <li v-show="isLoggedIn">
               <div @click="toggleMenu"><router-link to="/my-comics">My Comics</router-link></div>
-            </li>
+            </li> -->
             <li v-show="isLoggedIn">
               <div @click="toggleMenu"><router-link to="/my-collections">My Collections</router-link></div>
             </li>

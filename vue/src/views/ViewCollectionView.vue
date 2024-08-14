@@ -39,7 +39,7 @@ export default {
         return {
             collection: { id: '', title: '', description: '', comics: [] },
             isLoading: true,
-            activeCollectionId: 0,
+            activeCollectionId: '',
         };
     },
     computed: {
@@ -48,12 +48,13 @@ export default {
         }
     },
     methods: {
+
     deleteCollection() {
       if (confirm("Are you sure you want to delete this collection and all associated comics? This action cannot be undone.")) {
         this.isLoading = true;
-        collectionService.deleteCollection(this.collection.id).then(response => {
+        collectionService.deleteCollection(this.activeCollectionId).then(response => {
           this.isLoading = false;
-          if (response.status === 200) {
+          if (response.status === 204 || response.status === 200) {
             this.$store.commit('SET_NOTIFICATION',
               {
                 message: `Collection has been deleted`,
@@ -170,9 +171,14 @@ export default {
 
 <style scoped>
 #comics-in-collection {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 2%;
+  
+
 }
 
 .header {

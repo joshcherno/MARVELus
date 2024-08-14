@@ -63,7 +63,7 @@ export default {
   background-color: #4c94f6;
   color: white;
   text-align: center;
-  margin-left: 20%;
+  margin-left: 22%;
   margin-top: 2%;
 }
 

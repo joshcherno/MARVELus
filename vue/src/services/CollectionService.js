@@ -60,9 +60,8 @@ export default {
   },
 
 
-  
   deleteCollection(collectionId) {
-    return axios.delete(`/collections/${collectionId}`);
+    return axios.delete(`/collection/delete/${collectionId}`);
   }
 
 }

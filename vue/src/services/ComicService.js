@@ -10,6 +10,10 @@ export default {
     return http.get('/comics');
   },
 
+  getUpcomingComic() {
+    return http.get('/comic/search/upcoming-releases');
+  },
+
   getComicByTitle(comicTitle) {
     return http.get(`/comic/search/title/${comicTitle}`)
   },
@@ -27,6 +31,10 @@ export default {
    },
 
   deleteComicFromCollection(collectionId, comicId) {
-     return http.delete(`/collection/${collectionId}/comic/${comicId}`);
-   }
+     return axios.delete(`/collection/${collectionId}/comic/${comicId}`);
+   },
+
+
+
+
 }
