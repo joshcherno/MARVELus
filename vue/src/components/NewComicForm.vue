@@ -1,7 +1,8 @@
 <template>
   <div id="main">
     <div id="loading" v-show="loading">
-      <img src="../assets/spiderman-loading.gif" alt="loading" />
+      <img src="../assets/spiderman-loading.gif" alt="loading" class="spidey"/>
+      <!-- <img src="../assets/avengersTower.png" alt="" class="tower"> -->
     </div>
     <form class="new-comic-form" v-on:submit.prevent="">
       <h2 class="form-title">Search Comics</h2>
@@ -211,6 +212,7 @@ input[type="radio"] {
   text-align: center;
   color: #2c3e50;
   margin: 30px;
+  z-index: 1;
 }
 
 .form-title {
@@ -235,7 +237,7 @@ input[type="radio"] {
   margin: auto;
   background-color: #4c94f6;
   font-family: monospace;
-  padding: 6%;
+  padding: 1%;
 }
 
 #srchImage {
@@ -253,8 +255,8 @@ input[name="title-input"] {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  padding-top: 8%;
-  padding-bottom: 8%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 #btn {
@@ -278,15 +280,15 @@ input[name="title-input"] {
 }
 
 .buttons{
-
   display: flex;
   flex-direction: column;
   opacity: 0;
   position: absolute;
   top: 50%;
   cursor: pointer;
-  
 }
+
+
 
 
 
