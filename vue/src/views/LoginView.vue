@@ -9,7 +9,7 @@
         Thank you for registering, please sign in.
       </div>
       <div class="form-input-group">
-        <label for="username">Username</label>
+        <label for="username">Username </label>
         <input type="text" id="username" v-model="user.username" required autofocus />
       </div>
       <div class="form-input-group">
@@ -66,6 +66,8 @@ export default {
 
 .form-input-group {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 label {
@@ -85,8 +87,8 @@ button {
   display: flex;
   align-content: center;
   justify-content: center;
-  background-color: rgba(0,0,0,.5);       /* added a faded background to help the login standout */
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;      /* set font style for whole page */
+  background-color: rgba(61, 210, 255, 0.5);       /* added a faded background to help the login standout */
+  font-family: monospace;     /* set font style for whole page */
   color: white;
   margin: 15%;
 }

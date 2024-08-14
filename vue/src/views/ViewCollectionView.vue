@@ -1,17 +1,17 @@
 <template>
   <div>
-        <div class="collection-actions">
+        <!-- <div class="collection-actions">
             <router-link v-bind:to="{ name: 'my-collections' }"> Back to My Collections</router-link>
-        </div>
+        </div> -->
         <div class="loading" v-if="isLoading">
             <img src="../assets/spiderman-loading.gif" />
         </div>
     <div v-else>
         <div class="header">
+            <router-link class="collection-actions" v-bind:to="{ name: 'my-collections' }"> Back to My Collections</router-link>
             <h1> {{collection.collectionName}} </h1>
-            <router-link class="btn-submit" :to="{ name: 'add-comic', params: { collectionId: activeCollectionId} }">Add
-                New Comic</router-link>
-                <button class="btn-cancel deleteCollection" v-on:click="deleteCollection">Delete Collection</button>
+            <router-link class="btn-submit" :to="{ name: 'add-comic', params: { collectionId: activeCollectionId} }">Add New Comic</router-link>
+            <button class="btn-delete" v-on:click="deleteCollection">Delete Collection</button>
             <!-- <p> {{ collection.description }} </p> -->
         </div>
 
@@ -178,32 +178,73 @@ export default {
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-top: 2%;
 }
 
 .header h1 {
-  flex-grow: 1;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: rgba(0,0,0,.5);
-  width: 33%;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  flex-grow: 1;
+  background-color: #4c94f6;
   color: white;
-  margin: auto;
-  margin-top: 30px;
-  padding: 0%;
+  text-align: center;
 }
-.collection-actions {
-  margin-top: 20px;
-  margin-left:10px;
-  margin-right: 85%;
-  background-color: white;
-    color: white;
-    border: none;
-    padding: 12px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    border-radius: 5px;
-    font-family: monospace;
 
+.collection-actions {
+  background-color: #4c69f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: monospace;
+}
+.collection-actions:hover {
+  background-color: #4c69f6;
+  transform: scale(1.10);
+  box-shadow: 0px 10px 20px rgb(30, 255, 0, 1);
+}
+
+.btn-submit {
+  background-color: #4c69f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: monospace;
+}
+
+.btn-submit:hover {
+  background-color: #4c69f6;
+  transform: scale(1.10);
+  box-shadow: 0px 10px 20px rgb(30, 255, 0, 1);
+}
+
+.btn-delete {
+  background-color: #4c69f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: monospace;
+}
+.btn-delete:hover {
+  background-color: #4c69f6;
+  transform: scale(1.10);
+  box-shadow: 0px 10px 20px rgb(30, 255, 0, 1);
 }
 </style>

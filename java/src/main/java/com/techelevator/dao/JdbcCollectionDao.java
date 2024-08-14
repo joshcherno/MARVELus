@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
+import com.techelevator.model.marvel.MarvelComic;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -168,6 +169,8 @@ public class JdbcCollectionDao implements CollectionDao{
 
         return comics;
     }
+
+
     @Override
     public int totalNumberOfCollections() {
         String sql = "SELECT COUNT(*) FROM collection";
@@ -209,6 +212,34 @@ public class JdbcCollectionDao implements CollectionDao{
         }
         return count;
     }
+
+
+    //added by Dylan
+//    @Override
+//    public Collection deleteComicFromCollection(int collectionId, int comicId){
+//        Collection collection = getCollectionById(collectionId);
+//        List <Comic> comic = getComicsByCollectionId(comicId);
+////        String sql = "DELETE FROM collection_comics WHERE collection_id = ? AND comic_id = ?";
+//
+//
+//    return ;
+//
+//    }
+
+    /*   it wants me to implement the next two methods (when the one above is commented out)
+            from the CollectionDao so i did below but how is it
+            different from whats right above this? and why does it
+            satisfy intellij if it doesn't have the parameters in the Dao???? ROb????*/
+    @Override
+    public Collection deleteComicFromCollection() {
+        return null;
+    }
+
+    @Override
+    public Collection deleteComicFromCollection(int collectionId, int comicId) {
+        return null;
+    }
+
 
     private  Collection mapRowToCollection(SqlRowSet rs){
 

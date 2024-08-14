@@ -26,9 +26,7 @@ export default {
     return http.post(`/collection/${collectionId}/add`, comic);
    },
 
-
-
-//   deleteComicFromLibrary(comicId) {
-//     return http.delete(`/comics/${comicId}`);
-//   }
+  deleteComicFromCollection(comicId) {
+     return http.delete(`/comics/delete/${comicId}`);
+   }
 }

@@ -143,7 +143,7 @@ a {
   top: 30px;
   left: 5px;
   background-color: rgb(228, 223, 223, .95);
-  height: 80vh;
+  height: 30vh;
   width: 30vw;
   border: 1px solid #ee5454;
   z-index: 1;
@@ -172,6 +172,10 @@ a {
 
 .menu ul {
   list-style-type: none;
+}
+
+.main{
+  position: relative;
 }
 
 

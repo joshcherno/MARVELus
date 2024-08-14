@@ -222,12 +222,19 @@ input[type="radio"] {
 }
 
 .form-title {
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
+  font-family: monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  width: 50%;
+  background-color: #4c94f6;
   color: white;
-  margin: auto;
-  padding: 2%;
-  font-size: 1rem;
+  text-align: center;
+  margin-left: 20%;
+  margin-top: 2%;
 }
 
 .submit {
@@ -257,20 +264,17 @@ input[name="title-input"] {
 }
 
 #btn {
-  background-color: #2c3e50;
+  background-color: #4c94f6;
   color: white;
-  padding: 2%;
-  margin-top: 2%;
-  cursor: pointer;
+  font-family: monospace;
+  border: none;
+  padding: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 5px;
   opacity: 1;
   z-index: 1;
+  cursor: pointer;
 } 
-
-.searchResultActionBtn {
-  display: flex;
-  flex-direction: column;
-  
-}
 
 #cUPC{
   font-size: 0.8rem;
@@ -280,14 +284,13 @@ input[name="title-input"] {
 }
 
 .buttons{
- 
-  background-color: rgba(0, 0, 0, 1); /* Transparent overlay */
+
+  display: flex;
+  flex-direction: column;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  position : absolute;
+  position: absolute;
   top: 50%;
-  
-  
+  cursor: pointer;
   
 }
 

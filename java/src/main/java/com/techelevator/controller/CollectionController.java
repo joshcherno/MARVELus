@@ -123,6 +123,12 @@ public class CollectionController {
     }
 
 
+    // added by dylan
+    @RequestMapping(path="/comics/delete/{comicId}")
+    public Collection deleteComicFromCollection(@PathVariable ("comicId") int comicId, @PathVariable("collectionId") int collectionId) {
+        return collectionService.deleteComicFromCollection(collectionId, comicId);
+    }
+
 
 
 

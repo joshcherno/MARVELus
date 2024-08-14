@@ -20,6 +20,10 @@ export default {
     width: 75%;
     padding: 1rem;
     font-size: 1rem;
+    position: absolute;
+    bottom: -2%;
+    left: 12%;
+    position: fixed;
 }
 
 </style>

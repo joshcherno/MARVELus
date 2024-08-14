@@ -38,19 +38,35 @@
     border: 3px solid #4c69f6;
     border-radius: 10px;
     width: 250px;
-    height: 500px;
+    height: 400px;
     margin: 10px;
-    position: relative;
+    position: relatve;
+    background-color: white;
   }
   
   .collection-img {
     width: 100%;
-    height: 80%;
+    height:50%;
   }
   
   #view-collection-router {
     text-decoration: none;
     color: #4c69f6;
+  }
+
+  .collectionDetails{
+    background-color: #4c69f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .collectionDetails:hover{
+    transform: scale(1.10);
+    box-shadow: 0px 10px 20px rgb(30, 255, 0, 1);
   }
   </style>
   

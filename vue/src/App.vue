@@ -36,7 +36,7 @@ export default {
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 /* @media (max-width: 768px) {

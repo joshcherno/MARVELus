@@ -88,6 +88,8 @@ public class CollectionService {
         return collectionDao.numberOfComicsInCollections();
     }
 
-
-
+    //added by dylan
+    public Collection deleteComicFromCollection(int collectionId, int comicId) {
+        return collectionDao.deleteComicFromCollection();
+    }
 }

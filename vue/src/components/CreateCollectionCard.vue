@@ -27,8 +27,8 @@ export default {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     border: 3px solid #ee5454;
     border-radius: 10px;
-    width: 250px;
-    height: 500px;
+    width:20rem;
+    height: 20rem;
     margin: 10px;
     position: relative;
     background-color: white;

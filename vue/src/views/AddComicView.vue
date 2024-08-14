@@ -2,8 +2,6 @@
   
 <div> 
 
-<h1 class="add-comic-headline">Search Comics</h1>
-
 </div>
 
 <new-comic-form v-bind:collectionId="userCollectionId"/>
