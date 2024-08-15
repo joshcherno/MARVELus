@@ -1,10 +1,7 @@
 <template>
 <router-link id="create-collection-router" :to="{ name: 'create-collection' }">
    <div class = "create-collection-card">
-        <!-- <h2 class = "create-collection-card-header">Create a New Collection</h2> -->
-        <img class="create-collection-img" v-bind:src="'src/assets/createcollectionimage2.jpg'" alt="cover-image">
-        <!-- <h3>Turn your comics into something MARVELus</h3> -->
-        <!-- <button class="create-collection-button" @click="goToCreateCollection">Create Collection</button> -->
+        <img class="create-collection-img" v-bind:src="'src/assets/createcollec.jpg'" alt="cover-image">
     </div>
 </router-link>
 </template>
@@ -27,23 +24,21 @@ export default {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     border: 3px solid #ee5454;
     border-radius: 10px;
-    width: 20rem;
-    height: 20rem;
+    width: 250px;
+    height: 400px;
     margin: 10px;
-    position: relative;
+    position: relatve;
     background-color: white;
-    text-align: center;
 } 
 
-/* .create-collection-card:hover{
-    background-color: white;
-    color: white;
-} */
+ .create-collection-card:hover{
+    transform: scale(1.08) ;
+    box-shadow: 0px 10px 20px rgb(30, 255, 0, 1);
+} 
 
 .create-collection-img{
     width: 100%;
     height: 100%;
-    /* margin-top: 2px; */
 }
 
 #create-collection-router {

@@ -29,8 +29,11 @@
         <div class="upcomingComics">
           <h2 class ="upcomingComicsTitle">Upcoming Comics</h2>
           <h3>Aug 21st: Deadpool vs. Wolverine</h3>
+          <img src="src\assets\deadpoolWolv.jpg" alt="dPw" class = "deadpoolCover">
           <h3>Sep 10th: Avengers: Secret Wars</h3>
+          <img src="src\assets\secretWars.jpg" alt="secretWarsCover" class="secretWarsCover">
           <h3>Dec 21st: Avengers: Doomsday</h3>
+          <img src="src\assets\doomsday.jpg" alt="doom" class="doomsday">
         </div>
 
         <div class = "about">
@@ -222,6 +225,27 @@ export default {
   .comicsInDb:hover {
         transform: scale(1.10);
         box-shadow: 0px 10px 20px rgb(30, 255, 0, 1);
+    }
+
+    .deadpoolCover{
+      width: 65px;
+      height: 95px;
+      display: flex;
+      margin-left: 35%;    
+    }
+
+    .secretWarsCover{
+      width: 65px;
+      height: 95px;
+      display: flex;
+      margin-left: 35%;    
+    }
+
+    .doomsday{
+      width: 65px;
+      height: 95px;
+      display: flex;
+      margin-left: 35%;    
     }
  
 

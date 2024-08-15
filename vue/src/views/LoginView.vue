@@ -19,6 +19,8 @@
       <button type="submit" @click="login">Sign in</button> 
       <p>
       <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+      <p>
+        <router-link v-bind:to="{ name: 'home' }">View site as guest</router-link></p>
     </form>
   </div>
 </template>
@@ -77,7 +79,8 @@ label {
 button {
   margin: auto;
   background-color: lightblue;
-  margin-bottom: 50px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   display: flex;
   justify-content: center;
   align-content: center;

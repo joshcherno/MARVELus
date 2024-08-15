@@ -36,13 +36,9 @@
     <div id="resultsList">
       <div id="srchResults" v-for="result in searchResults" :key="result.id">
         <h3 id="cTitle">{{ result.title }}</h3>
-        <h3 id="cName">{{ result.name }}</h3>
-        <img
-          id="srchImage"
-          :src="result.thumbnail.path + '.' + result.thumbnail.extension"
-          alt="cover"
+        <img id="srchImage" :src="result.thumbnail.path + '.' + result.thumbnail.extension" alt="cover"
         />
-        <div class = "buttons">
+        <div class = "buttons" v-show="isLoggedIn">
           <button id="btn" class="searchResultActionBtn" @click="addComicToLibrary(collectionId, result)">Add To Collection</button>
         </div>
       </div>
@@ -67,6 +63,11 @@ export default {
       searchTypes: ['name', 'title', 'upc']
     };
   },
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.token != '';
+    }
+  },
 
   props: {
     collectionId: {
@@ -74,6 +75,8 @@ export default {
       required: false,
     },
   },
+
+ 
 
   methods: {
     goToMyComics() {
@@ -157,7 +160,7 @@ export default {
   flex-wrap: wrap;
   gap: 1.8rem;
   justify-content: center;
-  padding: 8%;
+  padding: 4%;
 }
 
 input[type="text"] {
@@ -167,7 +170,7 @@ input[type="text"] {
 
 input[type="radio"] {
   padding: 12px 20px;
-  margin: auto;
+  margin-top: 20px;
 }
 
 #srchResults {
@@ -180,7 +183,9 @@ input[type="radio"] {
   flex-direction: column;
   align-items: center;
   justify-content: space-between; 
-  padding: 12px;    
+  padding-left: 10px;   
+  padding-right: 10px;
+  padding-bottom: 15px; 
   overflow: hidden;
   position: relative;
 }
@@ -211,7 +216,7 @@ input[type="radio"] {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin: 30px;
+  margin: 20px;
   z-index: 1;
 }
 
@@ -227,22 +232,21 @@ input[type="radio"] {
   background-color: #4c94f6;
   color: white;
   text-align: center;
-  margin-left: 0%;
-  margin-top: 2%;
+  margin-left:8%;
+  margin-top: 35%;
 }
 
 .submit {
-  
   border-radius: 10%;
-  margin: auto;
+  margin: 10px;
   background-color: #4c94f6;
   font-family: monospace;
-  padding: 1%;
+  padding: 2%;
 }
 
 #srchImage {
   width: 100%;
-  height: 70%;
+  height: 80%;
   transition: opacity 0.3s ease-in-out;
 }
 

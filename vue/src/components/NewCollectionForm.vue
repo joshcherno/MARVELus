@@ -53,15 +53,16 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
-        margin: 30px;
+        margin: 65px;
     }
     
     .form-title{
         
         color: white;
-        background-color: #2C3E50;
+        background-color: #4c94f6;
         padding: 1rem;
         font-size: 1rem;
+        font-family: monospace;
 
     }
 
@@ -72,10 +73,11 @@
     }
     
     .submit{
-        padding-right: 4%;
-        padding-left: 4%;
+        padding-right: 3%;
+        padding-left: 3%;
         border-radius: 10%;
-        margin: auto;
+        margin-left: 10px;
+        margin-top: 20px;
         background-color: #4c94f6;
         color: white;
         font-family: monospace;
@@ -83,7 +85,6 @@
         width: 10;
         height: 40px;
         transition: background-color 0.3s ease, transform 0.3s ease;
-        border-radius: 5px;
         cursor: pointer;
     }
     
