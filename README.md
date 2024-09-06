@@ -39,8 +39,3 @@ Full-Stack Developer, contributing to both back-end logic and API integration. D
 #### Rob Roberts
 Full-Stack Developer with a focus on back-end development for this project. who laid the foundational structure for the back-end services and led efforts to integrate the Marvel API. Rob ensured data handling was smooth, playing a major role in the communication between the API and the app’s internal systems, enabling efficient data flow.
 Working together, the team tackled complex challenges, such as integrating Marvel’s extensive API and managing the large datasets involved. Thanks to our collaboration, we delivered a polished, functional application in just under two weeks.
-
-## Key Accomplishments
-Successfully integrated the Marvel API, handling large datasets efficiently.
-Delivered a fully functional web app in just under two weeks, from concept to deployment.
-Overcame the challenges of learning new technologies within tight deadlines, resulting in a polished, user-friendly product.
