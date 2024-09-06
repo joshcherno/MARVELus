@@ -38,4 +38,4 @@ Full-Stack Developer with a focus on front-end development for this project. Jos
 Full-Stack Developer, contributing to both back-end logic and API integration. Dylan played a pivotal role in the initial front-end architecture to establish a strong UI foundation and collaborated on the overall structure to ensure a consistent user experience. His input was key in developing the back-end services that powered the application.
 #### Rob Roberts
 Full-Stack Developer with a focus on back-end development for this project. who laid the foundational structure for the back-end services and led efforts to integrate the Marvel API. Rob ensured data handling was smooth, playing a major role in the communication between the API and the app’s internal systems, enabling efficient data flow.
-Working together, the team tackled complex challenges, such as integrating Marvel’s extensive API and managing the large datasets involved. Thanks to our collaboration, we delivered a polished, functional application in just under two weeks.
+Working together, the team tackled complex challenges, such as integrating Marvel’s extensive API and managing the large datasets involved.
