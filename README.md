@@ -3,17 +3,17 @@
 MARVELus is a full-stack web application designed for comic book collectors to easily create and manage their collections. The application allows users to search for comics by title, main character, or unique UPC through the Marvel API, adding selected comics to their collections. While some functions were hard-coded or slightly limited to ensure the project was ready for demo, the app has been built in a way that it could easily be expanded with planned future enhancements. These enhancements include social sharing, adding friends, trading, and real-time valuation based on collector sites like CGC, creating potential revenue streams. MARVELus was developed in just under two weeks, showcasing rapid, collaborative development and effective team coordination.
 
 ## Features
-1. User Registration & Authentication
+### 1. User Registration & Authentication
 New users can register, and existing users can securely log in to manage their comic book collections.
 Authentication is handled through Spring Security to ensure data privacy and user-specific collections.
-2. Comic Search & Collection Management
+### 2. Comic Search & Collection Management
 Users can search for comics by:
 Comic Title
 Main Character
 Unique UPC
 The search results are pulled directly from the Marvel API, allowing access to real-time comic data.
 Users can add comics to their collections for easy management and reference.
-3. Personal Comic Book Collection
+### 3. Personal Comic Book Collection
 Each user has a dedicated space to view and manage their saved comic books.
 Users can remove items from their collection or update notes about individual comics.
 ## Technologies Used
